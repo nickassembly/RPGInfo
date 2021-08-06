@@ -36,17 +36,23 @@ namespace RPGInfo.Web
             services.AddRazorPages();
 
             services.Configure<IdentityOptions>(options => 
-            { 
+            {
                 // password settings
+                options.Password.RequiredLength = 6;
 
                 // lockout settings
+                options.Lockout.MaxFailedAccessAttempts = 10;
 
                 // user settings
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = true;
             });
 
             services.ConfigureApplicationCookie(options => 
-            { 
+            {
                 // cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
             });
         }
 
