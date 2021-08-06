@@ -1,6 +1,5 @@
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\appsettings.Development.json
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\appsettings.json
-D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\RPGInfo.Web.StaticWebAssets.xml
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\RPGInfo.Web.exe
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\RPGInfo.Web.deps.json
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\RPGInfo.Web.runtimeconfig.json
@@ -51,7 +50,6 @@ D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\runtimes\win-x86\nat
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.csproj.AssemblyReference.cache
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.GeneratedMSBuildEditorConfig.editorconfig
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.AssemblyInfoInputs.cache
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.AssemblyInfo.cs

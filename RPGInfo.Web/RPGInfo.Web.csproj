@@ -5,6 +5,16 @@
     <UserSecretsId>aspnet-RPGInfo.Web-A92AB11D-3BD6-496E-90C1-2260C7A61C20</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <ResolveStaticWebAssetsInputsDependsOn>RemoveIdentityAssets</ResolveStaticWebAssetsInputsDependsOn>
+  </PropertyGroup>
+
+  <Target Name="RemoveIdentityAssets">
+    <ItemGroup>
+      <StaticWebAsset Remove="@(StaticWebAsset)" Condition="%(SourceId) == 'Microsoft.AspNetCore.Identity.UI'" />
+    </ItemGroup>
+  </Target>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.8" />
