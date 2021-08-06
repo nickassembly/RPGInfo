@@ -34,6 +34,20 @@ namespace RPGInfo.Web
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
+
+            services.Configure<IdentityOptions>(options => 
+            { 
+                // password settings
+
+                // lockout settings
+
+                // user settings
+            });
+
+            services.ConfigureApplicationCookie(options => 
+            { 
+                // cookie settings
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
