@@ -67,7 +67,6 @@ D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.RazorCor
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Index.cshtml.g.cs
-D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Privacy.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_Layout.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_LoginPartial.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -162,3 +161,4 @@ D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Areas\Identity
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Character.cshtml.g.cs
