@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using System;
 using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Services
@@ -33,6 +34,7 @@ namespace RPGInfo.Web.Services
             };
 
             msg.AddTo(new EmailAddress(email));
+
 
             // Disable click tracking
             msg.SetClickTracking(false, false);
