@@ -1,0 +1,46 @@
+﻿@page
+@model Characters
+@{
+    ViewData["Title"] = "Add Character";
+}
+
+<h1>Add Character</h1>
+
+<form method="post">
+    <input type="text" asp-for="Character.Name" placeholder="Name" />
+    <input type="text" asp-for="Character.Race" placeholder="Race" />
+    <input type="text" asp-for="Character.Class" placeholder="Class" />
+    <input type="text" asp-for="Character.CurrentLocation" placeholder="Current Location" />
+    <input type="text" asp-for="Character.CharacterNotes" placeholder="Character Notes" />
+
+    <button type="submit">Submit</button>
+</form>
+
+<div class="container">
+ 
+    <h1 class="p-3 text-center">Characters</h1>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Race</th>
+                <th>Class</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.CharacterList)
+            {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Race</td>
+                <td>@item.Class</td>
+                <td>@item.CurrentLocation</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
