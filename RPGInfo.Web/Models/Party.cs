@@ -11,6 +11,7 @@ namespace RPGInfo.Web.Models
         public string PartyName { get; set; }
         public List<Character> Characters { get; set; }
         public List<Setting> Settings { get; set; }
+        public List<Note> PartyNotes { get; set; }
 
     }
 }

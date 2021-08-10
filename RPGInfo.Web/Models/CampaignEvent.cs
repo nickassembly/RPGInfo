@@ -10,7 +10,7 @@ namespace RPGInfo.Web.Models
     {
         public DateTime EventDate { get; set; }
         public string EventTitle { get; set; }
-        public string EventNotes { get; set; }
+        public List<Note> EventNotes { get; set; }
 
     }
 }
