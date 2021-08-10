@@ -8,6 +8,8 @@ namespace RPGInfo.Web.Models
 {
     public class Setting
     {
-        
+        public List<Campaign> Campaigns { get; set; }
+        public List<AreasOfInterest> AreasOfInterest { get; set; }
+
     }
 }

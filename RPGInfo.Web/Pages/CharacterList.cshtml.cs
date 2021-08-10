@@ -12,13 +12,13 @@ namespace RPGInfo.Web.Pages
         // TODO: Add buttons on form to add party, relationships, settings, etc. 
 
         [BindProperty] 
-        public CharacterModel Character { get; set; }
+        public Character Character { get; set; }
 
-        public List<CharacterModel> CharacterList { get; set; } = new List<CharacterModel>()
+        public List<Character> CharacterList { get; set; } = new List<Character>()
         {
-            new CharacterModel{Name = "frodo", Race = "halfling", CurrentLocation = "shire"},
-            new CharacterModel{Name = "bilbo", Race = "halfling", CurrentLocation = "shire"},
-            new CharacterModel{Name = "keller", Race = "halfling", CurrentLocation = "mordor"}
+            new Character{Name = "frodo", Race = "halfling", CurrentLocation = "shire"},
+            new Character{Name = "bilbo", Race = "halfling", CurrentLocation = "shire"},
+            new Character{Name = "keller", Race = "halfling", CurrentLocation = "mordor"}
         };
 
         public void OnGet()
