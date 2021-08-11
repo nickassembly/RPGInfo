@@ -12,6 +12,7 @@ namespace RPGInfo.Web.Models
         public string NoteAuthor { get; set; }
         public DateTime NoteDate { get; set; }
         public string NoteContent { get; set; }
+        public NoteType NoteType { get; set; }
 
     }
 }

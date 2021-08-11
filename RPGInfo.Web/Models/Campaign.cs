@@ -11,7 +11,7 @@ namespace RPGInfo.Web.Models
         public string CampaignName { get; set; }
         public List<Party> Parties { get; set; }
         public List<CampaignEvent> CampaignEvents { get; set; }
-        public List<AreasOfInterest> CampaignAreas { get; set; }
+        public List<AreaOfInterest> CampaignAreas { get; set; }
         public List<Note> CampaignNotes { get; set; }
     }
 }
