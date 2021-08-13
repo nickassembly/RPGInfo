@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Models
 {
-    public class Campaign
+    public class Campaign : BaseEntity
     {
         public string CampaignName { get; set; }
         public List<Party> Parties { get; set; }

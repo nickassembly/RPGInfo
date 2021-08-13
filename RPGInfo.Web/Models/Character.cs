@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Models
 {
-    public class Character
+    public class Character : BaseEntity
     {
         public byte[] Portrait { get; set; }
         public string Name { get; set; }

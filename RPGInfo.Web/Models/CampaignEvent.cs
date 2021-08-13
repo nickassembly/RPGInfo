@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Models
 {
-    public class CampaignEvent
+    public class CampaignEvent : BaseEntity
     {
         public DateTime EventDate { get; set; }
         public string EventTitle { get; set; }

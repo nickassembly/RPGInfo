@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Models
 {
-    public class Setting
+    public class Setting : BaseEntity
     {
         public string Name { get; set; }
         public string Genre { get; set; }
