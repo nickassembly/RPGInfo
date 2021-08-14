@@ -11,6 +11,10 @@ namespace RPGInfo.Web.Models
         public DateTime EventDate { get; set; }
         public string EventTitle { get; set; }
         public List<Note> EventNotes { get; set; }
+        public Guid CreatedBy { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public Guid UpdatedBy { get; set; }
+        public DateTimeOffset UpdatedDate { get; set; }
 
     }
 }

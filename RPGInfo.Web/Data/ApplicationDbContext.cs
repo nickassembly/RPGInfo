@@ -14,7 +14,6 @@ namespace RPGInfo.Web.Data
         {
         }
 
-        // TODO: Need to run migrations, may need to inherit from DbContext as well as IdentityDbContext?
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<CampaignEvent> CampaignEvent { get; set; }

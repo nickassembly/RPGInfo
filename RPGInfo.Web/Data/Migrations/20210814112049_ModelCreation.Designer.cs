@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RPGInfo.Web.Data;
 
 namespace RPGInfo.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210814112049_ModelCreation")]
+    partial class ModelCreation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,20 +237,8 @@ namespace RPGInfo.Web.Data.Migrations
                     b.Property<int?>("CampaignId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<int?>("SettingId")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("UpdatedDate")
-                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -269,20 +259,8 @@ namespace RPGInfo.Web.Data.Migrations
                     b.Property<string>("CampaignName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<int?>("SettingId")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("UpdatedDate")
-                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -301,23 +279,11 @@ namespace RPGInfo.Web.Data.Migrations
                     b.Property<int?>("CampaignId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<DateTime>("EventDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EventTitle")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("UpdatedDate")
-                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -345,12 +311,6 @@ namespace RPGInfo.Web.Data.Migrations
                     b.Property<string>("Class")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("CurrentLocation")
                         .HasColumnType("nvarchar(max)");
 
@@ -368,12 +328,6 @@ namespace RPGInfo.Web.Data.Migrations
 
                     b.Property<int?>("SettingId")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("UpdatedDate")
-                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -409,12 +363,6 @@ namespace RPGInfo.Web.Data.Migrations
                     b.Property<int?>("CharacterId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("NoteAuthor")
                         .HasColumnType("nvarchar(max)");
 
@@ -435,12 +383,6 @@ namespace RPGInfo.Web.Data.Migrations
 
                     b.Property<int?>("SettingId")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("UpdatedDate")
-                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -469,20 +411,8 @@ namespace RPGInfo.Web.Data.Migrations
                     b.Property<int?>("CampaignId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("PartyName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("UpdatedDate")
-                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -498,12 +428,6 @@ namespace RPGInfo.Web.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("Genre")
                         .HasColumnType("nvarchar(max)");
 
@@ -512,12 +436,6 @@ namespace RPGInfo.Web.Data.Migrations
 
                     b.Property<int?>("PartyId")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("UpdatedDate")
-                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 

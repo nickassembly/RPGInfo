@@ -12,6 +12,10 @@ namespace RPGInfo.Web.Models
         public List<Character> Characters { get; set; }
         public string AreaDescription { get; set; }
         public List<Note> AreaNote { get; set; }
+        public Guid CreatedBy { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public Guid UpdatedBy { get; set; }
+        public DateTimeOffset UpdatedDate { get; set; }
 
     }
 }

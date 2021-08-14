@@ -13,5 +13,9 @@ namespace RPGInfo.Web.Models
         public List<CampaignEvent> CampaignEvents { get; set; }
         public List<AreaOfInterest> CampaignAreas { get; set; }
         public List<Note> CampaignNotes { get; set; }
+        public Guid CreatedBy { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public Guid UpdatedBy { get; set; }
+        public DateTimeOffset UpdatedDate { get; set; }
     }
 }

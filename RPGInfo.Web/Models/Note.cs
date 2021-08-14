@@ -13,6 +13,10 @@ namespace RPGInfo.Web.Models
         public DateTime NoteDate { get; set; }
         public string NoteContent { get; set; }
         public NoteType NoteType { get; set; }
+        public Guid CreatedBy { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public Guid UpdatedBy { get; set; }
+        public DateTimeOffset UpdatedDate { get; set; }
 
     }
 }

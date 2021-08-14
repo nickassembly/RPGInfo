@@ -17,5 +17,9 @@ namespace RPGInfo.Web.Models
         public Setting Setting { get; set; }
         public Campaign Campaign { get; set; }
         public List<Note> CharacterNotes { get; set; }
+        public Guid CreatedBy { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public Guid UpdatedBy { get; set; }
+        public DateTimeOffset UpdatedDate { get; set; }
     }
 }
