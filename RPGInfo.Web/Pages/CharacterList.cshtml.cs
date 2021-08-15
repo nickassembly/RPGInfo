@@ -31,6 +31,16 @@ namespace RPGInfo.Web.Pages
         {
             var character = Character;
 
+            character.Name = Character.Name;
+            character.Race = Character.Race;
+            character.Class = Character.Class;
+            character.CurrentLocation = Character.CurrentLocation;
+            character.Campaign = Character.Campaign;
+            character.Setting = Character.Setting;
+            character.CharacterNotes = Character.CharacterNotes;
+            
+            // TODO: Add method in database, also pull user info to get Updated by and Updated properties
+
             if (!ModelState.IsValid)
             {
                 return Page();
