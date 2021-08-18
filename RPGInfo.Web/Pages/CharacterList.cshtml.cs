@@ -25,7 +25,8 @@ namespace RPGInfo.Web.Pages
             CharacterList = _context.Characters.ToList();
         }
 
-        // TODO: Add method for new characters
+        // TODO: Add Interface to get logged in user
+        // Add Created By and Created Date to post logic
 
         public IActionResult OnPost()
         {
@@ -38,16 +39,14 @@ namespace RPGInfo.Web.Pages
             character.Campaign = Character.Campaign;
             character.Setting = Character.Setting;
             character.CharacterNotes = Character.CharacterNotes;
-            
-            // TODO: Add method in database, also pull user info to get Updated by and Updated properties
 
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-
-
+            _context.Add(character);
+            _context.SaveChanges();
 
             return RedirectToPage("/CharacterList");
         }
