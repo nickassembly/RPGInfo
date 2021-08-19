@@ -1,18 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace RPGInfo.Web.Pages
 {
     public class Characters : PageModel
     {
         private readonly ApplicationDbContext _context;
-        public Characters(ApplicationDbContext context)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public Characters(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [BindProperty] 
@@ -25,11 +29,10 @@ namespace RPGInfo.Web.Pages
             CharacterList = _context.Characters.ToList();
         }
 
-        // TODO: Add Interface to get logged in user
-        // Add Created By and Created Date to post logic
-
         public IActionResult OnPost()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             var character = Character;
 
             character.Name = Character.Name;
@@ -39,6 +42,10 @@ namespace RPGInfo.Web.Pages
             character.Campaign = Character.Campaign;
             character.Setting = Character.Setting;
             character.CharacterNotes = Character.CharacterNotes;
+
+            // TODO: Verify proper values are being saved and add Created Date, etc. 
+            // Also need to only allow menus when logged in properly
+            character.CreatedBy = new System.Guid(userId);
 
             if (!ModelState.IsValid)
             {
