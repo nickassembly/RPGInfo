@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -32,6 +33,7 @@ namespace RPGInfo.Web.Pages
         public IActionResult OnPost()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            DateTimeOffset createdDate = DateTime.Now;
 
             var character = Character;
 
@@ -42,10 +44,10 @@ namespace RPGInfo.Web.Pages
             character.Campaign = Character.Campaign;
             character.Setting = Character.Setting;
             character.CharacterNotes = Character.CharacterNotes;
+            character.KnownCharacters = Character.KnownCharacters;
 
-            // TODO: Verify proper values are being saved and add Created Date, etc. 
-            // Also need to only allow menus when logged in properly
-            character.CreatedBy = new System.Guid(userId);
+            character.CreatedBy = new Guid(userId);
+            character.CreatedDate = createdDate;
 
             if (!ModelState.IsValid)
             {
