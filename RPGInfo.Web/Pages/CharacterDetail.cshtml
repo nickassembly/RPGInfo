@@ -1,8 +1,10 @@
-﻿@page
-@using Models; 
-@model Character
+﻿@page "{id}"
+@model RPGInfo.Web.Pages.CharacterDetail
 @{
     ViewData["Title"] = "Character Detail";
 }
 
-<h1>Character Detail</h1>
+<h1>@Model.Character.Name</h1>
+<p>@Model.Character.Race</p>
+<p>@Model.Character.Class</p>
+<p>@Model.Character.CurrentLocation</p>
