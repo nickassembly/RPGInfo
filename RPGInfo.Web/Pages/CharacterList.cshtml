@@ -6,7 +6,9 @@
 
 <h1>Add Character</h1>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
+    <input type="file" asp-for="Portrait" />
+
     <input type="text" asp-for="Character.Name" placeholder="Name" />
     <input type="text" asp-for="Character.Race" placeholder="Race" />
     <input type="text" asp-for="Character.Class" placeholder="Class" />
