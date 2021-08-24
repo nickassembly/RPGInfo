@@ -4,6 +4,7 @@
     ViewData["Title"] = "Character Detail";
 }
 
+<img src="data:image;base64,@System.Convert.ToBase64String(Model.Character.Portrait)" />
 <h1>@Model.Character.Name</h1>
 <p>@Model.Character.Race</p>
 <p>@Model.Character.Class</p>

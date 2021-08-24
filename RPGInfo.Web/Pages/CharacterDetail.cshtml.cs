@@ -26,6 +26,8 @@ namespace RPGInfo.Web.Pages
         public void OnGet(int id)
         {
             Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
+
+
         }
     }
 }

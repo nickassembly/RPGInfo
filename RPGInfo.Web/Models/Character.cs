@@ -11,7 +11,7 @@ namespace RPGInfo.Web.Models
     public class Character : BaseEntity
     {
         //[NotMapped]
-        //public IFormFile Portrait { get; set; }
+        //public IFormFile PortraitImage { get; set; }
         public byte[] Portrait { get; set; }
         public string Name { get; set; }
         public string Race { get; set; }
