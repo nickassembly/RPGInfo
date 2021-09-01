@@ -10,8 +10,6 @@ namespace RPGInfo.Web.Models
 {
     public class Character : BaseEntity
     {
-        //[NotMapped]
-        //public IFormFile PortraitImage { get; set; }
         public byte[] Portrait { get; set; }
         public string Name { get; set; }
         public string Race { get; set; }
@@ -20,7 +18,7 @@ namespace RPGInfo.Web.Models
         public List<Character> KnownCharacters { get; set; } = new List<Character>();
         public Setting Setting { get; set; }
         public Campaign Campaign { get; set; }
-        public List<Note> CharacterNotes { get; set; }
+        public List<Note> CharacterNotes { get; set; } = new List<Note>();
         public Guid CreatedBy { get; set; }
         public DateTimeOffset CreatedDate { get; set; }
         public Guid UpdatedBy { get; set; }

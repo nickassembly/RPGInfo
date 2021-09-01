@@ -31,8 +31,6 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public IFormFile Portrait { get; set; }
 
-        // TODO: Saving as bytearray. Need a way to convert byte array back to Ifileformat to display on detail page
-
         public List<Character> CharacterList { get; set; } = new List<Character>();
 
         public void OnGet()
@@ -49,6 +47,7 @@ namespace RPGInfo.Web.Pages
 
             using (var fileStream = new MemoryStream(/*file, FileMode.Create*/))
             {
+
                 Portrait.CopyTo(fileStream);
                 var fileBytes = fileStream.ToArray();
 
@@ -59,10 +58,13 @@ namespace RPGInfo.Web.Pages
                 character.Race = Character.Race;
                 character.Class = Character.Class;
                 character.CurrentLocation = Character.CurrentLocation;
-                character.Campaign = Character.Campaign;
-                character.Setting = Character.Setting;
-                character.CharacterNotes = Character.CharacterNotes;
-                character.KnownCharacters = Character.KnownCharacters;
+
+                // TODO: Get proper campaign and setting based on FKs
+                character.Campaign = _context.Campaigns.FirstOrDefault();
+                character.Setting = _context.Settings.FirstOrDefault();
+
+                // TODO: How to get a list of objects that are children of another object
+                // character notes, known characters
 
                 character.CreatedBy = new Guid(userId);
                 character.CreatedDate = createdDate;
