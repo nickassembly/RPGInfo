@@ -59,12 +59,8 @@ namespace RPGInfo.Web.Pages
                 character.Class = Character.Class;
                 character.CurrentLocation = Character.CurrentLocation;
 
-                // TODO: Get proper campaign and setting based on FKs
-                character.Campaign = _context.Campaigns.FirstOrDefault();
-                character.Setting = _context.Settings.FirstOrDefault();
+                // TODO: Add Character Campaign and Setting add functions
 
-                // TODO: How to get a list of objects that are children of another object
-                // character notes, known characters
 
                 character.CreatedBy = new Guid(userId);
                 character.CreatedDate = createdDate;
