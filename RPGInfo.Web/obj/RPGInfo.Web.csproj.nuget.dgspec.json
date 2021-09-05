@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nickg\\source\\repos\\RPGInfo\\RPGInfo.Web\\RPGInfo.Web.csproj": {}
+    "D:\\source\\repos\\Dotnet\\RPGInfo\\RPGInfo.Web\\RPGInfo.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nickg\\source\\repos\\RPGInfo\\RPGInfo.Web\\RPGInfo.Web.csproj": {
+    "D:\\source\\repos\\Dotnet\\RPGInfo\\RPGInfo.Web\\RPGInfo.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nickg\\source\\repos\\RPGInfo\\RPGInfo.Web\\RPGInfo.Web.csproj",
+        "projectUniqueName": "D:\\source\\repos\\Dotnet\\RPGInfo\\RPGInfo.Web\\RPGInfo.Web.csproj",
         "projectName": "RPGInfo.Web",
-        "projectPath": "C:\\Users\\nickg\\source\\repos\\RPGInfo\\RPGInfo.Web\\RPGInfo.Web.csproj",
+        "projectPath": "D:\\source\\repos\\Dotnet\\RPGInfo\\RPGInfo.Web\\RPGInfo.Web.csproj",
         "packagesPath": "C:\\Users\\nickg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nickg\\source\\repos\\RPGInfo\\RPGInfo.Web\\obj\\",
+        "outputPath": "D:\\source\\repos\\Dotnet\\RPGInfo\\RPGInfo.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\nickg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

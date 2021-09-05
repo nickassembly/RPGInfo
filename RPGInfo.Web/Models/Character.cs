@@ -1,10 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Models
 {
@@ -15,7 +10,12 @@ namespace RPGInfo.Web.Models
         public string Race { get; set; }
         public string Class { get; set; }
         public string CurrentLocation { get; set; }
-        public List<Character> KnownCharacters { get; set; } = new List<Character>();
+
+        // TODO: Display list for a dropdown select
+        // Get all characters
+        // Add multiple members from drop down via razor input form
+
+        public List<KnownCharacter> KnownCharacters { get; set; } = new List<KnownCharacter>();
         public Setting Setting { get; set; }
         public Campaign Campaign { get; set; }
         public List<Note> CharacterNotes { get; set; } = new List<Note>();

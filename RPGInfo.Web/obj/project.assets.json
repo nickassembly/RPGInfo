@@ -6437,11 +6437,12 @@
       ]
     },
     "System.Runtime.Serialization.Primitives/4.3.0": {
-      "sha512": "2Z5t70a2SwMsfQDp9KOclaZNyQhfIga2gppq9lIUDM1A4ohTshn4JqT7ir8bvIhXgorWKYDAr6rPzEbi/nTGKg==",
+      "sha512": "Wz+0KOukJGAlXjtKr+5Xpuxf8+c8739RI1C+A2BoQZT+wMCCoMDDdO8/4IRHfaVINqL78GO8dW8G2lW/e45Mcw==",
       "type": "package",
       "path": "system.runtime.serialization.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7555,22 +7556,23 @@
   },
   "packageFolders": {
     "C:\\Users\\nickg\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nickg\\source\\repos\\RPGInfo\\RPGInfo.Web\\RPGInfo.Web.csproj",
+      "projectUniqueName": "D:\\source\\repos\\Dotnet\\RPGInfo\\RPGInfo.Web\\RPGInfo.Web.csproj",
       "projectName": "RPGInfo.Web",
-      "projectPath": "C:\\Users\\nickg\\source\\repos\\RPGInfo\\RPGInfo.Web\\RPGInfo.Web.csproj",
+      "projectPath": "D:\\source\\repos\\Dotnet\\RPGInfo\\RPGInfo.Web\\RPGInfo.Web.csproj",
       "packagesPath": "C:\\Users\\nickg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nickg\\source\\repos\\RPGInfo\\RPGInfo.Web\\obj\\",
+      "outputPath": "D:\\source\\repos\\Dotnet\\RPGInfo\\RPGInfo.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\nickg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
