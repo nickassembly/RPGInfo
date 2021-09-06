@@ -10,12 +10,6 @@ namespace RPGInfo.Web.Models
         public string Race { get; set; }
         public string Class { get; set; }
         public string CurrentLocation { get; set; }
-
-        // TODO: Display list for a dropdown select
-        // Get all characters
-        // Add multiple members from drop down via razor input form
-
-        public List<KnownCharacter> KnownCharacters { get; set; } = new List<KnownCharacter>();
         public Setting Setting { get; set; }
         public Campaign Campaign { get; set; }
         public List<Note> CharacterNotes { get; set; } = new List<Note>();

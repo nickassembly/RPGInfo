@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RPGInfo.Web.Data;
 
 namespace RPGInfo.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210906112629_KnownCharacters")]
+    partial class KnownCharacters
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -351,6 +353,10 @@ namespace RPGInfo.Web.Data.Migrations
                     b.Property<string>("CurrentLocation")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -383,6 +389,8 @@ namespace RPGInfo.Web.Data.Migrations
                     b.HasIndex("SettingId");
 
                     b.ToTable("Characters");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Character");
                 });
 
             modelBuilder.Entity("RPGInfo.Web.Models.Note", b =>
@@ -519,6 +527,21 @@ namespace RPGInfo.Web.Data.Migrations
                     b.HasIndex("PartyId");
 
                     b.ToTable("Settings");
+                });
+
+            modelBuilder.Entity("RPGInfo.Web.Models.KnownCharacter", b =>
+                {
+                    b.HasBaseType("RPGInfo.Web.Models.Character");
+
+                    b.Property<int?>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Relationship")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasDiscriminator().HasValue("KnownCharacter");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -661,6 +684,13 @@ namespace RPGInfo.Web.Data.Migrations
                         .HasForeignKey("PartyId");
                 });
 
+            modelBuilder.Entity("RPGInfo.Web.Models.KnownCharacter", b =>
+                {
+                    b.HasOne("RPGInfo.Web.Models.Character", null)
+                        .WithMany("KnownCharacters")
+                        .HasForeignKey("CharacterId");
+                });
+
             modelBuilder.Entity("RPGInfo.Web.Models.AreaOfInterest", b =>
                 {
                     b.Navigation("AreaNote");
@@ -687,6 +717,8 @@ namespace RPGInfo.Web.Data.Migrations
             modelBuilder.Entity("RPGInfo.Web.Models.Character", b =>
                 {
                     b.Navigation("CharacterNotes");
+
+                    b.Navigation("KnownCharacters");
                 });
 
             modelBuilder.Entity("RPGInfo.Web.Models.Party", b =>

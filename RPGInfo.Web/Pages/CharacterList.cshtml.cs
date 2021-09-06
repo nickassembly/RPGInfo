@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
 using System;
@@ -27,15 +28,25 @@ namespace RPGInfo.Web.Pages
         [BindProperty] 
         public Character Character { get; set; }
 
+        //public List<SelectListItem> KnownCharacterOptions { get; set; }
+
         [NotMapped]
         [BindProperty]
         public IFormFile Portrait { get; set; }
 
         public List<Character> CharacterList { get; set; } = new List<Character>();
+        public List<Character> KnownCharacterList { get; set; } = new List<Character>();
+
+        [BindProperty]
+        public Guid[] SelectedKnownCharacters { get; set; }
+        public SelectList KnownCharacterOptions { get; set; }
 
         public void OnGet()
         {
             CharacterList = _context.Characters.ToList();
+
+            KnownCharacterOptions = new SelectList(_context.Characters, nameof(Character.Id), nameof(Character.Name));
+
         }
 
         public IActionResult OnPost()
