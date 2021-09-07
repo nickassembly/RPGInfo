@@ -38,7 +38,7 @@ namespace RPGInfo.Web.Pages
         public List<Character> KnownCharacterList { get; set; } = new List<Character>();
 
         [BindProperty]
-        public Guid[] SelectedKnownCharacters { get; set; }
+        public int[] SelectedKnownCharacters { get; set; }
         public SelectList KnownCharacterOptions { get; set; }
 
         public void OnGet()
@@ -55,6 +55,12 @@ namespace RPGInfo.Web.Pages
             DateTimeOffset createdDate = DateTime.Now;
 
             var file = Path.Combine(_environment.ContentRootPath, "portraits", Portrait.FileName);
+
+            // TODO: Get by Ids to fill in character info to attach as a related character?
+            // How to handle list of Ids...need to translate to Guids which hold characters in the database
+            // Possibly add method to get each of the names? 
+
+            var characterRelationships = SelectedKnownCharacters;
 
             using (var fileStream = new MemoryStream(/*file, FileMode.Create*/))
             {
