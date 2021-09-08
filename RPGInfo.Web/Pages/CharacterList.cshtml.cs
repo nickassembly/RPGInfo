@@ -25,7 +25,7 @@ namespace RPGInfo.Web.Pages
             _environment = environment;
         }
 
-        [BindProperty] 
+        [BindProperty]
         public Character Character { get; set; }
 
         //public List<SelectListItem> KnownCharacterOptions { get; set; }
@@ -54,43 +54,41 @@ namespace RPGInfo.Web.Pages
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             DateTimeOffset createdDate = DateTime.Now;
 
-            var file = Path.Combine(_environment.ContentRootPath, "portraits", Portrait.FileName);
+            // TODO: Add Relationships, Setting, etc. 
+            // TODO: link known characters to characters in db
+            // TODO: Fix view when no portrait exists
 
-            // TODO: Get by Ids to fill in character info to attach as a related character?
-            // How to handle list of Ids...need to translate to Guids which hold characters in the database
-            // Possibly add method to get each of the names? 
-
+            // https://www.pluralsight.com/guides/asp-net-mvc-populating-dropdown-lists-in-razor-views-using-the-mvvm-design-pattern-entity-framework-and-ajax
             var characterRelationships = SelectedKnownCharacters;
 
-            using (var fileStream = new MemoryStream(/*file, FileMode.Create*/))
+            var character = Character;
+            character.Name = Character.Name;
+            character.Race = Character.Race;
+            character.Class = Character.Class;
+            character.CurrentLocation = Character.CurrentLocation;
+
+            if (Portrait != null)
             {
-
-                Portrait.CopyTo(fileStream);
-                var fileBytes = fileStream.ToArray();
-
-                var character = Character;
-                character.Portrait = fileBytes;
-
-                character.Name = Character.Name;
-                character.Race = Character.Race;
-                character.Class = Character.Class;
-                character.CurrentLocation = Character.CurrentLocation;
-
-                // TODO: Add Character Campaign and Setting add functions
-
-
-                character.CreatedBy = new Guid(userId);
-                character.CreatedDate = createdDate;
-
-
-                if (!ModelState.IsValid)
+                var file = Path.Combine(_environment.ContentRootPath, "portraits", Portrait.FileName);
+                using (var fileStream = new MemoryStream())
                 {
-                    return Page();
-                }
+                    Portrait.CopyTo(fileStream);
+                    var fileBytes = fileStream.ToArray();
 
-                _context.Add(character);
-                _context.SaveChanges();
+                    character.Portrait = fileBytes;
+
+                    if (!ModelState.IsValid)
+                    {
+                        return Page();
+                    }
+                }
             }
+
+            character.CreatedBy = new Guid(userId);
+            character.CreatedDate = createdDate;
+
+            _context.Add(character);
+            _context.SaveChanges();
 
             return RedirectToPage("/CharacterList");
         }
