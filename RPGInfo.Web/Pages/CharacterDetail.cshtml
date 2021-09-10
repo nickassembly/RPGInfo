@@ -9,9 +9,12 @@
     <div class="team-single">
         <div class="row">
             <div class="col-lg-4 col-md-5 xs-margin-30px-bottom">
-                <div class="team-single-img">
-                    <img height="300" width="300" class="rounded-sm" src="data:image;base64,@System.Convert.ToBase64String(Model.Character.Portrait)" alt="">
-                </div>
+                @if (Model.Character.Portrait != null)
+                {
+                    <div class="team-single-img">
+                        <img height="300" width="300" class="rounded-sm" src="data:image;base64,@System.Convert.ToBase64String(Model.Character.Portrait)" alt="">
+                    </div>
+                }
             </div>
 
             <div class="col-lg-8 col-md-7">
@@ -86,17 +89,17 @@
                     <h5 class="font-size24 sm-font-size22 xs-font-size20">Character Notes</h5>
 
                     <div class="sm-no-margin">
-                            <div class="row">
-                                <div class="col-7">@Model.Character.CharacterNotes</div>
-                            </div>
+                        <div class="row">
+                            <div class="col-7">@Model.Character.CharacterNotes</div>
+                        </div>
                     </div>
 
                     <h5 class="font-size24 sm-font-size22 xs-font-size20">Related Characters</h5>
 
                     <div class="sm-no-margin">
-                            <div class="row">
-                                <div class="col-7">@Model.KnownCharacters</div>
-                            </div>
+                        <div class="row">
+                            <div class="col-7">@Model.KnownCharacters</div>
+                        </div>
                     </div>
 
                 </div>

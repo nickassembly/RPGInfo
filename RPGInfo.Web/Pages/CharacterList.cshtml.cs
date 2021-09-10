@@ -58,7 +58,6 @@ namespace RPGInfo.Web.Pages
             // TODO: link known characters to characters in db
             // TODO: Fix view when no portrait exists
 
-            // https://www.pluralsight.com/guides/asp-net-mvc-populating-dropdown-lists-in-razor-views-using-the-mvvm-design-pattern-entity-framework-and-ajax
             var characterRelationships = SelectedKnownCharacters;
 
             var character = Character;
