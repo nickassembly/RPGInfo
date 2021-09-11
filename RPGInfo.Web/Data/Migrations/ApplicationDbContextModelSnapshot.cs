@@ -16,8 +16,23 @@ namespace RPGInfo.Web.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.8")
+                .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CharacterCharacter", b =>
+                {
+                    b.Property<int>("OthersWhoCharacterKnowsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OthersWhoKnowCharacterId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OthersWhoCharacterKnowsId", "OthersWhoKnowCharacterId");
+
+                    b.HasIndex("OthersWhoKnowCharacterId");
+
+                    b.ToTable("CharacterCharacter");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -519,6 +534,21 @@ namespace RPGInfo.Web.Data.Migrations
                     b.HasIndex("PartyId");
 
                     b.ToTable("Settings");
+                });
+
+            modelBuilder.Entity("CharacterCharacter", b =>
+                {
+                    b.HasOne("RPGInfo.Web.Models.Character", null)
+                        .WithMany()
+                        .HasForeignKey("OthersWhoCharacterKnowsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RPGInfo.Web.Models.Character", null)
+                        .WithMany()
+                        .HasForeignKey("OthersWhoKnowCharacterId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

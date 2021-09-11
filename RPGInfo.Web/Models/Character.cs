@@ -14,8 +14,9 @@ namespace RPGInfo.Web.Models
         public Campaign Campaign { get; set; }
         public List<Note> CharacterNotes { get; set; } = new List<Note>();
 
-        // TODO: Migrations, Add known characters to select list
-        public List<KnownCharacter> KnownCharacters { get; set; } = new List<KnownCharacter>();
+        public virtual ICollection<Character> OthersWhoCharacterKnows { get; set; }
+        public virtual ICollection<Character> OthersWhoKnowCharacter { get; set; }
+
         public Guid CreatedBy { get; set; }
         public DateTimeOffset CreatedDate { get; set; }
         public Guid UpdatedBy { get; set; }

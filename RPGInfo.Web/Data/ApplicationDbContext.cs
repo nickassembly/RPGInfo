@@ -21,5 +21,13 @@ namespace RPGInfo.Web.Data
         public DbSet<Character> Characters { get; set; }
         public DbSet<AreaOfInterest> AreasOfInterest { get; set; }
         public DbSet<Party> Parties { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Character>()
+                .HasMany(x => x.OthersWhoCharacterKnows).WithMany(y => y.OthersWhoKnowCharacter);
+
+            base.OnModelCreating(builder);
+        }
     }
 }
