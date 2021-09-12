@@ -28,24 +28,15 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public Character Character { get; set; }
 
-        //public List<SelectListItem> KnownCharacterOptions { get; set; }
-
         [NotMapped]
         [BindProperty]
         public IFormFile Portrait { get; set; }
 
         public List<Character> CharacterList { get; set; } = new List<Character>();
-        public List<Character> KnownCharacterList { get; set; } = new List<Character>();
-
-        [BindProperty]
-        public int[] SelectedKnownCharacters { get; set; }
-        public SelectList KnownCharacterOptions { get; set; }
 
         public void OnGet()
         {
             CharacterList = _context.Characters.ToList();
-
-            KnownCharacterOptions = new SelectList(_context.Characters, nameof(Character.Id), nameof(Character.Name));
 
         }
 
@@ -57,8 +48,6 @@ namespace RPGInfo.Web.Pages
             // TODO: Add Relationships, Setting, etc. 
             // TODO: link known characters to characters in db
             // TODO: Fix view when no portrait exists
-
-            var characterRelationships = SelectedKnownCharacters;
 
             var character = Character;
             character.Name = Character.Name;

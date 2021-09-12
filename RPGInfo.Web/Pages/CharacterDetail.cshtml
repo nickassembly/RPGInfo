@@ -86,24 +86,34 @@
                         </ul>
                     </div>
 
-                    <h5 class="font-size24 sm-font-size22 xs-font-size20">Character Notes</h5>
-
                     <div class="sm-no-margin">
-                        <div class="row">
-                            <div class="col-7">@Model.Character.CharacterNotes</div>
-                        </div>
-                    </div>
-
-                    <h5 class="font-size24 sm-font-size22 xs-font-size20">Related Characters</h5>
-
-                    <div class="sm-no-margin">
-                        <div class="row">
-                            <div class="col-7">@Model.KnownCharacters</div>
+                        <h4> Other Characters</h4>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" asp-for="SelectedKnownCharacters" asp-items="Model.KnownCharacterOptions">
+                        </select>
+                        <div>
+                            <a href="" class="btn btn-primary">Add Known Character</a> <a asp-page-handler="AddNote" asp-route-id="@Model.Character.Id" class="btn btn-primary">Add Note</a>
                         </div>
                     </div>
 
                 </div>
             </div>
+
+            <div>
+                <h1>Important Notes</h1>
+                <h4>Date (e.g. 24 DR)</h4>
+                <h4>Subject (e.g. Mass of Selune)</h4>
+                <h4>Details (e.g. Successful Mass of Selune allows improved perception until next long rest)</h4>
+                @foreach (var note in Model.Character.CharacterNotes)
+                {
+                    <h4>@note.NoteContent</h4>
+                }
+            </div>
+
+            <div>
+                <h1>Other Known Characters</h1>
+                <h4>List Known Characters Name, Race, Class, Location... Button goes to detail page for that character</h4>
+            </div>
+
         </div>
     </div>
 </div>
