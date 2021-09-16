@@ -329,3 +329,4 @@ C:\Users\nickg\source\repos\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.pdb
 C:\Users\nickg\source\repos\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.genruntimeconfig.cache
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\CampaignList.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Pizza.cshtml.g.cs
+D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.csproj.AssemblyReference.cache
