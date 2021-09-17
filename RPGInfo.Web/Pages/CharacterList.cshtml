@@ -31,7 +31,8 @@
                 <th>Race</th>
                 <th>Class</th>
                 <th>Location</th>
-                <th>Other Details</th>
+                <th>Character Details</th>
+                <th>Remove</th>
             </tr>
         </thead>
 
@@ -44,7 +45,12 @@
                 <td>@item.Class</td>
                 <td>@item.CurrentLocation</td>
                 <td>
-                    <a href="/CharacterDetail/@item.Id" class="btn btn-primary">Go To Page</a>
+                        <a href="/CharacterDetail/@item.Id" class="btn btn-primary">Detail Page</a>
+                </td>
+                <td>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
             }

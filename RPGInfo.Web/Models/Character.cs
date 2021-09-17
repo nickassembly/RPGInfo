@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RPGInfo.Web.Models
 {
     public class Character : BaseEntity
     {
         public byte[] Portrait { get; set; }
+
         public string Name { get; set; }
         public string Race { get; set; }
         public string Class { get; set; }

@@ -53,7 +53,7 @@ namespace RPGInfo.Web.Pages
             // TODO: Need to define data work flow for adding notes and other characters
 
 
-            return RedirectToPage("/CharacterDetail");
+            return RedirectToAction("/CharacterDetail");
         }
     }
 }

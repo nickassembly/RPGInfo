@@ -37,11 +37,22 @@ namespace RPGInfo.Web.Pages
         public void OnGet()
         {
             CharacterList = _context.Characters.ToList();
+        }
 
+        public IActionResult OnPostDelete(int id)
+        {
+            var character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
+
+            _context.Remove(character);
+            _context.SaveChanges();
+
+            return RedirectToAction("Get");
         }
 
         public IActionResult OnPost()
         {
+            if (!ModelState.IsValid) return Page();
+
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             DateTimeOffset createdDate = DateTime.Now;
 
@@ -78,7 +89,9 @@ namespace RPGInfo.Web.Pages
             _context.Add(character);
             _context.SaveChanges();
 
-            return RedirectToPage("/CharacterList");
+            return RedirectToAction("/Get");
         }
+
+
     }
 }
