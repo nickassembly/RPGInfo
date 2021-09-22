@@ -22,7 +22,7 @@
 </form>
 
 <div class="container">
- 
+
     <h1 class="p-3 text-center">Characters</h1>
     <table class="table table-striped table-bordered">
         <thead>
@@ -36,23 +36,52 @@
             </tr>
         </thead>
 
+        <div class="row">
+            @foreach (var item in Model.CharacterList)
+            {
+                <div class="col-lg-4 col-sm-6 portfolio-item">
+                    <div class="card h-100">
+                        <a href="/CharacterDetail/@item.Id">
+                            @if (item.Portrait != null)
+                            {
+                                //TODO: Add stock images when null
+                                <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(item.Portrait)" alt="">
+                            }
+                        </a>
+
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a class="color-main" href="/CharacterDetail/@item.Id">@item.Name</a>
+                            </h4>
+                            <p class="card-text">@item.Race</p>
+                            <p class="card-text">@item.Class</p>
+                            <p class="card-text">@item.CurrentLocation</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/CharacterDetail/@item.Id" class="btn btn-success w-100">Character Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
         <tbody>
             @foreach (var item in Model.CharacterList)
             {
-            <tr>
-                <td>@item.Name</td>
-                <td>@item.Race</td>
-                <td>@item.Class</td>
-                <td>@item.CurrentLocation</td>
-                <td>
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Race</td>
+                    <td>@item.Class</td>
+                    <td>@item.CurrentLocation</td>
+                    <td>
                         <a href="/CharacterDetail/@item.Id" class="btn btn-primary">Detail Page</a>
-                </td>
-                <td>
-                    <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id">
-                        <button class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
+                    </td>
+                    <td>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
             }
 
             @*Todo - Add styles to display as cards instead of Table*@

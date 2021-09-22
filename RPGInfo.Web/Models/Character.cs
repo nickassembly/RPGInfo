@@ -8,6 +8,8 @@ namespace RPGInfo.Web.Models
     {
         public byte[] Portrait { get; set; }
 
+        // TODO: Add Description property
+
         public string Name { get; set; }
         public string Race { get; set; }
         public string Class { get; set; }
