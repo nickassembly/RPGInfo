@@ -56,10 +56,6 @@ namespace RPGInfo.Web.Pages
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             DateTimeOffset createdDate = DateTime.Now;
 
-            // TODO: Add Relationships, Setting, etc. 
-            // TODO: link known characters to characters in db
-            // TODO: Fix view when no portrait exists
-
             var character = Character;
             character.Name = Character.Name;
             character.Race = Character.Race;
