@@ -44,8 +44,11 @@
                         <a href="/CharacterDetail/@item.Id">
                             @if (item.Portrait != null)
                             {
-                                //TODO: Add stock images when null
                                 <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(item.Portrait)" alt="">
+                            }
+                            else
+                            {
+                                <img class="card-img-top" src="~/images/NoImageAvailable.png" />
                             }
                         </a>
 
