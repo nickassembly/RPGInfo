@@ -24,17 +24,6 @@
 <div class="container">
 
     <h1 class="p-3 text-center">Characters</h1>
-    <table class="table table-striped table-bordered">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Race</th>
-                <th>Class</th>
-                <th>Location</th>
-                <th>Character Details</th>
-                <th>Remove</th>
-            </tr>
-        </thead>
 
         <div class="row">
             @foreach (var item in Model.CharacterList)
@@ -67,30 +56,6 @@
                 </div>
             }
         </div>
-
-        <tbody>
-            @foreach (var item in Model.CharacterList)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Race</td>
-                    <td>@item.Class</td>
-                    <td>@item.CurrentLocation</td>
-                    <td>
-                        <a href="/CharacterDetail/@item.Id" class="btn btn-primary">Detail Page</a>
-                    </td>
-                    <td>
-                        <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id">
-                            <button class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            }
-
-            @*Todo - Add styles to display as cards instead of Table*@
-
-        </tbody>
-    </table>
 
 
 </div>

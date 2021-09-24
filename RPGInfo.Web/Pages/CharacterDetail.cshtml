@@ -94,6 +94,9 @@
                             <a href="" class="btn btn-primary">Add Known Character</a> <a asp-page-handler="AddNote" asp-route-id="@Model.Character.Id" class="btn btn-primary">Add Note</a>
                         </div>
                     </div>
+                    <div>
+                        <a asp-page-handler="" asp-route-id="@Model.Character.Id" class="btn btn-danger">Delete @Model.Character.Name</a>
+                    </div>
 
                 </div>
             </div>

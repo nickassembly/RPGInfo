@@ -9,6 +9,7 @@ namespace RPGInfo.Web.Models
         public byte[] Portrait { get; set; }
 
         // TODO: Add Description property
+        // Add property to model and migrate to DB
 
         public string Name { get; set; }
         public string Race { get; set; }
