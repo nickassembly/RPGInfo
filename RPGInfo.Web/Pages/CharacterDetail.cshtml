@@ -103,9 +103,7 @@
 
             <div>
                 <h1>Important Notes</h1>
-                <h4>Date (e.g. 24 DR)</h4>
-                <h4>Subject (e.g. Mass of Selune)</h4>
-                <h4>Details (e.g. Successful Mass of Selune allows improved perception until next long rest)</h4>
+                
                 @foreach (var note in Model.Character.CharacterNotes)
                 {
                     <h4>@note.NoteContent</h4>

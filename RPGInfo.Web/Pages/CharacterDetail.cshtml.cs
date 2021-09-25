@@ -38,19 +38,21 @@ namespace RPGInfo.Web.Pages
           
             KnownCharacterOptions = new SelectList(_context.Characters, nameof(Character.Id), nameof(Character.Name));
 
+            CharacterNotes = _context.Notes.ToList();
+
         }
 
 
-        public IActionResult OnGetAddNote()
+        public IActionResult OnGetAddNote(int id)
         {
-            //Note note = new Note { NoteContent = "test note" };
-            //_context.Notes.Add(note);
+            // TODO: Add Note input form as partial view
+            // need to use Character as Model
+            // Add note from character detail should bring to note form and update database
+            // .... Profit ??
+            Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
 
-            //_context.SaveChanges();
-
-            CharacterNotes.Add(new Note { NoteContent = "test note" });
-       
-            // TODO: Need to define data work flow for adding notes and other characters
+            Character.CharacterNotes.Add(new Note { NoteContent = "test note" });
+            _context.SaveChanges();
 
 
             return RedirectToAction("/CharacterDetail");
