@@ -48,7 +48,10 @@ namespace RPGInfo.Web.Pages
             // TODO: Add Note input form as partial view
             // need to use Character as Model
             // Add note from character detail should bring to note form and update database
-            // .... Profit ??
+
+            return Partial("_CreateNotePartial"); // Need partial to create a note, which model? ...Possibly remove partial and put on same page? 
+
+
             Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
 
             Character.CharacterNotes.Add(new Note { NoteContent = "test note" });
