@@ -30,7 +30,7 @@
             {
                 <div class="col-lg-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
-                        <a href="/CharacterDetail/@item.Id">
+                        <a asp-page="CharacterDetail" asp-route-id="@item.Id">
                             @if (item.Portrait != null)
                             {
                                 <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(item.Portrait)" alt="">
@@ -50,7 +50,7 @@
                             <p class="card-text">@item.CurrentLocation</p>
                         </div>
                         <div class="card-footer">
-                            <a href="/CharacterDetail/@item.Id" class="btn btn-success w-100">Character Details</a>
+                            <a asp-page="CharacterDetail" asp-route-id="@item.Id" class="btn btn-success w-100">Character Details</a>
                         </div>
                     </div>
                 </div>
