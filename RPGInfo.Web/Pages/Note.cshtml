@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model NoteModel
 @{ 
     ViewData["Title"] = "Note";
@@ -19,19 +19,15 @@
                     <div class="controls">
                         <label asp-for="Note.NoteTitle">Note Title:</label>
                         <input asp-for="Note.NoteTitle" class="form-control" />
-                
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label asp-for="Note.NoteAuthor">Note Author:</label>
-                       <input asp-for="Note.NoteAuthor" class="form-control" />
+                        <span style="color:red;" asp-validation-for="Note.NoteTitle"></span>
+
                     </div>
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
                         <label asp-for="Note.NoteContent">Message:</label>
                         <textarea asp-for="Note.NoteContent" rows="10" cols="100" class="form-control"></textarea>
+                        <span style="color:red;" asp-validation-for="Note.NoteContent"></span>
                     </div>
                 </div>
                 <div id="success"></div>
