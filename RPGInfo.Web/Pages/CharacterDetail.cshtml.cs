@@ -42,7 +42,9 @@ namespace RPGInfo.Web.Pages
 
         }
 
-
+        // TODO: How to add /CharacterDetail/id/Notes
+        //                  /CharacterDetail/id/KnownCharacters
+        // ................... etc
         public IActionResult OnGetAddNote(int id)
         {
             Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();

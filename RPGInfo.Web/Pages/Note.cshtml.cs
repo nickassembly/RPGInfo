@@ -47,9 +47,8 @@ namespace RPGInfo.Web.Pages
                 _context.SaveChanges();
 
                 Character.CharacterNotes.Add(noteToAdd);
-                
-                // TODO: Redirect not working
-                 RedirectToPage($"/CharacterDetail");
+
+                RedirectToPage($"/CharacterDetail");
             }
         }
     }
