@@ -3,10 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Pages
 {
@@ -24,6 +21,8 @@ namespace RPGInfo.Web.Pages
         {
             _context = context;
         }
+
+        // Possibly Add view component for note instead of having a full page? 
 
         public void OnGet(int id)
         {
