@@ -17,7 +17,11 @@
             <form asp-page="Note" method="post">
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label asp-for="Note.NoteTitle">Note Title:</label>
+                        <h4>Note For: @Model.Note.NoteAuthor</h4>
+                    </div>
+
+                    <div class="controls">
+                        <label asp-for="Note.NoteTitle">Title:</label>
                         <input asp-for="Note.NoteTitle" class="form-control" />
                         <span style="color:red;" asp-validation-for="Note.NoteTitle"></span>
 

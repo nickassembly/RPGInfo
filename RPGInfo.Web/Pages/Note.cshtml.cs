@@ -25,9 +25,14 @@ namespace RPGInfo.Web.Pages
             _context = context;
         }
 
-        public void OnGet()
+        public void OnGet(int id)
         {
+            Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
 
+            Note = new Note
+            {
+                NoteAuthor = Character.Name
+            };
         }
 
         public void OnPost()
