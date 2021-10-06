@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
+using RPGInfo.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,9 @@ namespace RPGInfo.Web.Pages
         {
             _context = context;
         }
+
+        [BindProperty]
+        public NoteViewModel NoteViewModel { get; set; }
 
         [BindProperty]
         public Character Character { get; set; }
@@ -40,6 +44,13 @@ namespace RPGInfo.Web.Pages
 
             CharacterNotes = _context.Notes.ToList();
 
+            // add db call to get character notes here
+            NoteViewModel = new NoteViewModel
+            {
+                NoteTitle = "Test NoteVM Title",
+                NoteContent = "Test Note VM Content"
+            };
+
         }
 
         public IActionResult OnGetAddNote(int id)
@@ -47,6 +58,13 @@ namespace RPGInfo.Web.Pages
             Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
 
             return RedirectToPage("Note", new { id = id }); 
+        }
+
+        public IActionResult OnPost()
+        {
+            // TODO: Add Logic to update Character Notes and list them here. 
+            // Submit button on partial view comes here
+            return null;
         }
 
     }

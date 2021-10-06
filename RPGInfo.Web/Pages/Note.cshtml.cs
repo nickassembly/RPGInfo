@@ -22,8 +22,6 @@ namespace RPGInfo.Web.Pages
             _context = context;
         }
 
-        // Possibly Add view component for note instead of having a full page? 
-
         public void OnGet(int id)
         {
             Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
