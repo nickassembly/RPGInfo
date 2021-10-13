@@ -60,12 +60,6 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage("Note", new { id = id }); 
         }
 
-        public IActionResult OnPost()
-        {
-            // TODO: Add Logic to update Character Notes and list them here. 
-            // Submit button on partial view comes here
-            return null;
-        }
 
     }
 }

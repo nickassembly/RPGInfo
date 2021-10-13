@@ -32,13 +32,14 @@ namespace RPGInfo.Web.Pages
             };
         }
 
-        public void OnPost()
+        public void OnPost(Character character)
         {
+
             if (ModelState.IsValid)
             {
                 Note noteToAdd = new Note
                 {
-                    NoteAuthor = Character.Name,
+                    NoteAuthor = character.Name,
                     NoteDate = DateTime.Now,
                     NoteType = NoteType.CharacterNote,
                     NoteTitle = Note.NoteTitle,
