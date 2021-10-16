@@ -44,12 +44,7 @@ namespace RPGInfo.Web.Pages
 
             CharacterNotes = _context.Notes.ToList();
 
-            // add db call to get character notes here
-            NoteViewModel = new NoteViewModel
-            {
-                NoteTitle = "Test NoteVM Title",
-                NoteContent = "Test Note VM Content"
-            };
+           
 
         }
 
