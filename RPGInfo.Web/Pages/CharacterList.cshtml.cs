@@ -14,12 +14,12 @@ using System.Security.Claims;
 
 namespace RPGInfo.Web.Pages
 {
-    public class Characters : PageModel
+    public class CharacterListModel : PageModel
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _environment;
 
-        public Characters(ApplicationDbContext context, IWebHostEnvironment environment)
+        public CharacterListModel(ApplicationDbContext context, IWebHostEnvironment environment)
         {
             _context = context;
             _environment = environment;

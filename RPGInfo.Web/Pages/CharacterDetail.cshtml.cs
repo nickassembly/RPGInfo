@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Pages
 {
-    public class CharacterDetail : PageModel
+    public class CharacterDetailModel : PageModel
     {
         private readonly ApplicationDbContext _context;
 
-        public CharacterDetail(ApplicationDbContext context)
+        public CharacterDetailModel(ApplicationDbContext context)
         {
             _context = context;
         }
