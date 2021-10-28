@@ -87,19 +87,28 @@
                     </div>
 
                     <div class="sm-no-margin">
-                        <h4> Other Characters</h4>
+                        <h4> Add Other Characters</h4>
                         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" asp-for="SelectedKnownCharacters" asp-items="Model.KnownCharacterOptions">
                         </select>
                         <div>
-                            <a href="" class="btn btn-primary mb-2">Add Known Character</a>
-                        </div>
-                        <div>
-                            <a asp-page-handler="AddNote" asp-route-id="@Model.Character.Id" class="btn btn-primary mb-2">Add Note</a>
+                            <form method="post" asp-page-handler="AddKnownCharacter">
+                                <button class="btn btn-primary mb-2">Add Known Character</button>
+                            </form>
                         </div>
                     </div>
+
                     <div>
-                        <a asp-page-handler="" asp-route-id="@Model.Character.Id" class="btn btn-danger mb-2">Delete @Model.Character.Name</a>
+                        <h4>Add Notes</h4>
+                        <div>
+                            <form method="post" asp-page-handler="AddNote">
+                                <button class="btn btn-primary mb-2">Add Note</button>
+                            </form>
+                        </div>
+                        @*<a asp-page-handler="AddNote" asp-route-id="@Model.Character.Id" class="btn btn-primary mb-2">Add Note</a>*@
                     </div>
+                   
+                        @*<a asp-page-handler="" asp-route-id="@Model.Character.Id" class="btn btn-danger mb-2">Delete @Model.Character.Name</a>*@
+                 
 
                 </div>
             </div>
