@@ -18,9 +18,9 @@ namespace RPGInfo.Web.Models
         public Setting Setting { get; set; }
         public Campaign Campaign { get; set; }
         public List<Note> CharacterNotes { get; set; } = new List<Note>();
+        public List<Character> OthersWhoCharacterKnows { get; set; } = new List<Character>();
 
-        public virtual ICollection<Character> OthersWhoCharacterKnows { get; set; }
-        public virtual ICollection<Character> OthersWhoKnowCharacter { get; set; }
+        public List<Character> OthersWhoKnowCharacter { get; set; }
 
         public Guid CreatedBy { get; set; }
         public DateTimeOffset CreatedDate { get; set; }

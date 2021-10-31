@@ -24,11 +24,13 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public Character Character { get; set; }
 
+
         // properties for add note / model
         [BindProperty]
         public NoteViewModel NoteViewModel { get; set; }
+
         [BindProperty]
-        public List<Note> CharacterNotes { get; set; } = new List<Note>();
+        public List<Note> CharacterNotes { get; set; }
 
         // properties for add other characters / model
         public List<Character> KnownCharacterList { get; set; } = new List<Character>();
@@ -42,12 +44,11 @@ namespace RPGInfo.Web.Pages
         public void OnGet(int id)
         {
             Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
-          
+
+
             KnownCharacterOptions = new SelectList(_context.Characters, nameof(Character.Id), nameof(Character.Name));
 
-            CharacterNotes = _context.Notes.ToList();
 
-           
 
         }
 
@@ -55,12 +56,17 @@ namespace RPGInfo.Web.Pages
         {
             Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
 
-            return RedirectToPage("Note", new { id = id }); 
+            return RedirectToPage("Note", new { id = id });
         }
 
-        public void OnPostAddNote()
+        public IActionResult OnPostAddNote(int id)
         {
-            // TODO: Enter details for adding note (connected to note models)
+            string noteAuthor = _context.Characters.Where(x => x.Id == id).Select(n => n.Name).FirstOrDefault();
+
+            var newNote = _context.Notes.Add(new Note { NoteAuthor = noteAuthor, NoteTitle = "Placeholder title", NoteContent = "Place holder" });
+            _context.SaveChanges();
+
+            return RedirectToPage();
         }
 
         public void OnPostAddKnownCharacter()
