@@ -14,6 +14,10 @@ namespace RPGInfo.Web.Data
         {
         }
 
+        // TODO: Redesign model
+        // TODO: Run new migrations
+        // TODO: map details, notes, and character pages
+
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<CampaignEvent> CampaignEvent { get; set; }
