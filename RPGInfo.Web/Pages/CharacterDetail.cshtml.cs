@@ -30,7 +30,7 @@ namespace RPGInfo.Web.Pages
         public NoteViewModel NoteViewModel { get; set; }
 
         [BindProperty]
-        public List<Note> CharacterNotes { get; set; }
+        public List<Note> CharacterNotes { get; set; } = new();
 
         // properties for add other characters / model
         public List<Character> KnownCharacterList { get; set; } = new List<Character>();
@@ -59,8 +59,9 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage("Note", new { id = id });
         }
 
-        public IActionResult OnPostAddNote(int id)
+        public IActionResult OnPostAddNote(int id, Note note)
         {
+            // TODO: Refer to Demo app, How to pass input note above into this method?
             string noteAuthor = _context.Characters.Where(x => x.Id == id).Select(n => n.Name).FirstOrDefault();
 
             var newNote = _context.Notes.Add(new Note { NoteAuthor = noteAuthor, NoteTitle = "Placeholder title", NoteContent = "Place holder" });

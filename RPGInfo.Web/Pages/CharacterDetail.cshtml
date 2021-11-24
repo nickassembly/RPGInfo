@@ -101,6 +101,7 @@
                         <h4>Add Notes</h4>
                         <div>
                             <form method="post" asp-page-handler="AddNote">
+                                <input asp-for="@Model.Character.CharacterNotes" class="form-control" placeholder="Text" />
                                 <button class="btn btn-primary mb-2">Add Note</button>
                             </form>
                         </div>
