@@ -88,20 +88,20 @@
 
                     <div class="sm-no-margin">
                         <h4> Add Other Characters</h4>
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" asp-for="SelectedKnownCharacters" asp-items="Model.KnownCharacterOptions">
+                        @*<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" asp-for="SelectedKnownCharacters" asp-items="Model.KnownCharacterOptions">
                         </select>
                         <div>
                             <form method="post" asp-page-handler="AddKnownCharacter">
                                 <button class="btn btn-primary mb-2">Add Known Character</button>
                             </form>
-                        </div>
+                        </div>*@
                     </div>
 
                     <div>
                         <h4>Add Notes</h4>
                         <div>
-                            <form method="post" asp-page-handler="AddNote">
-                                <input asp-for="@Model.Character.CharacterNotes" class="form-control" placeholder="Text" />
+                            <form method="post" asp-page-handler="AddNote" enctype="multipart/form-data">
+                                <input asp-for="@Model.CharacterNote.NoteTitle" class="form-control" placeholder="Text" />
                                 <button class="btn btn-primary mb-2">Add Note</button>
                             </form>
                         </div>
@@ -116,7 +116,7 @@
 
             <div>
                 <h1>Important Notes</h1>
-                <h3>@Model.CharacterNotes.Count()</h3>
+                <h3>@Model.Character.CharacterNotes.Count()</h3>
 
                 @foreach (var note in Model.Character.CharacterNotes)
                 {

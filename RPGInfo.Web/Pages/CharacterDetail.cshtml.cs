@@ -24,20 +24,13 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public Character Character { get; set; }
 
-
-        // properties for add note / model
         [BindProperty]
-        public NoteViewModel NoteViewModel { get; set; }
+        public Note CharacterNote { get; set; }
 
-        [BindProperty]
-        public List<Note> CharacterNotes { get; set; } = new();
 
-        // properties for add other characters / model
-        public List<Character> KnownCharacterList { get; set; } = new List<Character>();
-
-        [BindProperty]
-        public int[] SelectedKnownCharacters { get; set; }
-        public SelectList KnownCharacterOptions { get; set; }
+        //[BindProperty]
+        //public int[] SelectedKnownCharacters { get; set; }
+        //public SelectList KnownCharacterOptions { get; set; }
 
 
 
@@ -45,10 +38,9 @@ namespace RPGInfo.Web.Pages
         {
             Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
 
+            Character.CharacterNotes = _context.Notes.Where(x => x.NoteAuthor == Character.Name).ToList();
 
-            KnownCharacterOptions = new SelectList(_context.Characters, nameof(Character.Id), nameof(Character.Name));
-
-
+          //  KnownCharacterOptions = new SelectList(_context.Characters, nameof(Character.Id), nameof(Character.Name));
 
         }
 
@@ -61,12 +53,10 @@ namespace RPGInfo.Web.Pages
 
         public IActionResult OnPostAddNote(int id, Note note)
         {
-            // TODO: Refer to Demo app, How to pass input note above into this method?
+            // TODO: Refer to Demo app, How to pass input note above into this method? Need to get New Note from form, persist and save to character
             string noteAuthor = _context.Characters.Where(x => x.Id == id).Select(n => n.Name).FirstOrDefault();
 
-            var newNote = _context.Notes.Add(new Note { NoteAuthor = noteAuthor, NoteTitle = "Placeholder title", NoteContent = "Place holder" });
-            _context.SaveChanges();
-
+           
             return RedirectToPage();
         }
 
