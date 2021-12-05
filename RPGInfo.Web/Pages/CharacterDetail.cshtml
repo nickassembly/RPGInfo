@@ -91,18 +91,39 @@
                         @*<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" asp-for="SelectedKnownCharacters" asp-items="Model.KnownCharacterOptions">
                             </select>
                             <div>
-                                <form method="post" asp-page-handler="AddKnownCharacter">
-                                    <button class="btn btn-primary mb-2">Add Known Character</button>
-                                </form>
+                            <form method="post" asp-page-handler="AddKnownCharacter">
+                            <button class="btn btn-primary mb-2">Add Known Character</button>
+                            </form>
                             </div>*@
                     </div>
 
                     <div>
-                        <h4>Add Notes</h4>
+                        <h4>Test Pattern to add notes</h4>
                         <div>
-                          
+                            <a class="btn btn-sm btn-info text-white" onclick="AddListItem(1)">Add Child to First list</a>
+                            <a class="btn btn-sm btn-info text-white" onclick="AddListItem(2)">Add Child to Second list</a>
                         </div>
-                
+
+                        <br />
+
+                        <div>
+                            <div><b>MyHeaderProperty value:</b> @Model.MyHeader.MyHeaderProperty</div>
+                            <br />
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6 font-weight-bold">First List</div>
+                                    <div class="col-6 font-weight-bold">Second List</div>
+                                </div>
+                                <div class="ListPartialView">
+                                    <partial name="_ListPartialView" model="@Model" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="bg-warning" id="HtmlContent"></div>
+
+                            @Html.AntiForgeryToken()
+                        </div>
+
                     </div>
 
                 </div>
@@ -126,3 +147,39 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function AddListItem(listNumber) {
+        var model = @Json.Serialize(Model.MyHeader);
+
+        var handler;
+        var partialView;
+
+        if (listNumber == 1) {
+            handler = "?handler=AddNewFirstListChildItem";
+            partialView = "#ListPartialView";//"#FirstListPartial";
+        }
+        else {
+            handler = "?handler=AddNewSecondListChildItem";
+            partialView = "#ListPartialView";//"#SecondListPartial";
+        }
+
+        $.ajax({
+            type: "POST",
+            url: handler,
+            data: JSON.stringify(model),
+            dataType: "html",
+            contentType: "application/json",
+            headers: {
+                RequestVerificationToken: $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            success: function (result) {
+                document.getElementById("HtmlContent").innerHTML = result.toString();
+                $(partialView).html(result);
+            },
+            failure: function (result) {
+                alert("Failed");
+            }
+        });
+    }
+</script>
