@@ -59,7 +59,6 @@ D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.MvcAppli
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.RazorAssemblyInfo.cache
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.RazorAssemblyInfo.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\staticwebassets\RPGInfo.Web.StaticWebAssets.Manifest.cache
-D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\staticwebassets\RPGInfo.Web.StaticWebAssets.xml
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\scopedcss\bundle\RPGInfo.Web.styles.css
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.TagHelpers.input.cache
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.TagHelpers.output.cache
@@ -327,6 +326,5 @@ C:\Users\nickg\source\repos\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\ref\RPGInfo.Web
 C:\Users\nickg\source\repos\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.pdb
 C:\Users\nickg\source\repos\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.genruntimeconfig.cache
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\CampaignList.cshtml.g.cs
-D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.csproj.AssemblyReference.cache
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Note.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_LoginPartial.cshtml.g.cs
