@@ -97,9 +97,12 @@
                             </div>*@
                     </div>
 
-          @*          TODO: Create Partial to Add note with note properties
-                    -- How to get data from partial to post to larger form in razor page??
-                    -- ???????????*@
+                    <form asp-action="Create" id="form">
+                    <div id="addNotesContainer">
+                        @Html.EditorFor(model => model.CharacterNote);
+                        <input class="btn btn-default" type="button" id="btnAdd" value="Add note" />
+                    </div>
+                    </form>
 
                 </div>
             </div>
@@ -122,4 +125,21 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+    $("#btnAdd").on('click', function () {
+        $.ajax({
+            async: true, 
+            data: $('#form').serialize(), // Is this necessary to wrap add note in form? 
+            type: "POST",
+            url: '/CharacterDetails/AddNote'
+            success: function (partialView) {
+                console.log("partialView: " + partialView);
+                $('#addNotesContainer').html(partialView);
+            }
+        });
+    });
+    </script>
+}
 
