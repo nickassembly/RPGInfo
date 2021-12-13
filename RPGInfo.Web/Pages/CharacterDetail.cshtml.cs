@@ -57,6 +57,13 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddNote([Bind("Note")] Note note)
+        {
+           
+        }
+
         public void OnPostAddKnownCharacter()
         {
             // TODO: Enter details for adding character (connected to character models)
