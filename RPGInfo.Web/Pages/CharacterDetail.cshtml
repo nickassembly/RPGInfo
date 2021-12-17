@@ -86,35 +86,15 @@
                         </ul>
                     </div>
 
-                    <div class="sm-no-margin">
-                        <h4> Add Other Characters</h4>
-                        @*<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" asp-for="SelectedKnownCharacters" asp-items="Model.KnownCharacterOptions">
-                            </select>
-                            <div>
-                            <form method="post" asp-page-handler="AddKnownCharacter">
-                            <button class="btn btn-primary mb-2">Add Known Character</button>
-                            </form>
-                            </div>*@
+                    <div>
+                     <!--Add Related Characters Partial-->
                     </div>
 
-                    <form asp-action="Create" id="form">
-                    <div id="addNotesContainer">
-                        @Html.EditorFor(model => model.CharacterNote);
-                        <input class="btn btn-default" type="button" id="btnAdd" value="Add note" />
-                    </div>
-                    </form>
+                  <div>
+                     <partial name="_CharacterNotePartial" model="@Model"/>
+                  </div>
 
                 </div>
-            </div>
-
-            <div>
-                <h1>Important Notes</h1>
-                <h3>@Model.Character.CharacterNotes.Count()</h3>
-
-                @foreach (var note in Model.Character.CharacterNotes)
-                {
-                    <h4>@note.NoteContent</h4>
-                }
             </div>
 
             <div>
@@ -126,20 +106,6 @@
     </div>
 </div>
 
-@section Scripts {
-    <script type="text/javascript">
-    $("#btnAdd").on('click', function () {
-        $.ajax({
-            async: true, 
-            data: $('#form').serialize(), // Is this necessary to wrap add note in form? 
-            type: "POST",
-            url: '/CharacterDetails/AddNote'
-            success: function (partialView) {
-                console.log("partialView: " + partialView);
-                $('#addNotesContainer').html(partialView);
-            }
-        });
-    });
-    </script>
+
 }
 

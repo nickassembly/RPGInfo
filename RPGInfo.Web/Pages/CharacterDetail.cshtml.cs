@@ -31,64 +31,26 @@ namespace RPGInfo.Web.Pages
         public Character Character { get; set; }
 
         [BindProperty]
-        public Note CharacterNote { get; set; }
+        public List<Note> CharacterNotes { get; set; } = new List<Note>();
 
         public void OnGet(int id)
         {
             Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
 
             Character.CharacterNotes = _context.Notes.Where(x => x.NoteAuthor == Character.Name).ToList();   
-
         }
 
-        public IActionResult OnGetAddNote(int id)
+        [BindProperty]
+        public Note CharacterNote { get; set; }
+
+        public ActionResult OnPostAddNote(Note note)
         {
-            Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
-
-            return RedirectToPage("Note", new { id = id });
-        }
-
-        public IActionResult OnPostAddNote(int id, Note note)
-        {
-            // TODO: Refer to Demo app, How to pass input note above into this method? Need to get New Note from form, persist and save to character
-            string noteAuthor = _context.Characters.Where(x => x.Id == id).Select(n => n.Name).FirstOrDefault();
-
+            // TODO: create note model based on input, add Author, date, etc. 
 
             return RedirectToPage();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddNote([Bind("Note")] Note note)
-        {
-           
-        }
 
-        public void OnPostAddKnownCharacter()
-        {
-            // TODO: Enter details for adding character (connected to character models)
-        }
-
-        // TEST data for child objects
-        public class Header
-        {
-            public int Id { get; set; }
-            public string MyHeaderProperty { get; set; }
-            public List<ChildOfHeader> ChildOfHeader { get; set; } = new List<ChildOfHeader>();
-        }
-
-        public class ChildOfHeader
-        {
-            public List<ChildOfChild> MyFirstChildList { get; set; } = new List<ChildOfChild>();
-            public List<ChildOfChild> MySecondChildList { get; set; } = new List<ChildOfChild>();
-        }
-
-        public class ChildOfChild
-        {
-            public int Id { get; set; }
-            public int HeaderId { get; set; }
-            public string MyChildProperty { get; set; }
-        }
 
 
     }
