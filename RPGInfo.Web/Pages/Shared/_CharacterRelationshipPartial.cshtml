@@ -1,16 +1,18 @@
 ﻿@using RPGInfo.Web.Models
 @model RPGInfo.Web.Pages.CharacterDetailModel
 
-<h4>Character Notes</h4>
+<h4>Character Relationships</h4>
 
-<ul>
-    @foreach(var note in @Model.Character.CharacterNotes)
+<p> TODO ... Need to add Character Relationship properties etc.</p>
+
+@*<ul>
+    @foreach(var relationship in @Model.Character.Relationships)
     {
-        <li>@note.NoteTitle | @note.NoteContent | @note.NoteType | @note.NoteDate.ToShortDateString()</li>
+        <li>@relationship. </li>
     }
 </ul>
 
-<form asp-page-handler="AddNote" >
+<form asp-page-handler="AddRelationship" >
   <div class="form-group">
     <label for="NoteTitle">Note Title</label>
     <input  type="text" name="NoteTitle" class="form-control" placeholder="Note Title">
@@ -22,3 +24,4 @@
   
   <button type="submit" class="btn btn-primary">Add Note</button>
 </form>
+*@

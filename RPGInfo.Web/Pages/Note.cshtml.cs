@@ -26,10 +26,6 @@ namespace RPGInfo.Web.Pages
         {
             Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
 
-            Note = new Note
-            {
-                NoteAuthor = Character.Name
-            };
         }
 
         public void OnPost(Character character)
@@ -39,7 +35,6 @@ namespace RPGInfo.Web.Pages
             {
                 Note noteToAdd = new Note
                 {
-                    NoteAuthor = character.Name,
                     NoteDate = DateTime.Now,
                     NoteType = NoteType.CharacterNote,
                     NoteTitle = Note.NoteTitle,

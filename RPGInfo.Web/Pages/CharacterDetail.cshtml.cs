@@ -37,7 +37,7 @@ namespace RPGInfo.Web.Pages
         {
             Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
 
-            Character.CharacterNotes = _context.Notes.Where(x => x.NoteAuthor == Character.Name).ToList();   
+            Character.CharacterNotes = _context.Notes.Where(note => note.CharacterId == id).ToList();   
         }
 
         [BindProperty]
@@ -45,7 +45,21 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPostAddNote(Note note)
         {
-            // TODO: create note model based on input, add Author, date, etc. 
+            // TODO: Update Partial to display notes better
+
+            Note noteToAdd = new Note
+            {
+                NoteTitle = note.NoteTitle,
+                NoteContent = note.NoteContent,
+                NoteDate = DateTime.Now,
+                NoteType = NoteType.CharacterNote,
+                CharacterId = Character.Id
+            };
+
+            _context.Notes.Add(noteToAdd);
+            _context.SaveChanges();
+
+            Character.CharacterNotes.Add(noteToAdd);
 
             return RedirectToPage();
         }

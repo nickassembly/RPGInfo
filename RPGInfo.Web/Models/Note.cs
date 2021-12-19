@@ -12,15 +12,13 @@ namespace RPGInfo.Web.Models
         [Required]
         [MaxLength(40)]
         public string NoteTitle { get; set; }
-        public string NoteAuthor { get; set; }
         public DateTime NoteDate { get; set; }
         [Required]
         public string NoteContent { get; set; }
         public NoteType NoteType { get; set; }
-        public Guid CreatedBy { get; set; }
-        public DateTimeOffset CreatedDate { get; set; }
-        public Guid UpdatedBy { get; set; }
-        public DateTimeOffset UpdatedDate { get; set; }
+
+        // TODO: Add properties See Note Table (campaign Id, event id, etc)
+        public int? CharacterId { get; set; }
 
     }
 }
