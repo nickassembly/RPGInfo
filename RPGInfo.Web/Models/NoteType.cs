@@ -9,10 +9,8 @@ namespace RPGInfo.Web.Models
     public enum NoteType
     {
         CharacterNote,
-        SettingNote,
         CampaignNote,
         EventNote,
-        PartyNote,
         AreaNote
     }
 }

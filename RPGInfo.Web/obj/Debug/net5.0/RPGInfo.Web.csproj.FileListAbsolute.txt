@@ -158,8 +158,6 @@ D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Areas\Identity
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
-D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\CharacterList.cshtml.g.cs
-D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\CharacterDetail.cshtml.g.cs
 C:\Users\nickg\source\repos\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\nickg\source\repos\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\appsettings.json
 C:\Users\nickg\source\repos\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\RPGInfo.Web.exe
@@ -325,9 +323,12 @@ C:\Users\nickg\source\repos\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.dll
 C:\Users\nickg\source\repos\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\ref\RPGInfo.Web.dll
 C:\Users\nickg\source\repos\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.pdb
 C:\Users\nickg\source\repos\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.genruntimeconfig.cache
-D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\CampaignList.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Note.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_LoginPartial.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\Note.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_CharacterNotePartial.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_CharacterRelationshipPartial.cshtml.g.cs
+D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Campaign\CampaignList.cshtml.g.cs
+D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Area\AreaList.cshtml.g.cs
+D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Characters\CharacterDetail.cshtml.g.cs
+D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Characters\CharacterList.cshtml.g.cs

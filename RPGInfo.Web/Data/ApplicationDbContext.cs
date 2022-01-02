@@ -14,17 +14,11 @@ namespace RPGInfo.Web.Data
         {
         }
 
-        // TODO: Redesign model
-        // TODO: Run new migrations
-        // TODO: map details, notes, and character pages
-
-        public DbSet<Setting> Settings { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<CampaignEvent> CampaignEvent { get; set; }
         public DbSet<Note> Notes { get; set; }
         public DbSet<Character> Characters { get; set; }
         public DbSet<AreaOfInterest> AreasOfInterest { get; set; }
-        public DbSet<Party> Parties { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

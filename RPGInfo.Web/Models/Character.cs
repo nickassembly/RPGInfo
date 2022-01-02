@@ -15,7 +15,6 @@ namespace RPGInfo.Web.Models
         public string Race { get; set; }
         public string Class { get; set; }
         public string CurrentLocation { get; set; }
-        public Setting Setting { get; set; }
         public Campaign Campaign { get; set; }
         public List<Note> CharacterNotes { get; set; } = new List<Note>();
         public List<Character> OthersWhoCharacterKnows { get; set; } = new List<Character>();
