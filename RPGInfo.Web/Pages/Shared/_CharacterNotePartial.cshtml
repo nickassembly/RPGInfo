@@ -2,23 +2,32 @@
 @model RPGInfo.Web.Pages.CharacterDetailModel
 
 <h4>Character Notes</h4>
+@*TODO: Validation on these inputs, formatting on date, possible JS script*@
 
 <ul>
-    @foreach(var note in @Model.Character.CharacterNotes)
+    @foreach (var note in @Model.Character.CharacterNotes)
     {
-        <li>@note.NoteTitle | @note.NoteContent | @note.NoteType | @note.NoteDate.ToShortDateString()</li>
+        <li>@note.NoteTitle | @note.NoteDate.ToShortDateString() | @note.NoteContent </li>
     }
 </ul>
 
-<form asp-page-handler="AddNote" >
-  <div class="form-group">
-    <label for="NoteTitle">Note Title</label>
-    <input  type="text" name="NoteTitle" class="form-control" placeholder="Note Title">
-  </div>
-  <div class="form-group">
-    <label for="NoteContent">Note Content</label>
-    <input  type="text" name="NoteContent" class="form-control" placeholder="Write Content here..">
-  </div>
-  
-  <button type="submit" class="btn btn-primary">Add Note</button>
+<form asp-page-handler="AddNote">
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="NoteTitle">Title</label>
+            <input type="text" name="NoteTitle" class="form-control">
+        </div>
+
+        <div class="form-group  col-6">
+            <label for="NoteDate">Date</label>
+            <input type="datetime" name="NoteDate" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="NoteContent">Content</label>
+        <input type="text" name="NoteContent" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Note</button>
 </form>

@@ -1,17 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Logging;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
-using RPGInfo.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Pages
 {
@@ -51,7 +45,7 @@ namespace RPGInfo.Web.Pages
             {
                 NoteTitle = note.NoteTitle,
                 NoteContent = note.NoteContent,
-                NoteDate = DateTime.Now,
+                NoteDate = note.NoteDate,
                 NoteType = NoteType.CharacterNote,
                 CharacterId = Character.Id
             };
