@@ -16,6 +16,7 @@ namespace RPGInfo.Web.Models
         public DateTime NoteDate { get; set; }
 
         [Required]
+        [MaxLength(500)]
         public string NoteContent { get; set; }
         public NoteType NoteType { get; set; }
 

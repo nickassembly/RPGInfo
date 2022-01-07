@@ -39,8 +39,6 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPostAddNote(Note note)
         {
-            // TODO: Update Partial to display notes better
-
             Note noteToAdd = new Note
             {
                 NoteTitle = note.NoteTitle,
