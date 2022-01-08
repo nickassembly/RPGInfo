@@ -15,6 +15,7 @@
                         <img height="300" width="300" class="rounded-sm" src="data:image;base64,@System.Convert.ToBase64String(Model.Character.Portrait)" alt="">
                     </div>
                 }
+
             </div>
 
             <div class="col-lg-8 col-md-7">
@@ -75,24 +76,25 @@
                     </div>
 
                     <div>
-                     <!--Add Related Characters Partial-->
+                        <partial name="_CharacterNotePartial" model="@Model" />
                     </div>
 
-                  <div>
-                     <partial name="_CharacterNotePartial" model="@Model"/>
-                  </div>
-
-                  <div>
-                      <partial name="_CharacterRelationshipPartial" model="@Model" />
-                  </div>
-
+                    <div>
+                        <partial name="_CharacterRelationshipPartial" model="@Model" />
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
+<div>
+    <form method="post">
+        <button type="submit" class="btn btn-info">Save Changes</button>
+    </form>
+</div>
 
-}
+
+
+
 

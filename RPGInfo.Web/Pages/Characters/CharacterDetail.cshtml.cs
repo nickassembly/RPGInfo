@@ -56,6 +56,14 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
+        public ActionResult OnPost()
+        {
+            // TODO: Save all Character Details to DB
+
+            // TODO: Pass List of Notes, List of Characters to this method
+            return RedirectToPage("CharacterList");
+        }
+
 
 
 

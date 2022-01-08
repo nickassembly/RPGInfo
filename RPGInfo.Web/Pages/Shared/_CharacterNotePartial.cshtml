@@ -2,50 +2,36 @@
 @model RPGInfo.Web.Pages.CharacterDetailModel
 
 <h4>Character Notes</h4>
-@*TODO: Style content inside list group, hook up remove button, remove horizontal scroll for longer comments*@
 
-<div class="row scroll">
-    <ul class="list-group col-12">
-        @foreach (var note in @Model.Character.CharacterNotes)
-        {
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col-10 note-style">
-                        @note.NoteTitle | @note.NoteDate.ToShortDateString() | @note.NoteContent
-                    </div>
-                    <div class="col-2">
-                        <button type="button" class="btn btn-danger btn-sm">Remove</button>
-                    </div>
-                </div>
-            </li>
-        }
-    </ul>
+<div class="row">
+ <ul class="list-group col-12" id="newNote" >
+     
+ </ul>
 </div>
 
 <form asp-page-handler="AddNote" class="mt-4 mb-4">
     <div class="row">
         <div class="form-group col-6">
             <label for="NoteTitle">Title</label>
-            <input type="text" name="NoteTitle" class="form-control">
+            <input type="text" id="noteTitle" name="NoteTitle" class="form-control">
         </div>
 
         <div class="form-group  col-6">
             <label for="NoteDate">Date</label>
-            <input type="datetime" name="NoteDate" class="form-control">
+            <input type="datetime" id="noteDate" name="NoteDate" class="form-control">
         </div>
     </div>
 
     <div class="form-group">
         <label for="NoteContent">Content</label>
-        <input type="text" name="NoteContent" class="form-control">
+        <input type="text" id="noteContent" name="NoteContent" class="form-control">
     </div>
 
-    <button type="button" id="add-note-form" class="btn btn-primary">Note Add</button>
+    <button type="button" id="addNoteForm" class="btn btn-primary">Note Add</button>
 
-    <button type="submit" class="btn btn-primary">Note Submit</button>
 </form>
 
-<button id="searchButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBookModal">Add Book</button>
+@*<button id="searchButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBookModal">Add Book</button>*@
 
 @*<form asp-controller="Book" asp-action="AddNewBookForUser" method="post">
     <div id="addBookModal" class="modal" tabindex="-1" role="dialog">
@@ -107,37 +93,39 @@
 *@
 
 <style>
-    .scroll {
-        height: 600px;
-        overflow-y: scroll;
-    }
-
     .note-style {
         word-wrap: break-word;
     }
 </style>
 
- <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
 
-     $(document).ready(function () {
-      $("#add-note-form").click(function() {
-         console.log("add clicked")
+      $("#addNoteForm").click(function() {
          addNote();
-     });
-     });
+      });
 
          function addNote() {
-            console.log("add note clicked")
-         }
-         //var isbn = $('input[id="isbn"]').val();
-         //var title = $('input[id="title"]').val();
-         //if (isbn.length > 2) {
-         //    googleApiUrl += "isbn:" + isbn;
-         //}
-         //if (title.length > 2) {
-         //    googleApiUrl += "intitle:" + title;
-         //}
+            var noteTitle = $('input[id="noteTitle"]').val();
+            var noteDate = $('input[id="noteDate"]').val();
+            var noteContent = $('input[id="noteContent"]').val();
+
+            console.log(noteDate + ' ' + noteTitle + ' ' + noteContent);
+
+            var listItemToAppend =  '<li class="list-group-item">' 
+                      + '<div class="row">'
+                        + '<div class="col-10 note-style">'
+                            + noteTitle + ' ' + noteDate + ' ' + noteContent
+                        + '</div>'
+                        + '<div class="col-2">'
+                            + '<button type="button" class="btn btn-danger btn-sm">' + "Remove" + '</button>'
+                        + '</div>'
+                      + '</div>'
+                   + '</li>'
+
+             $("#newNote").append(listItemToAppend);
+          }
+        
          // Set the api variable
          //var googleApiurl = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&intitle:${title}`;
          //// Make a ajax call to get the json data as response.
@@ -163,8 +151,7 @@
          //            '<button class= "btn btn-primary" onclick = "addCurrentBook(' + item.volumeInfo.industryIdentifiers[0].identifier + ')" > Add</button > </div><hr />');
          //    }
         // });
-         // var apiKey = "AIzaSyCjqD7OtvMLj-JMh3erdPRh_qWyRJvnvxw";
-         // alert(isbn);
+       
     // }
 
      //    function addCurrentBook(isbn) {
