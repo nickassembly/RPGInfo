@@ -4,9 +4,8 @@
 <h4>Character Notes</h4>
 
 <div class="row">
- <ul class="list-group col-12" id="newNote" >
-     
- </ul>
+    <ul class="list-group col-12" id="newNote">
+    </ul>
 </div>
 
 <form asp-page-handler="AddNote" class="mt-4 mb-4">
@@ -96,82 +95,119 @@
     .note-style {
         word-wrap: break-word;
     }
+
 </style>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
 
-      $("#addNoteForm").click(function() {
-         addNote();
-      });
+          $("#addNoteForm").click(function() {
+             addNote();
+          });
 
-         function addNote() {
-            var noteTitle = $('input[id="noteTitle"]').val();
-            var noteDate = $('input[id="noteDate"]').val();
-            var noteContent = $('input[id="noteContent"]').val();
+          $("#removeNote").click(function() {
+              removeNote();
+          });
 
-            console.log(noteDate + ' ' + noteTitle + ' ' + noteContent);
+             function addNote() {
+                var noteTitle = $('input[id="noteTitle"]').val();
+                var noteDate = $('input[id="noteDate"]').val();
+                var noteContent = $('input[id="noteContent"]').val();
 
-            var listItemToAppend =  '<li class="list-group-item">' 
-                      + '<div class="row">'
-                        + '<div class="col-10 note-style">'
-                            + noteTitle + ' ' + noteDate + ' ' + noteContent
-                        + '</div>'
-                        + '<div class="col-2">'
-                            + '<button type="button" class="btn btn-danger btn-sm">' + "Remove" + '</button>'
-                        + '</div>'
-                      + '</div>'
-                   + '</li>'
+                var listItemId = getListItemId(4).toLowerCase();
 
-             $("#newNote").append(listItemToAppend);
-          }
-        
-         // Set the api variable
-         //var googleApiurl = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&intitle:${title}`;
-         //// Make a ajax call to get the json data as response.
-         //$.getJSON(googleApiUrl, function (response) {
-         //    if (!response.items) { return false }
-         //    // In console, you can see the response objects
-         //    //console.log("JSON Data: " + response.items);
-         //    // Loop through all the items one-by-one
-         //    for (var i = 0; i < response.items.length; i++) {
-         //        console.log(response.items[i]);
-         //        // set the item from the response object
-         //        var item = response.items[i];
-         //        var imageLink = "";
-         //        if (item.volumeInfo.imageLinks != undefined) { imageLink = item.volumeInfo.imageLinks.thumbnail; }
-         //        console.log(JSON.stringify(item.volumeInfo.industryIdentifiers));
-         //        // Set the book title in the div
-         //        $("#searchResults").append('<div style="padding: 10px;" id = "' + item.volumeInfo.industryIdentifiers[0].identifier + '" >' +
-         //            '<span asp-for="Identifier" id="' + item.volumeInfo.industryIdentifiers[0].identifier + 'isbn" >' + item.volumeInfo.industryIdentifiers[0].identifier + '</span>' +
-         //            '<img id="' + item.volumeInfo.industryIdentifiers[0].identifier + 'thumbnail" height="150px" style="float: left;padding-right:5px;" src="' + imageLink + '">' +
-         //            '<h4 id="' + item.volumeInfo.industryIdentifiers[0].identifier + 'title" >' + item.volumeInfo.title + '</h4><span id="' + item.volumeInfo.industryIdentifiers[0].identifier +
-         //            'publishDate" data-publish="' + item.volumeInfo.publishedDate + '">Published Date: ' + item.volumeInfo.publishedDate + '</span><br /><div class="card - body" id="' +
-         //             item.volumeInfo.industryIdentifiers[0].identifier + 'description" style="height:100px;overflow:hidden;" />' + item.volumeInfo.description + '</div>' +
-         //            '<button class= "btn btn-primary" onclick = "addCurrentBook(' + item.volumeInfo.industryIdentifiers[0].identifier + ')" > Add</button > </div><hr />');
-         //    }
-        // });
-       
-    // }
+                console.log(listItemId + ' ' + noteDate + ' ' + noteTitle + ' ' + noteContent);
 
-     //    function addCurrentBook(isbn) {
-     //    var newBook = new Object();
-     //    newBook.IdentifierType = "ISBN";
-     //    newBook.ImageUrl = $('#' + isbn + 'thumbnail').prop('src');
-     //    newBook.Identifier = $('#' + isbn + 'isbn').text();
-     //    newBook.Title = $('#' + isbn + 'title').text();
-     //    newBook.Description = $('#' + isbn + 'description').text();
-     //    var pubDate = $('#' + isbn + 'publishDate').data('publish');
-     //    newBook.publishedDate = new Date(pubDate);
+                var listItemToAppend =  '<li id="li-'+ listItemId + '" class="list-group-item rmv_btn'+ listItemId + '">'
+                          + '<div class="row">'
+                            + '<div class="col-10 note-style">'
+                                + noteTitle + ' ' + noteDate + ' ' + noteContent
+                            + '</div>'
+                            + '<div class="col-2">'
+                                + '<button type="button" id="btn-'+ listItemId +'" class="rmv_btn'+ listItemId + ' btn btn-danger btn-sm">' + "Remove" + '</button>'
+                            + '</div>'
+                          + '</div>'
+                       + '</li>'
 
-     //    $.ajax({
-     //        type: "POST",
-     //        url: "/api/Book/AddNewBookForUser",
-     //        data: JSON.stringify(newBook),
-     //        contentType: "application/json; charset=utf-8",
-     //    });
-     //    window.location.href = "/api/Book/UserBookList";
-     //};
+                 $("#newNote").append(listItemToAppend);
+
+                 var clickId = ".rmv_btn" + listItemId;
+                
+                 $("#newNote").on("click", clickId, function() {
+                     console.log("remove clicked" + clickId);
+
+                    $(this).remove();
+                   
+                 });
+     
+              }
+
+              function getListItemId(length) {
+                  var result = '';
+                  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                  var charactersLength = 4;
+                  for ( var i = 0; i < length; i++ ) {
+                    result += characters.charAt(Math.floor(Math.random() * 
+                    charactersLength));
+                    }
+
+                return result;
+              }
+
+              //function removeNote(itemId) {
+              //    console.log("remove clicked" + itemId);
+
+              //    $('#' + itemid).click(function() {
+              //     $('#' + itemid).remove();
+              //    });
+              //}
+
+             // Set the api variable
+             //var googleApiurl = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&intitle:${title}`;
+             //// Make a ajax call to get the json data as response.
+             //$.getJSON(googleApiUrl, function (response) {
+             //    if (!response.items) { return false }
+             //    // In console, you can see the response objects
+             //    //console.log("JSON Data: " + response.items);
+             //    // Loop through all the items one-by-one
+             //    for (var i = 0; i < response.items.length; i++) {
+             //        console.log(response.items[i]);
+             //        // set the item from the response object
+             //        var item = response.items[i];
+             //        var imageLink = "";
+             //        if (item.volumeInfo.imageLinks != undefined) { imageLink = item.volumeInfo.imageLinks.thumbnail; }
+             //        console.log(JSON.stringify(item.volumeInfo.industryIdentifiers));
+             //        // Set the book title in the div
+             //        $("#searchResults").append('<div style="padding: 10px;" id = "' + item.volumeInfo.industryIdentifiers[0].identifier + '" >' +
+             //            '<span asp-for="Identifier" id="' + item.volumeInfo.industryIdentifiers[0].identifier + 'isbn" >' + item.volumeInfo.industryIdentifiers[0].identifier + '</span>' +
+             //            '<img id="' + item.volumeInfo.industryIdentifiers[0].identifier + 'thumbnail" height="150px" style="float: left;padding-right:5px;" src="' + imageLink + '">' +
+             //            '<h4 id="' + item.volumeInfo.industryIdentifiers[0].identifier + 'title" >' + item.volumeInfo.title + '</h4><span id="' + item.volumeInfo.industryIdentifiers[0].identifier +
+             //            'publishDate" data-publish="' + item.volumeInfo.publishedDate + '">Published Date: ' + item.volumeInfo.publishedDate + '</span><br /><div class="card - body" id="' +
+             //             item.volumeInfo.industryIdentifiers[0].identifier + 'description" style="height:100px;overflow:hidden;" />' + item.volumeInfo.description + '</div>' +
+             //            '<button class= "btn btn-primary" onclick = "addCurrentBook(' + item.volumeInfo.industryIdentifiers[0].identifier + ')" > Add</button > </div><hr />');
+             //    }
+            // });
+
+        // }
+
+         //    function addCurrentBook(isbn) {
+         //    var newBook = new Object();
+         //    newBook.IdentifierType = "ISBN";
+         //    newBook.ImageUrl = $('#' + isbn + 'thumbnail').prop('src');
+         //    newBook.Identifier = $('#' + isbn + 'isbn').text();
+         //    newBook.Title = $('#' + isbn + 'title').text();
+         //    newBook.Description = $('#' + isbn + 'description').text();
+         //    var pubDate = $('#' + isbn + 'publishDate').data('publish');
+         //    newBook.publishedDate = new Date(pubDate);
+
+         //    $.ajax({
+         //        type: "POST",
+         //        url: "/api/Book/AddNewBookForUser",
+         //        data: JSON.stringify(newBook),
+         //        contentType: "application/json; charset=utf-8",
+         //    });
+         //    window.location.href = "/api/Book/UserBookList";
+         //};
 
 
 
