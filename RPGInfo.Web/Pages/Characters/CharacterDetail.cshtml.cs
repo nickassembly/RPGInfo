@@ -37,28 +37,32 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public Note CharacterNote { get; set; }
 
-        public ActionResult OnPostAddNote(Note note)
+        public ActionResult OnPostAddNote(List<Note> notes)
         {
-            Note noteToAdd = new Note
-            {
-                NoteTitle = note.NoteTitle,
-                NoteContent = note.NoteContent,
-                NoteDate = note.NoteDate,
-                NoteType = NoteType.CharacterNote,
-                CharacterId = Character.Id
-            };
+            // submit added notes comes here
+            // Add notes with html once clicked
 
-            _context.Notes.Add(noteToAdd);
-            _context.SaveChanges();
+            //Note noteToAdd = new Note
+            //{
+            //    NoteTitle = note.NoteTitle,
+            //    NoteContent = note.NoteContent,
+            //    NoteDate = note.NoteDate,
+            //    NoteType = NoteType.CharacterNote,
+            //    CharacterId = Character.Id
+            //};
 
-            Character.CharacterNotes.Add(noteToAdd);
+            //_context.Notes.Add(noteToAdd);
+            //_context.SaveChanges();
+
+            //Character.CharacterNotes.Add(noteToAdd);
 
             return RedirectToPage();
         }
 
         public ActionResult OnPost()
         {
-            // TODO: Save all Character Details to DB
+            // TODO: Save changes comes here
+            // save properties from character detail page
 
             // TODO: Pass List of Notes, List of Characters to this method
             return RedirectToPage("CharacterList");

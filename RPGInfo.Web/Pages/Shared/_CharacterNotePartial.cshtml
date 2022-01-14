@@ -1,5 +1,5 @@
 ﻿@using RPGInfo.Web.Models
-@model RPGInfo.Web.Pages.CharacterDetailModel
+@model List<Note> 
 
 <h4>Character Notes</h4>
 
@@ -28,7 +28,7 @@
 
     <button type="button" id="addNoteForm" class="btn btn-primary">Note Add</button>
    
-    <button class= "btn btn-primary" onclick = "addCurrentBook(note)"> Submit Added Notes</button >
+    <button class= "btn btn-primary" onclick= "addCurrentNotes(data)"> Submit Added Notes</button >
 
 </form>
 
@@ -103,6 +103,8 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
 
+  data = [];
+
   $("#addNoteForm").click(function() {
      addNote();
   });
@@ -176,7 +178,7 @@
       }
 
       // Finish logic to send notes array to main page on submit
-       function addCurrentNote(note) {
+       function addCurrentNotes(data) {
         var newBook = new Object();
         newBook.ImageUrl = $('#' + isbn + 'thumbnail').prop('src');
         newBook.Identifier = $('#' + isbn + 'isbn').text();
