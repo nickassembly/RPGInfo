@@ -39,7 +39,8 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public List<Note> CharacterNotes { get; set; }
 
-        public ActionResult OnPostAddNotes(Note note)
+        
+        public ActionResult OnPostAddNotes(List<Note> notes)
         {
             // submit added notes comes here
             // Add notes with html once clicked
