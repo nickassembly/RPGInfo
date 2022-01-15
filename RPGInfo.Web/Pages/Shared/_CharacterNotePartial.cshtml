@@ -1,5 +1,5 @@
 ﻿@using RPGInfo.Web.Models
-@model List<Note> 
+@model List<Note>
 
 <h4>Character Notes</h4>
 
@@ -8,7 +8,8 @@
     </ul>
 </div>
 
-<form asp-page-handler="AddNote" class="mt-4 mb-4">
+<form asp-page-handler="AddNotes" class="mt-4 mb-4">
+    
     <div class="row">
         <div class="form-group col-6">
             <label for="NoteTitle">Title</label>
@@ -28,70 +29,9 @@
 
     <button type="button" id="addNoteForm" class="btn btn-primary">Note Add</button>
    
-    <button class= "btn btn-primary" onclick= "addCurrentNotes(data)"> Submit Added Notes</button >
+    <button class= "btn btn-primary" onclick="addCurrentNotes(data)"> Submit Added Notes</button >
 
 </form>
-
-@*<button id="searchButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBookModal">Add Book</button>*@
-
-@*<form asp-controller="Book" asp-action="AddNewBookForUser" method="post">
-    <div id="addBookModal" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-    <h5 class="modal-title">Book Details Form</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
-    <div class="modal-body">
-    <div class="form-group">
-    <label>ISBN:</label>
-    <input id="isbn" type="text" asp-for="Identifier" class="form-control" />
-    </div>
-    <div class="form-group">
-    <label>Title:</label>
-    <input id="title" type="text" asp-for="Title" class="form-control" />
-    </div>
-    <div class="form-group">
-    <label>Description:</label>
-    <input type="text" asp-for="Description" class="form-control" />
-    </div>
-    <div class="form-group">
-    <label for="@Model.GenreList">Author's Genres</label>
-    <select asp-for="GenreIds" asp-items="Model.GenreList" multiple class="form-control">
-    </select>
-    </div>
-    <div class="form-group">
-    <label for="@Model.AuthorList">Book's Authors</label>
-    <select asp-for="AuthorIds" asp-items="Model.AuthorList" multiple class="form-control"></select>
-    </div>
-    <div class="modal-footer">
-    <button type="submit" class="btn btn-primary">Save Book</button>
-    <a data-toggle="modal" href="#detailsModal" class="btn btn-primary">Search</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </form>*@
-
-@*<div class="modal fade detailsModal" tabindex="-1" role="dialog" id="detailsModal">
-    <div class="modal-dialog">
-    <div class="modal-content">
-    <div class="modal-header">
-    <h5 class="modal-title">Book List</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
-    <div class="modal-body" style="height:500px;overflow:scroll;">
-    <div id="searchResults"></div>
-    </div>
-    </div>
-    </div>
-    </div>
-*@
 
 <style>
     .note-style {
@@ -157,12 +97,6 @@
       var itemToRemove = $('#newNote').find('#li-'+ listItemId);
       removeData(itemToRemove);
 
-      //var clickId = ".rmv_btn" + listItemId;
-
-      //$("#newNote").on("click", clickId, function() {
-      //   $(this).remove();
-      // });
-
      }
 
      function getListItemId(length) {
@@ -177,28 +111,26 @@
          return result;
       }
 
-      // Finish logic to send notes array to main page on submit
        function addCurrentNotes(data) {
-        var newBook = new Object();
-        newBook.ImageUrl = $('#' + isbn + 'thumbnail').prop('src');
-        newBook.Identifier = $('#' + isbn + 'isbn').text();
-        newBook.IdentifierType = $('#' + isbn + 'idtype').text();
-        newBook.Title = $('#' + isbn + 'title').text();
-        newBook.Description = $('#' + isbn + 'description').text();
-        var authorName = $('#' + isbn + 'author').text();
-        var pubDate = $('#' + isbn + 'publishDate').data('publish');
+        var notes = new Array();
+        
+        for(let i = 0; i < data.length; i++) {
+            notes.push({
+                noteTitle: "",
+                noteDate: "",
+                noteContent: data[i]
+            });
+        }
 
-        newBook.publishDate = new Date(pubDate).toDateString();
-        newBook.Authors = new Object();
-        newBook.Authors.Firstname = authorName;
-
+        console.log(notes);
+        
         $.ajax({
             type: "POST",
-            url: "/api/Book/AddNewBookForUser",
-            data: JSON.stringify(newBook),
-            contentType: "application/json; charset=utf-8",
+            url: "/Character/CharacterDetail/10",
+            data: notes,
+            contentType: "json",
         });
-        window.location.href = "/api/Book/UserBookList";
+      
     };
 
                // Set the api variable
