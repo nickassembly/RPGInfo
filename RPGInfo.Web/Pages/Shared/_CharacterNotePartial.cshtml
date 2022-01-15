@@ -1,5 +1,5 @@
 ﻿@using RPGInfo.Web.Models
-@model List<Note>
+@model Note
 
 <h4>Character Notes</h4>
 
@@ -127,8 +127,8 @@
         $.ajax({
             type: "POST",
             url: "/Character/CharacterDetail/10",
-            data: notes,
-            contentType: "json",
+            data: notes[0],
+            contentType: "application/json; charset=utf-8",
         });
       
     };
