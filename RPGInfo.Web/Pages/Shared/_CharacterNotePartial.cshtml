@@ -1,5 +1,5 @@
 ﻿@using RPGInfo.Web.Models
-@model List<Note>
+@model List<Note> 
 
 <h4>Character Notes</h4>
 
@@ -29,6 +29,7 @@
 
     <button type="button" id="addNoteForm" class="btn btn-primary">Note Add</button>
 
+    @Html.AntiForgeryToken()
     <button class="btn btn-primary" onclick="addCurrentNotes(data)"> Submit Added Notes</button>
 
 </form>
@@ -112,87 +113,37 @@
         }
 
        function addCurrentNotes(data) {
-          notes = [];
+           var dataToSend = new Object();
+           notes = new Array();
 
           for(let i = 0; i < data.length; i++) {
              var notesViewModel = {};
-             notesViewModel.noteTitle = "";
-             notesViewModel.noteDate = "";
-             notesViewModel.noteContent = data[i];
+             notesViewModel.NoteTitle = "test";
+             notesViewModel.NoteDate = "01/01/21";
+             notesViewModel.NoteContent = data[i];
              notes.push(notesViewModel);
           }
 
-
-          var dataToSend = JSON.stringify(notes);
-          console.log(dataToSend);
-
+          dataToSend[0] = notes;
+         
           $.ajax({
               type: "POST",
-              url: "/Character/CharacterDetail?handler=AddNotes",
-              data: dataToSend,
+              url: window.location.href + '?handler=AddNotes',
               contentType: "application/json; charset=utf-8",
-          }).done(function(dataToSend) {
-
+              dataType: "json",
+              beforeSend: function (xhr) {
+                            xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                           },
+              data: JSON.stringify(dataToSend[0]),
+              success: function() {
+                  console.log('Posted notes success');
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                  console.log(thrownError);
+              }
           });
+
         };
-
-                 // Set the api variable
-                 //var googleApiurl = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&intitle:${title}`;
-                 //// Make a ajax call to get the json data as response.
-                 //$.getJSON(googleApiUrl, function (response) {
-                 //    if (!response.items) { return false }
-                 //    // In console, you can see the response objects
-                 //    //console.log("JSON Data: " + response.items);
-                 //    // Loop through all the items one-by-one
-                 //    for (var i = 0; i < response.items.length; i++) {
-                 //        console.log(response.items[i]);
-                 //        // set the item from the response object
-                 //        var item = response.items[i];
-                 //        var imageLink = "";
-                 //        if (item.volumeInfo.imageLinks != undefined) { imageLink = item.volumeInfo.imageLinks.thumbnail; }
-                 //        console.log(JSON.stringify(item.volumeInfo.industryIdentifiers));
-                 //        // Set the book title in the div
-                 //        $("#searchResults").append('<div style="padding: 10px;" id = "' + item.volumeInfo.industryIdentifiers[0].identifier + '" >' +
-                 //            '<span asp-for="Identifier" id="' + item.volumeInfo.industryIdentifiers[0].identifier + 'isbn" >' + item.volumeInfo.industryIdentifiers[0].identifier + '</span>' +
-                 //            '<img id="' + item.volumeInfo.industryIdentifiers[0].identifier + 'thumbnail" height="150px" style="float: left;padding-right:5px;" src="' + imageLink + '">' +
-                 //            '<h4 id="' + item.volumeInfo.industryIdentifiers[0].identifier + 'title" >' + item.volumeInfo.title + '</h4><span id="' + item.volumeInfo.industryIdentifiers[0].identifier +
-                 //            'publishDate" data-publish="' + item.volumeInfo.publishedDate + '">Published Date: ' + item.volumeInfo.publishedDate + '</span><br /><div class="card - body" id="' +
-                 //             item.volumeInfo.industryIdentifiers[0].identifier + 'description" style="height:100px;overflow:hidden;" />' + item.volumeInfo.description + '</div>' +
-                 //            '<button class= "btn btn-primary" onclick = "addCurrentBook(' + item.volumeInfo.industryIdentifiers[0].identifier + ')" > Add</button > </div><hr />');
-                 //    }
-                // });
-
-            // }
-
-            // TODO: Get json data of list items to controller through ajax
-            //var data = { objId: 1 };
-            // $.ajax({
-            // url: '@Url.Action("PassIntFromView", "ControllerName")',
-            // type: "post",
-            // contentType: 'application/x-www-form-urlencoded',
-            // data: data,
-            // success: function (result) {
-            //     console.log(result);
-            //   }
-            //   });
-
-             //    function addCurrentBook(isbn) {
-             //    var newBook = new Object();
-             //    newBook.IdentifierType = "ISBN";
-             //    newBook.ImageUrl = $('#' + isbn + 'thumbnail').prop('src');
-             //    newBook.Identifier = $('#' + isbn + 'isbn').text();
-             //    newBook.Title = $('#' + isbn + 'title').text();
-             //    newBook.Description = $('#' + isbn + 'description').text();
-             //    var pubDate = $('#' + isbn + 'publishDate').data('publish');
-             //    newBook.publishedDate = new Date(pubDate);
-
-             //    $.ajax({
-             //        type: "POST",
-             //        url: "/api/Book/AddNewBookForUser",
-             //        data: JSON.stringify(newBook),
-             //        contentType: "application/json; charset=utf-8",
-             //    });
-             //    window.location.href = "/api/Book/UserBookList";
-             //};
 
 </script>

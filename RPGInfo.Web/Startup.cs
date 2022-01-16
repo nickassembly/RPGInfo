@@ -37,6 +37,8 @@ namespace RPGInfo.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
 
+            services.AddAntiforgery(token => token.HeaderName = "XSRF-TOKEN");
+
             services.Configure<IdentityOptions>(options => 
             {
                 // password settings

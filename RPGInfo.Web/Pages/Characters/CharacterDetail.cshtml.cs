@@ -24,8 +24,6 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public Character Character { get; set; }
 
-        
-
         public void OnGet(int id)
         {
             Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
