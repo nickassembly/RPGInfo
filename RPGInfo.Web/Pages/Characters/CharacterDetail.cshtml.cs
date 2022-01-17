@@ -40,8 +40,6 @@ namespace RPGInfo.Web.Pages
         
         public ActionResult OnPostAddNotes(List<Note> notes)
         {
-            // submit added notes comes here
-            // Add notes with html once clicked
 
             //Note noteToAdd = new Note
             //{
