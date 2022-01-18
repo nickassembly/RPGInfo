@@ -38,7 +38,7 @@ namespace RPGInfo.Web.Pages
         public List<Note> CharacterNotes { get; set; }
 
         
-        public ActionResult OnPostAddNotes(List<Note> notes)
+        public ActionResult OnPostAddNotes([FromBody]List<Note> notes)
         {
 
             //Note noteToAdd = new Note
