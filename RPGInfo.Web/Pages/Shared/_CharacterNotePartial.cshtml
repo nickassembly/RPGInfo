@@ -117,7 +117,7 @@
           for(let i = 0; i < data.length; i++) {
              var note = {};
              note.noteTitle = "";
-             note.noteDate = "";
+             note.noteDate = new Date('0001-01-01');
              note.noteContent = data[i];
              notes.push(note);
           }
@@ -131,6 +131,7 @@
               url: window.location.href + '?handler=AddNotes',
               data: notes,
               success: function() {
+                  window.location.href="url";
                   console.log("ajax Notes post called");
               },
               failure: function(response) {
