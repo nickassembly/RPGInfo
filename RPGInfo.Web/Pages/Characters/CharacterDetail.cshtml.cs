@@ -37,8 +37,11 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public List<Note> CharacterNotes { get; set; }
 
-        
-        public ActionResult OnPostAddNotes([FromBody]List<Note> notes)
+        [BindProperty]
+        public string[] CharacterNoteStrings { get; set; }
+
+
+        public ActionResult OnPostAddNotes([FromBody]string[] notes)
         {
 
             //Note noteToAdd = new Note
