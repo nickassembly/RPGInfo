@@ -81,7 +81,7 @@
        var listItemToAppend =  '<li id="li-'+ listItemId + '" class="list-group-item rmv_btn'+ listItemId + '">'
                  + '<div class="row">'
                    + '<div class="col-10 note-style">'
-                       + noteTitle + ' ' + noteDate + ' ' + noteContent
+                       + '<p>' + 'Title: ' + noteTitle + '</p>' + '<p>' + 'Date: ' + noteDate + '</p>' + '<p>' + 'Note: ' +  noteContent + '</p>'
                    + '</div>'
                    + '<div class="col-2">'
                        + '<button type="button" id="btn-'+ listItemId +'" class="rmv_btn'+ listItemId + ' btn btn-danger btn-sm">' + "Remove" + '</button>'
