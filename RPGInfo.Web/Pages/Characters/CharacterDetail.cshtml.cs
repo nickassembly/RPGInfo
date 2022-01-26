@@ -43,6 +43,14 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPostAddNotes([FromBody]string[] notes)
         {
+            List<Note> newNotes = new List<Note>();
+
+            for (int i = 0; i < notes.Length; i++)
+            {
+               var noteStr =  notes[i].Substring(0, notes[i].IndexOf(":"));
+                // break each string into note properties
+                // create new notes for every string in array
+            }
 
             //Note noteToAdd = new Note
             //{
