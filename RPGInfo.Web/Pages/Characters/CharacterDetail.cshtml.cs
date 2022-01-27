@@ -47,9 +47,17 @@ namespace RPGInfo.Web.Pages
 
             for (int i = 0; i < notes.Length; i++)
             {
-               var noteStr =  notes[i].Substring(0, notes[i].IndexOf(":"));
-                // break each string into note properties
-                // create new notes for every string in array
+                Note note = new Note();
+
+                string titleKey = "Title:";
+                string dateKey = "Date:";
+                string contentKey = "Note:";
+
+                int titleIndex = notes[i].IndexOf(titleKey);
+                int dateIndex = notes[i].IndexOf(dateKey);
+                int contentIndex = notes[i].IndexOf(contentKey);
+
+           
             }
 
             //Note noteToAdd = new Note
