@@ -52,10 +52,16 @@ namespace RPGInfo.Web.Pages
                 string titleKey = "Title:";
                 string dateKey = "Date:";
                 string contentKey = "Note:";
+                int stringLength = notes[i].Length;
 
                 int titleIndex = notes[i].IndexOf(titleKey);
                 int dateIndex = notes[i].IndexOf(dateKey);
                 int contentIndex = notes[i].IndexOf(contentKey);
+
+                // TODO: get lengths of property substrings
+                int titleLength = stringLength - notes[i].Substring(dateIndex).Length;
+                int dateLength = stringLength - notes[i].Substring(contentIndex).Length;
+                
 
            
             }
