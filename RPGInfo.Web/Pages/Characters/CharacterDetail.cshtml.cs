@@ -41,40 +41,9 @@ namespace RPGInfo.Web.Pages
         public string[] CharacterNoteStrings { get; set; }
 
 
-        public ActionResult OnPostAddNotes([FromBody]string[] notes)
+        public ActionResult OnPostAddNotes([FromBody]string[] noteStrings)
         {
-            List<Note> newNotes = new List<Note>();
-
-            for (int i = 0; i < notes.Length; i++)
-            {
-                Note note = new Note();
-
-                string titleKey = "Title:";
-                string dateKey = "Date:";
-                string contentKey = "Note:";
-                string buttonTextKey = "Remove";
-                int stringLength = notes[i].Length;
-
-                int titleIndex = notes[i].IndexOf(titleKey);
-                int dateIndex = notes[i].IndexOf(dateKey);
-                int contentIndex = notes[i].IndexOf(contentKey);
-                int buttonIndex = notes[i].IndexOf(buttonTextKey);
-
-                string extractedTitle = notes[i][titleIndex..dateIndex];
-                string extractedDate = notes[i][dateIndex..contentIndex];
-                string extractedContent = notes[i][contentIndex..buttonIndex];
-
-           
-            }
-
-            //Note noteToAdd = new Note
-            //{
-            //    NoteTitle = note.NoteTitle,
-            //    NoteContent = note.NoteContent,
-            //    NoteDate = note.NoteDate,
-            //    NoteType = NoteType.CharacterNote,
-            //    CharacterId = Character.Id
-            //};
+            List<Note> newNotes = ConvertStringsToNotes(noteStrings);
 
             //_context.Notes.Add(noteToAdd);
             //_context.SaveChanges();
@@ -93,7 +62,37 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage("CharacterList");
         }
 
+        private List<Note> ConvertStringsToNotes(string[] stringsToConvert)
+        {
+            List<Note> newNotes = new List<Note>();
 
+            for (int i = 0; i < stringsToConvert.Length; i++)
+            {
+                Note note = new Note();
+
+                string titleKey = "Title:";
+                string dateKey = "Date:";
+                string contentKey = "Note:";
+                string buttonTextKey = "Remove";
+                int stringLength = stringsToConvert[i].Length;
+
+                int titleIndex = stringsToConvert[i].IndexOf(titleKey);
+                int dateIndex = stringsToConvert[i].IndexOf(dateKey);
+                int contentIndex = stringsToConvert[i].IndexOf(contentKey);
+                int buttonIndex = stringsToConvert[i].IndexOf(buttonTextKey);
+
+                string extractedTitle = stringsToConvert[i][titleIndex..dateIndex];
+                string extractedDate = stringsToConvert[i][dateIndex..contentIndex];
+                string extractedContent = stringsToConvert[i][contentIndex..buttonIndex];
+
+                note.NoteTitle = extractedTitle.Substring(6);   
+                note.NoteDate = Convert.ToDateTime(extractedDate.Substring(5));
+                note.NoteContent = extractedContent.Substring(5);
+                newNotes.Add(note);
+            }
+
+            return newNotes;
+        }
 
 
     }
