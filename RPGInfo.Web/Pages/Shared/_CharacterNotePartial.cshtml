@@ -8,7 +8,6 @@
 </div>
 
 <form asp-page-handler="AddNotes" class="mt-4 mb-4">
-   @* TODO: Add Verification on Client side*@
     <div class="row">
         <div class="form-group col-6">
             <label for="NoteTitle">Title</label>
@@ -17,7 +16,7 @@
         
         <div class="form-group  col-6">
             <label for="NoteDate">Date</label>
-            <input type="datetime" id="noteDate" name="NoteDate" class="form-control">
+            <input type="datetime" id="noteDate" onchange="validateDate()" name="NoteDate" class="form-control">
         </div>
     </div>
 
@@ -52,6 +51,20 @@
     $("#removeNote").click(function() {
         removeNote();
     });
+
+     function validateDate() {
+        var dateInput = $('input[id="noteDate"]').val();
+
+        var match = dateInput.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+
+        console.log(match);
+
+        if (!match) {
+          // todo set attribute to empty string, throw error
+        }
+
+        //return (match) ? new Date(match[3], match[2]-1, match[1]) : null;
+     }
 
      function addData(item) {
       data.push(item);
