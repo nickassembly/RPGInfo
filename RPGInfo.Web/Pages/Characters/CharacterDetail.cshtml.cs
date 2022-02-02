@@ -85,8 +85,14 @@ namespace RPGInfo.Web.Pages
                 string extractedDate = stringsToConvert[i][dateIndex..contentIndex];
                 string extractedContent = stringsToConvert[i][contentIndex..buttonIndex];
 
-                note.NoteTitle = extractedTitle.Substring(6);   
-                note.NoteDate = Convert.ToDateTime(extractedDate.Substring(5));
+                note.NoteTitle = extractedTitle.Substring(6);
+
+                DateTime noteDate;
+                if (DateTime.TryParse(extractedDate.Substring(5), out noteDate))
+                    note.NoteDate = noteDate;
+                else
+                    note.NoteDate = DateTime.MinValue;
+
                 note.NoteContent = extractedContent.Substring(5);
                 newNotes.Add(note);
             }
