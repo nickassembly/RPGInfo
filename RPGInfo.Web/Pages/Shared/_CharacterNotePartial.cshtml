@@ -7,6 +7,8 @@
     </ul>
 </div>
 
+@*TODO: Display current notes in table*@
+
 <form asp-page-handler="AddNotes" class="mt-4 mb-4">
     <div class="row">
         <div class="form-group col-6">
@@ -14,7 +16,6 @@
             <input type="text" id="noteTitle" name="NoteTitle" class="form-control">
         </div>
         
-      @*  TODO: Error message when invalid date, disable button when submitting empty list*@
         <div class="form-group  col-6">
             <label for="NoteDate">Date</label>
             <input type="datetime" id="noteDate" onchange="validateDate()" name="NoteDate" class="form-control">
@@ -26,10 +27,10 @@
         <input type="text" id="noteContent" name="NoteContent" class="form-control">
     </div>
 
-    <button type="button" id="addNoteForm" class="btn btn-primary">Note Add</button>
+    <button type="button" id="addNoteForm" class="btn btn-primary">Add</button>
 
     @Html.AntiForgeryToken()
-    <button class="btn btn-primary" type="button" onclick="addCurrentNotes(data)"> Submit Added Notes</button>
+    <button class="btn btn-primary" type="button" onclick="addCurrentNotes(data)"> Save Notes</button>
 
 </form>
 
@@ -125,6 +126,8 @@
 
        function addCurrentNotes(data) {
           var notes = [];
+
+          if (data.length <= 0) return;
 
           for(let i = 0; i < data.length; i++) {
              var note = {};

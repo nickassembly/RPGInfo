@@ -45,10 +45,10 @@ namespace RPGInfo.Web.Pages
         {
             List<Note> newNotes = ConvertStringsToNotes(noteStrings);
 
-            //_context.Notes.Add(noteToAdd);
-            //_context.SaveChanges();
+            _context.Notes.AddRange(newNotes);
+            _context.SaveChanges();
 
-            //Character.CharacterNotes.Add(noteToAdd);
+            Character.CharacterNotes.AddRange(newNotes);
 
             return RedirectToPage();
         }
@@ -94,6 +94,10 @@ namespace RPGInfo.Web.Pages
                     note.NoteDate = DateTime.MinValue;
 
                 note.NoteContent = extractedContent.Substring(5);
+
+                note.CharacterId = Character.Id;
+                // TODO: Campaign ID, Area of Interest Id
+
                 newNotes.Add(note);
             }
 
