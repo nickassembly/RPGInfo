@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RPGInfo.Web.Data;
 
 namespace RPGInfo.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220204114819_ReviseModels")]
+    partial class ReviseModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,49 +21,19 @@ namespace RPGInfo.Web.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("AreaCharacter", b =>
+            modelBuilder.Entity("CharacterCharacter", b =>
                 {
-                    b.Property<int>("AreaCharactersId")
+                    b.Property<int>("OthersWhoCharacterKnowsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("KnownAreasId")
+                    b.Property<int>("OthersWhoKnowCharacterId")
                         .HasColumnType("int");
 
-                    b.HasKey("AreaCharactersId", "KnownAreasId");
+                    b.HasKey("OthersWhoCharacterKnowsId", "OthersWhoKnowCharacterId");
 
-                    b.HasIndex("KnownAreasId");
+                    b.HasIndex("OthersWhoKnowCharacterId");
 
-                    b.ToTable("AreaCharacter");
-                });
-
-            modelBuilder.Entity("AreaWorldEvent", b =>
-                {
-                    b.Property<int>("AreaEventsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EventLocationsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AreaEventsId", "EventLocationsId");
-
-                    b.HasIndex("EventLocationsId");
-
-                    b.ToTable("AreaWorldEvent");
-                });
-
-            modelBuilder.Entity("CharacterWorldEvent", b =>
-                {
-                    b.Property<int>("CharacterEventsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EventCharactersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CharacterEventsId", "EventCharactersId");
-
-                    b.HasIndex("EventCharactersId");
-
-                    b.ToTable("CharacterWorldEvent");
+                    b.ToTable("CharacterCharacter");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -277,9 +249,32 @@ namespace RPGInfo.Web.Data.Migrations
                     b.Property<string>("AreaName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CampaignId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("CampaignId");
+
                     b.ToTable("AreasOfInterest");
+                });
+
+            modelBuilder.Entity("RPGInfo.Web.Models.Campaign", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CampaignName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Campaigns");
                 });
 
             modelBuilder.Entity("RPGInfo.Web.Models.Character", b =>
@@ -289,16 +284,19 @@ namespace RPGInfo.Web.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Backstory")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CharacterId")
+                    b.Property<int?>("CampaignId")
                         .HasColumnType("int");
 
                     b.Property<string>("Class")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("CurrentLocation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -310,9 +308,20 @@ namespace RPGInfo.Web.Data.Migrations
                     b.Property<string>("Race")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("UpdatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int?>("WorldEventId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CharacterId");
+                    b.HasIndex("CampaignId");
+
+                    b.HasIndex("WorldEventId");
 
                     b.ToTable("Characters");
                 });
@@ -325,6 +334,9 @@ namespace RPGInfo.Web.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("AreaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CampaignId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CharacterId")
@@ -350,6 +362,8 @@ namespace RPGInfo.Web.Data.Migrations
 
                     b.HasIndex("AreaId");
 
+                    b.HasIndex("CampaignId");
+
                     b.HasIndex("CharacterId");
 
                     b.HasIndex("WorldEventId");
@@ -364,62 +378,42 @@ namespace RPGInfo.Web.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CampaignId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("EventDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EventDescription")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("EventLocationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("EventName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorldEvents");
+                    b.HasIndex("CampaignId");
+
+                    b.HasIndex("EventLocationId");
+
+                    b.ToTable("CampaignEvent");
                 });
 
-            modelBuilder.Entity("AreaCharacter", b =>
+            modelBuilder.Entity("CharacterCharacter", b =>
                 {
                     b.HasOne("RPGInfo.Web.Models.Character", null)
                         .WithMany()
-                        .HasForeignKey("AreaCharactersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RPGInfo.Web.Models.Area", null)
-                        .WithMany()
-                        .HasForeignKey("KnownAreasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("AreaWorldEvent", b =>
-                {
-                    b.HasOne("RPGInfo.Web.Models.WorldEvent", null)
-                        .WithMany()
-                        .HasForeignKey("AreaEventsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RPGInfo.Web.Models.Area", null)
-                        .WithMany()
-                        .HasForeignKey("EventLocationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CharacterWorldEvent", b =>
-                {
-                    b.HasOne("RPGInfo.Web.Models.WorldEvent", null)
-                        .WithMany()
-                        .HasForeignKey("CharacterEventsId")
+                        .HasForeignKey("OthersWhoCharacterKnowsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("RPGInfo.Web.Models.Character", null)
                         .WithMany()
-                        .HasForeignKey("EventCharactersId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("OthersWhoKnowCharacterId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
 
@@ -474,11 +468,24 @@ namespace RPGInfo.Web.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("RPGInfo.Web.Models.Area", b =>
+                {
+                    b.HasOne("RPGInfo.Web.Models.Campaign", null)
+                        .WithMany("CampaignAreas")
+                        .HasForeignKey("CampaignId");
+                });
+
             modelBuilder.Entity("RPGInfo.Web.Models.Character", b =>
                 {
-                    b.HasOne("RPGInfo.Web.Models.Character", null)
-                        .WithMany("KnownCharacters")
-                        .HasForeignKey("CharacterId");
+                    b.HasOne("RPGInfo.Web.Models.Campaign", "Campaign")
+                        .WithMany("CampaignCharacters")
+                        .HasForeignKey("CampaignId");
+
+                    b.HasOne("RPGInfo.Web.Models.WorldEvent", null)
+                        .WithMany("EventCharacters")
+                        .HasForeignKey("WorldEventId");
+
+                    b.Navigation("Campaign");
                 });
 
             modelBuilder.Entity("RPGInfo.Web.Models.Note", b =>
@@ -486,6 +493,10 @@ namespace RPGInfo.Web.Data.Migrations
                     b.HasOne("RPGInfo.Web.Models.Area", null)
                         .WithMany("AreaNotes")
                         .HasForeignKey("AreaId");
+
+                    b.HasOne("RPGInfo.Web.Models.Campaign", null)
+                        .WithMany("CampaignNotes")
+                        .HasForeignKey("CampaignId");
 
                     b.HasOne("RPGInfo.Web.Models.Character", null)
                         .WithMany("CharacterNotes")
@@ -496,20 +507,44 @@ namespace RPGInfo.Web.Data.Migrations
                         .HasForeignKey("WorldEventId");
                 });
 
+            modelBuilder.Entity("RPGInfo.Web.Models.WorldEvent", b =>
+                {
+                    b.HasOne("RPGInfo.Web.Models.Campaign", null)
+                        .WithMany("CampaignEvents")
+                        .HasForeignKey("CampaignId");
+
+                    b.HasOne("RPGInfo.Web.Models.Area", "EventLocation")
+                        .WithMany()
+                        .HasForeignKey("EventLocationId");
+
+                    b.Navigation("EventLocation");
+                });
+
             modelBuilder.Entity("RPGInfo.Web.Models.Area", b =>
                 {
                     b.Navigation("AreaNotes");
                 });
 
+            modelBuilder.Entity("RPGInfo.Web.Models.Campaign", b =>
+                {
+                    b.Navigation("CampaignAreas");
+
+                    b.Navigation("CampaignCharacters");
+
+                    b.Navigation("CampaignEvents");
+
+                    b.Navigation("CampaignNotes");
+                });
+
             modelBuilder.Entity("RPGInfo.Web.Models.Character", b =>
                 {
                     b.Navigation("CharacterNotes");
-
-                    b.Navigation("KnownCharacters");
                 });
 
             modelBuilder.Entity("RPGInfo.Web.Models.WorldEvent", b =>
                 {
+                    b.Navigation("EventCharacters");
+
                     b.Navigation("EventNotes");
                 });
 #pragma warning restore 612, 618

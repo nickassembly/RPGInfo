@@ -96,7 +96,6 @@ namespace RPGInfo.Web.Pages
                 note.NoteContent = extractedContent.Substring(5);
 
                 note.CharacterId = Character.Id;
-                // TODO: Campaign ID, Area of Interest Id
 
                 newNotes.Add(note);
             }

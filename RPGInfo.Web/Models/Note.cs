@@ -14,9 +14,9 @@ namespace RPGInfo.Web.Models
         [Required]
         [MaxLength(500)]
         public string NoteContent { get; set; }
-        public NoteType NoteType { get; set; }
 
-        
+        public int? AreaId { get; set; }
+        public int? WorldEventId { get; set; }
         public int? CharacterId { get; set; }
 
     }

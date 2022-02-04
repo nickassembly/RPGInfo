@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
 using System;
@@ -60,7 +59,6 @@ namespace RPGInfo.Web.Pages
             character.Name = Character.Name;
             character.Race = Character.Race;
             character.Class = Character.Class;
-            character.CurrentLocation = Character.CurrentLocation;
 
             if (Portrait != null)
             {
@@ -78,9 +76,6 @@ namespace RPGInfo.Web.Pages
                     }
                 }
             }
-
-            character.CreatedBy = new Guid(userId);
-            character.CreatedDate = createdDate;
 
             _context.Add(character);
             _context.SaveChanges();

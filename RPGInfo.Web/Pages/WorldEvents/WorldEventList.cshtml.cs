@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Pages
 {
-    public class CampaignListModel : PageModel
+    public class WorldEventListModel : PageModel
     {
         
     }
