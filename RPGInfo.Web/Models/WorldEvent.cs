@@ -5,6 +5,7 @@ namespace RPGInfo.Web.Models
 {
     public class WorldEvent : BaseEntity
     {
+        public byte[] EventImage { get; set; }
         public string EventName { get; set; }
         public string EventDescription { get; set; }
         public DateTime EventDate { get; set; }

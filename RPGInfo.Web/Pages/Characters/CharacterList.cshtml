@@ -12,8 +12,9 @@
     <input type="text" asp-for="Character.Name" placeholder="Name" />
     <input type="text" asp-for="Character.Race" placeholder="Race" />
     <input type="text" asp-for="Character.Class" placeholder="Class" />
-    <input type="text" asp-for="Character.CharacterNotes" placeholder="Character Notes" />
-
+    <input type="text" asp-for="Character.Description" placeholder="Description" />
+    <input type="text" asp-for="Character.Backstory" placeholder="Backstory" />
+   
     <button type="submit">Submit</button>
 </form>
 
@@ -43,6 +44,8 @@
                             </h4>
                             <p class="card-text">@item.Race</p>
                             <p class="card-text">@item.Class</p>
+                            <p class="card-text">@item.Description</p>
+                            <p class="card-text">@item.Backstory</p>
                         </div>
                         <div class="card-footer">
                             <a asp-page="CharacterDetail" asp-route-id="@item.Id" class="btn btn-success w-100">Character Details</a>

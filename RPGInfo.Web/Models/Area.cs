@@ -4,6 +4,7 @@ namespace RPGInfo.Web.Models
 {
     public class Area : BaseEntity
     {
+        public byte[] AreaImage { get; set; }
         public string AreaName { get; set; }
         public string AreaDescription { get; set; }
         public List<Note> AreaNotes { get; set; } = new List<Note>();

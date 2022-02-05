@@ -15,12 +15,11 @@
                         <img height="300" width="300" class="rounded-sm" src="data:image;base64,@System.Convert.ToBase64String(Model.Character.Portrait)" alt="">
                     </div>
                 }
-
             </div>
 
             <div class="col-lg-8 col-md-7">
                 <div class="team-single-text padding-50px-left sm-no-padding-left">
-                    <h4 class="font-size38 sm-font-size32 xs-font-size30">@Model.Character.Name</h4>
+                    <h3 class="font-size38 sm-font-size32 xs-font-size30">@Model.Character.Name</h3>
                     <div class="contact-info-section margin-40px-tb">
                         <ul class="list-style9 no-margin">
                             <li>
@@ -33,7 +32,6 @@
                                         <p>@Model.Character.Race</p>
                                     </div>
                                 </div>
-
                             </li>
 
                             <li>
@@ -47,11 +45,39 @@
                                     </div>
                                 </div>
                             </li>
+
+                             <li>
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <i class="text-yellow"></i>
+                                        <strong class="margin-10px-left text-yellow">Description: </strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p>@Model.Character.Description</p>
+                                    </div>
+                                </div>
+                            </li>
+
+                             <li>
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <i class="text-yellow"></i>
+                                        <strong class="margin-10px-left text-yellow">Backstory: </strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p>@Model.Character.Backstory</p>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
 
                     <div>
-                       <partial name="_CharacterNotePartial" model="@Model.CharacterNoteStrings" />
+                        <partial name="_CharacterNotesDisplayPartial" model="@Model.CharacterNotes" />
+                    </div>
+
+                    <div>
+                       <partial name="_CharacterNewNotePartial" model="@Model.CharacterNoteStrings" />
                     </div>
 
                     <div>
