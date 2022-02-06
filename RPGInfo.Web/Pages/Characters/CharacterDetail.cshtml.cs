@@ -31,11 +31,9 @@ namespace RPGInfo.Web.Pages
             Character.CharacterNotes = _context.Notes.Where(note => note.CharacterId == id).ToList();   
         }
 
-        [BindProperty]
-        public Note CharacterNote { get; set; }
 
         [BindProperty]
-        public List<Note> CharacterNotes { get; set; }
+        public List<Note> CharacterNotes { get; set; } 
 
         [BindProperty]
         public string[] CharacterNoteStrings { get; set; }
@@ -50,6 +48,14 @@ namespace RPGInfo.Web.Pages
 
             Character.CharacterNotes.AddRange(newNotes);
 
+            return RedirectToPage();
+        }
+
+        public ActionResult OnPostEditNote(int id)
+        {
+            var noteToEdit = _context.Notes.Where(x => x.Id == id).FirstOrDefault();
+
+            // TODO: Redirect to Note Edit View to Remove/Edit that note then Redirect Back to detail page
             return RedirectToPage();
         }
 

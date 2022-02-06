@@ -15,6 +15,13 @@
                         <img height="300" width="300" class="rounded-sm" src="data:image;base64,@System.Convert.ToBase64String(Model.Character.Portrait)" alt="">
                     </div>
                 }
+                else
+                {
+                     <img class="card-img-top" src="~/images/NoImageAvailable.png" />
+                }
+                <div>
+                       <partial name="_CharacterNewNotePartial" model="@Model.CharacterNoteStrings" />
+                 </div>
             </div>
 
             <div class="col-lg-8 col-md-7">
@@ -73,11 +80,7 @@
                     </div>
 
                     <div>
-                        <partial name="_CharacterNotesDisplayPartial" model="@Model.CharacterNotes" />
-                    </div>
-
-                    <div>
-                       <partial name="_CharacterNewNotePartial" model="@Model.CharacterNoteStrings" />
+                        <partial name="_CharacterNotesDisplayPartial" model="@Model.Character.CharacterNotes" />
                     </div>
 
                     <div>
