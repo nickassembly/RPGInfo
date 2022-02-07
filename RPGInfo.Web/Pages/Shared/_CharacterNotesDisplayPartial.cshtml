@@ -4,21 +4,28 @@
 <div class="container">
     @foreach (var note in Model)
     {
-        <div class="col-md-12">
-            <h1>@note.NoteTitle</h1>
-            <p>
+        <div id="noteToEdit" class="col-md-12">
+            <h1 id="noteTitle">@note.NoteTitle</h1>
+            <p id="noteContent">
                 @note.NoteContent
             </p>
             <div>
                 <span class="badge"> Added: @note.NoteDate</span>
                 <div>
-                    <form asp-page-handler="EditNote" method="post">
-                        <button class="btn btn-sm btn-danger">Delete from Record</button>
-                        <input type="hidden" name="id" value="@note.Id" />
-                    </form>
+                        <button type="button" id="" onclick="editNote(@note.Id)" class="btn btn-primary">Edit Note</button>
                 </div>
             </div>
             <hr>
         </div>
     }
 </div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+
+   function editNote(id){
+       console.log("edit clicked: " + id);
+   }
+
+
+</script>
