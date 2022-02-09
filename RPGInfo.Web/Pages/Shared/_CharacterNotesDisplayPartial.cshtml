@@ -13,7 +13,7 @@
             <div>
                 <span class="badge"> Added: @note.NoteDate</span>
                 <div>
-                    <button type="button" id="" onclick="editNote('@note');" class="btn btn-primary">Edit Note</button>
+                    <button type="button" id="@note.Id" onclick="editNote('@note');" class="btn btn-primary">Edit Note</button>
                 </div>
             </div>
             <hr>
@@ -67,29 +67,30 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
+    $("#editButton").click(function() {
+      alert(this.id);
+    });
 
-     function editNote(note){
-        
-         note = @Html.Raw(Json.Serialize(Model));
+    function editNote(notes){
 
-         notes
+        notes = @Html.Raw(Json.Serialize(Model));
 
-         console.log(note);
-         $('input[id="noteTitle"]').val('');
-         $("#myModal").modal('show');
-     }
-
-     function validateDate() {
-       var dateInput = $('input[id="noteDate"]').val();
-
-       var match = dateInput.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-
-       if (!match) {
-         $('input[id="noteDate"]').val('');
-       } else {
-         $('input[id="noteDate"]').val(dateInput);
-       }
+        console.log(notes);
+        $('input[id="noteTitle"]').val('');
+        $("#myModal").modal('show');
     }
+
+    function validateDate() {
+           var dateInput = $('input[id="noteDate"]').val();
+
+           var match = dateInput.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+
+           if (!match) {
+             $('input[id="noteDate"]').val('');
+           } else {
+             $('input[id="noteDate"]').val(dateInput);
+           }
+   }
 
 
 </script>
