@@ -2,6 +2,7 @@
 @model List<Note>
 
 <div class="container">
+
     @foreach (var note in Model)
     {
         <div id="noteToEdit" class="col-md-12">
@@ -12,13 +13,13 @@
             <div>
                 <span class="badge"> Added: @note.NoteDate</span>
                 <div>
-                    <button type="button" id="" onclick="editNote(@note.Id)" class="btn btn-primary">Edit Note</button>
+                    <button type="button" id="" onclick="editNote('@note');" class="btn btn-primary">Edit Note</button>
                 </div>
             </div>
             <hr>
         </div>
-
     }
+
     <div class="bs-example">
         <!-- Modal HTML -->
         <div id="myModal" class="modal fade" tabindex="-1">
@@ -67,23 +68,28 @@
 
 <script type="text/javascript">
 
-    function editNote(id){
-        console.log("edit clicked: " + id);
-        $('input[id="noteTitle"]').val(id);
-        $("#myModal").modal('show');
+     function editNote(note){
+        
+         note = @Html.Raw(Json.Serialize(Model));
+
+         notes
+
+         console.log(note);
+         $('input[id="noteTitle"]').val('');
+         $("#myModal").modal('show');
+     }
+
+     function validateDate() {
+       var dateInput = $('input[id="noteDate"]').val();
+
+       var match = dateInput.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+
+       if (!match) {
+         $('input[id="noteDate"]').val('');
+       } else {
+         $('input[id="noteDate"]').val(dateInput);
+       }
     }
-
-    function validateDate() {
-      var dateInput = $('input[id="noteDate"]').val();
-
-      var match = dateInput.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-
-      if (!match) {
-        $('input[id="noteDate"]').val('');
-      } else {
-        $('input[id="noteDate"]').val(dateInput);
-      }
-   }
 
 
 </script>
