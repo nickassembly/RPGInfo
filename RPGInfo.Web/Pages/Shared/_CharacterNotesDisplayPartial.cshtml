@@ -13,7 +13,7 @@
             <div>
                 <span class="badge"> Added: @note.NoteDate</span>
                 <div>
-                    <button type="button" id="@note.Id" onclick="editNote('@note');" class="btn btn-primary">Edit Note</button>
+                    <button type="button" id="@note.Id"  class="btn btn-primary editButton">Edit Note</button>
                 </div>
             </div>
             <hr>
@@ -67,18 +67,22 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
-    $("#editButton").click(function() {
-      alert(this.id);
+
+    $('.editButton').click(function() {
+     notes = @Html.Raw(Json.Serialize(Model));
+     console.log(notes);
+
+     const noteId = this.id;
+     console.log(noteId);
+
+     var selectedNotes = notes.filter(function(el) {
+         return el.id == noteId
+     });
+
+     console.log(selectedNotes);
+
     });
 
-    function editNote(notes){
-
-        notes = @Html.Raw(Json.Serialize(Model));
-
-        console.log(notes);
-        $('input[id="noteTitle"]').val('');
-        $("#myModal").modal('show');
-    }
 
     function validateDate() {
            var dateInput = $('input[id="noteDate"]').val();
