@@ -13,7 +13,7 @@
             <div>
                 <span class="badge"> Added: @note.NoteDate</span>
                 <div>
-                    <button type="button" id="@note.Id"  class="btn btn-primary editButton">Edit Note</button>
+                    <button type="button" id="@note.Id" class="btn btn-primary editButton">Edit Note</button>
                 </div>
             </div>
             <hr>
@@ -22,7 +22,7 @@
 
     <div class="bs-example">
         <!-- Modal HTML -->
-        <div id="myModal" class="modal fade" tabindex="-1">
+        <div id="noteModal" class="modal fade" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -68,33 +68,43 @@
 
 <script type="text/javascript">
 
-    $('.editButton').click(function() {
-     notes = @Html.Raw(Json.Serialize(Model));
-     console.log(notes);
+     $('.editButton').click(function() {
+      notes = @Html.Raw(Json.Serialize(Model));
+      //console.log(notes);
 
-     const noteId = this.id;
-     console.log(noteId);
+      //console.log(noteId);
 
-     var selectedNotes = notes.filter(function(el) {
-         return el.id == noteId
+      const noteId = this.id;
+      var selectedNote = notes.filter(function(el) {
+          return el.id == noteId
+      });
+
+      //console.log(selectedNote[0].noteTitle);
+      //console.log(selectedNote[0].noteDate);
+      //console.log(selectedNote[0].noteContent);
+
+      $('input[id="noteTitle"]').val(selectedNote[0].noteTitle);
+      $('input[id="noteDate"]').val(selectedNote[0].noteDate);
+      $('input[id="noteContent"]').val(selectedNote[0].noteContent);
+      $('#noteModal').modal('show');
+
+      // todo button to post/save modal changes and push back to db
+
+
      });
 
-     console.log(selectedNotes);
 
-    });
+     function validateDate() {
+            var dateInput = $('input[id="noteDate"]').val();
 
+            var match = dateInput.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
 
-    function validateDate() {
-           var dateInput = $('input[id="noteDate"]').val();
-
-           var match = dateInput.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-
-           if (!match) {
-             $('input[id="noteDate"]').val('');
-           } else {
-             $('input[id="noteDate"]').val(dateInput);
-           }
-   }
+            if (!match) {
+              $('input[id="noteDate"]').val('');
+            } else {
+              $('input[id="noteDate"]').val(dateInput);
+            }
+    }
 
 
 </script>
