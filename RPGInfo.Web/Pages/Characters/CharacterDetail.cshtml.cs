@@ -51,13 +51,12 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
-        //public ActionResult OnPostEditNote(int id)
-        //{
-        //    var noteToEdit = _context.Notes.Where(x => x.Id == id).FirstOrDefault();
+        public ActionResult OnPostEditNote(Note note)
+        {
+            // Gets a singe note/string from Ajax and updates note table in db
 
-        //    // TODO: Remove this and handle note edits through Ajax on client side
-        //    return RedirectToPage();
-        //}
+            return RedirectToPage();
+        }
 
         public ActionResult OnPost()
         {
