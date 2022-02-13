@@ -102,7 +102,26 @@
       console.log("Edited Date: " + noteToEdit.noteDate);
       console.log("Edited Content: " + noteToEdit.noteContent);
 
-      // TODO: Ajax to send single note to OnPostEditNote
+      // TODO: change to string
+
+      $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            type: 'POST',
+            url: window.location.href + '?handler=EditNote',
+            data: JSON.stringify(noteToEdit),
+            success: function() {
+                window.location.href="url";
+                console.log("ajax Notes post called");
+            },
+            failure: function(response) {
+                console.log(response);
+            },
+            beforeSend: function (xhr) {
+                          xhr.setRequestHeader("XSRF-TOKEN",
+                          $('input:hidden[name="__RequestVerificationToken"]').val());
+                         }
+        });
   }
 
 
