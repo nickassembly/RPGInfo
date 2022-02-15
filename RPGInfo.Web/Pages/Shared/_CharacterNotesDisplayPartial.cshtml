@@ -70,9 +70,6 @@
 
   $('.editButton').click(function() {
    notes = @Html.Raw(Json.Serialize(Model));
-   //console.log(notes);
-
-   //console.log(noteId);
 
    const noteId = this.id;
    var selectedNote = notes.filter(function(el) {
@@ -85,7 +82,6 @@
    $('input[id="noteDate"]').val(selectedNote[0].noteDate);
    $('input[id="noteContent"]').val(selectedNote[0].noteContent);
    $('#noteModal').modal('show');
-
   });
 
    $('#saveNote').click(function() {
@@ -101,8 +97,6 @@
       console.log("Edited Title: " + noteToEdit.noteTitle);
       console.log("Edited Date: " + noteToEdit.noteDate);
       console.log("Edited Content: " + noteToEdit.noteContent);
-
-      // TODO: change to string
 
       $.ajax({
             contentType: 'application/json; charset=utf-8',
