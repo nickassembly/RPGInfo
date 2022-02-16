@@ -49,6 +49,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        @Html.AntiForgeryToken()
                         <button type="button" id="saveNote" class="btn btn-primary">Save</button>
                     </div>
                 </div>
@@ -82,28 +83,31 @@
    $('input[id="noteDate"]').val(selectedNote[0].noteDate);
    $('input[id="noteContent"]').val(selectedNote[0].noteContent);
    $('#noteModal').modal('show');
-  });
 
    $('#saveNote').click(function() {
      editSelectedNote();
-   })
+   });
+
+  });
+
 
   function editSelectedNote() {
-       var noteToEdit = {};
+      var noteToEdit = {};
       noteToEdit.noteTitle = $('input[id="noteTitle"]').val();
       noteToEdit.noteDate = $('input[id="noteDate"]').val();
       noteToEdit.noteContent = $('input[id="noteContent"]').val();
 
-      console.log("Edited Title: " + noteToEdit.noteTitle);
-      console.log("Edited Date: " + noteToEdit.noteDate);
-      console.log("Edited Content: " + noteToEdit.noteContent);
+      //console.log("Edited Title: " + noteToEdit.noteTitle);
+      //console.log("Edited Date: " + noteToEdit.noteDate);
+      //console.log("Edited Content: " + noteToEdit.noteContent);
 
       $.ajax({
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
             url: window.location.href + '?handler=EditNote',
-            data: JSON.stringify(noteToEdit),
+            //data: JSON.stringify(noteToEdit),
+            data: 'test test',
             success: function() {
                 window.location.href="url";
                 console.log("ajax Notes post called");
