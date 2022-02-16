@@ -2,7 +2,8 @@
 @model List<Note>
 
 <div class="container">
-
+   @*  TODO: Try Next, wire up/Add hidden label on each note to pass to method? *@
+   @*  Change to For() and pass i to method to edit note *@
     @foreach (var note in Model)
     {
         <div id="noteToEdit" class="col-md-12">
@@ -16,6 +17,7 @@
                     <button type="button" id="@note.Id" class="btn btn-primary editButton">Edit Note</button>
                 </div>
             </div>
+            
             <hr>
         </div>
     }
