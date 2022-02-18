@@ -1,44 +1,44 @@
 ﻿@using RPGInfo.Web.Models
-@model List<Note>
+@model Note
 
 <div class="container">
 
-    @for (int i = 0; i < Model.Count; i++)
-    {
-        <div id="noteToEdit" class="col-md-12">
-            <h1 id="noteTitle">@Model[i].NoteTitle</h1>
-            <p id="noteContent">
-                @Model[i].NoteContent
-            </p>
+    @*  @for (int i = 0; i < Model.Count; i++)
+        {*@
+    <div id="noteToEdit" class="col-md-12">
+        <h1 id="noteTitle">@Model.NoteTitle</h1>
+        <p id="noteContent">
+            @Model.NoteContent
+        </p>
+        <div>
+            <span class="badge"> Added: @Model.NoteDate</span>
             <div>
-                <span class="badge"> Added: @Model[i].NoteDate</span>
-                <div>
-                    <button type="button" id="@Model[i].Id" class="btn btn-primary editButton">Edit Note</button>
-                </div>
+                <button type="button" id="@Model.Id" class="btn btn-primary editButton">Edit Note</button>
             </div>
-
-            <hr>
         </div>
-    }
 
-   @* @foreach (var note in Model)
-    {
+        <hr>
+    </div>
+    @*  }*@
+
+    @* @foreach (var note in Model)
+        {
         <div id="noteToEdit" class="col-md-12">
-            <h1 id="noteTitle">@note.NoteTitle</h1>
-            <p id="noteContent">
-                @note.NoteContent
-            </p>
-            <div>
-                <span class="badge"> Added: @note.NoteDate</span>
-                <div>
-                    <button type="button" id="@note.Id" class="btn btn-primary editButton">Edit Note</button>
-                </div>
-            </div>
-
-            <hr>
+        <h1 id="noteTitle">@note.NoteTitle</h1>
+        <p id="noteContent">
+        @note.NoteContent
+        </p>
+        <div>
+        <span class="badge"> Added: @note.NoteDate</span>
+        <div>
+        <button type="button" id="@note.Id" class="btn btn-primary editButton">Edit Note</button>
         </div>
-    }
-*@
+        </div>
+
+        <hr>
+        </div>
+        }
+    *@
     <div class="bs-example">
         <!-- Modal HTML -->
         <div id="noteModal" class="modal fade" tabindex="-1">
@@ -87,20 +87,26 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
+     let title = '';
+
+       $('input[id="noteTitle"]').keyup(function() {
+           console.log("This is your text input value: " + $(this).val());
+            title = $(this).val();
+       });
 
     $('.editButton').click(function() {
      notes = @Html.Raw(Json.Serialize(Model));
 
-     const noteId = this.id;
-     var selectedNote = notes.filter(function(el) {
-         return el.id == noteId
-     });
+     //const noteId = this.id;
+     //var selectedNote = notes.filter(function(el) {
+     //    return el.id == noteId
+     //});
 
-     console.log(selectedNote);
+     //console.log(selectedNote);
 
-     $('input[id="noteTitle"]').val(selectedNote[0].noteTitle);
-     $('input[id="noteDate"]').val(selectedNote[0].noteDate);
-     $('input[id="noteContent"]').val(selectedNote[0].noteContent);
+     $('input[id="noteTitle"]').val(notes.noteTitle);
+     $('input[id="noteDate"]').val(notes.noteDate);
+     $('input[id="noteContent"]').val(notes.noteContent);
      $('#noteModal').modal('show');
 
      $('#saveNote').click(function() {
@@ -109,38 +115,39 @@
 
     });
 
-
     function editSelectedNote() {
         var noteToEdit = {};
-        noteToEdit.noteTitle = $('input[id="noteTitle"]').val();
+       
+
+
+        noteToEdit.noteTitle = title;
         noteToEdit.noteDate = $('input[id="noteDate"]').val();
         noteToEdit.noteContent = $('input[id="noteContent"]').val();
 
-        //console.log("Edited Title: " + noteToEdit.noteTitle);
-        //console.log("Edited Date: " + noteToEdit.noteDate);
-        //console.log("Edited Content: " + noteToEdit.noteContent);
+        console.log("Edited Title: " + title);
+        console.log("Edited Date: " + noteToEdit.noteDate);
+        console.log("Edited Content: " + noteToEdit.noteContent);
 
-        $.ajax({
-              contentType: 'application/json; charset=utf-8',
-              dataType: 'json',
-              type: 'POST',
-              url: window.location.href + '?handler=EditNote',
-              //data: JSON.stringify(noteToEdit),
-              data: 'test test',
-              success: function() {
-                  window.location.href="url";
-                  console.log("ajax Notes post called");
-              },
-              failure: function(response) {
-                  console.log(response);
-              },
-              beforeSend: function (xhr) {
-                            xhr.setRequestHeader("XSRF-TOKEN",
-                            $('input:hidden[name="__RequestVerificationToken"]').val());
-                           }
-          });
+      $.ajax({
+       contentType: 'application/json; charset=utf-8',
+       dataType: 'json',
+       type: 'POST',
+       url: window.location.href + '?handler=EditNote',
+       //data: JSON.stringify(noteToEdit),
+       data: 'test test',
+       success: function() {
+           window.location.href="url";
+           console.log("ajax Notes post called");
+       },
+       failure: function(response) {
+           console.log(response);
+       },
+       beforeSend: function (xhr) {
+                     xhr.setRequestHeader("XSRF-TOKEN",
+                     $('input:hidden[name="__RequestVerificationToken"]').val());
+                    }
+        });
     }
-
 
        function validateDate() {
               var dateInput = $('input[id="noteDate"]').val();

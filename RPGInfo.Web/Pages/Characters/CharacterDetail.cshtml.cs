@@ -51,7 +51,7 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
-        public ActionResult OnPostEditNote([FromBody]string note)
+        public ActionResult OnPostEditNote([FromBody]Note note)
         {
             // Gets a singe note/string from Ajax and updates note table in db
 
