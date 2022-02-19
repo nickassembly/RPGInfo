@@ -17,11 +17,11 @@
                 }
                 else
                 {
-                     <img class="card-img-top" src="~/images/NoImageAvailable.png" />
+                    <img class="card-img-top" src="~/images/NoImageAvailable.png" />
                 }
                 <div>
-                       <partial name="_CharacterNewNotePartial" model="@Model.CharacterNoteStrings" />
-                 </div>
+                    <partial name="_CharacterNewNotePartial" model="@Model.CharacterNoteStrings" />
+                </div>
             </div>
 
             <div class="col-lg-8 col-md-7">
@@ -53,7 +53,7 @@
                                 </div>
                             </li>
 
-                             <li>
+                            <li>
                                 <div class="row">
                                     <div class="col-md-5 col-5">
                                         <i class="text-yellow"></i>
@@ -65,7 +65,7 @@
                                 </div>
                             </li>
 
-                             <li>
+                            <li>
                                 <div class="row">
                                     <div class="col-md-5 col-5">
                                         <i class="text-yellow"></i>
@@ -80,7 +80,8 @@
                     </div>
 
                     <div>
-                        <partial name="_CharacterNotesDisplayPartial" model="@Model.Character.CharacterNotes[0]" />
+
+                        <partial name="_CharacterNotesDisplayPartial" model="@Model.Character.CharacterNotes" />
                     </div>
 
                     <div>
