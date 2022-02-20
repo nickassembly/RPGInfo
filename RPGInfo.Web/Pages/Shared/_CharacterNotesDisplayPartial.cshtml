@@ -70,10 +70,19 @@
 
 <script type="text/javascript">
     var title = '';
+    var date = '';
+    var content = '';
 
     $('input[id="noteTitle"]').keyup(function() {
-        console.log("This is your text input value: " + $(this).val());
          title = $(this).val();
+    });
+
+    $('input[id="noteDate"]').keyup(function() {
+         date = $(this).val();
+    });
+
+    $('input[id="noteContent"]').keyup(function() {
+        content = $(this).val();
     });
 
     $('.editButton').click(function() {
@@ -89,32 +98,32 @@
      $('input[id="noteTitle"]').val(selectedNote[0].noteTitle);
      $('input[id="noteDate"]').val(selectedNote[0].noteDate);
      $('input[id="noteContent"]').val(selectedNote[0].noteContent);
+
      $('#noteModal').modal('show');
 
      $('#saveNote').click(function() {
-       editSelectedNote();
+       editSelectedNote(noteId);
      });
 
     });
 
-    function editSelectedNote() {
+    function editSelectedNote(noteId) {
         var noteToEdit = {};
+        // TODO: handle when button clicked without changes
+        // possibly pass in selected note
+        // fix issue edit happening when click/dismiss multiple times.
        
-        noteToEdit.noteTitle = title;
-        noteToEdit.noteDate = $('input[id="noteDate"]').val();
-        noteToEdit.noteContent = $('input[id="noteContent"]').val();
-
-        console.log("Edited Title: " + title);
-        console.log("Edited Date: " + noteToEdit.noteDate);
-        console.log("Edited Content: " + noteToEdit.noteContent);
+      noteToEdit.id = noteId;
+      noteToEdit.noteTitle = title;
+      noteToEdit.noteDate = date;
+      noteToEdit.noteContent = content;
 
       $.ajax({
-       contentType: 'application/json; charset=utf-8',
+       contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
        dataType: 'json',
-       type: 'POST',
+       type: 'PUT',
        url: window.location.href + '?handler=EditNote',
-       //data: JSON.stringify(noteToEdit),
-       data: 'test test',
+       data: {editedNote: noteToEdit },
        success: function() {
            window.location.href="url";
            console.log("ajax Notes post called");
@@ -127,6 +136,9 @@
                      $('input:hidden[name="__RequestVerificationToken"]').val());
                     }
         });
+
+      $('#noteModal').modal('hide');
+     
     }
 
        function validateDate() {
