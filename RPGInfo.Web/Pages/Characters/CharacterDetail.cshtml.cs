@@ -51,10 +51,17 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
-        public void OnPutEditNote(Note editedNote)
+        public ActionResult OnPutEditNote(Note editedNote)
         {
-            // TODO: Update Database
-            RedirectToPage("CharacterList");
+            var noteToEdit = _context.Notes.Where(note => note.Id == editedNote.Id).FirstOrDefault();
+
+            noteToEdit.NoteContent = editedNote.NoteContent;
+            noteToEdit.NoteTitle = editedNote.NoteTitle;
+            noteToEdit.NoteDate = editedNote.NoteDate;
+            _context.SaveChanges();
+
+            // TODO: need to refresh current page, or redirect to action that will display notes again?
+            return RedirectToPage("CharacterDetail", $"Characters/CharacterDetail/{Character.Id}");
         }
 
         public ActionResult OnPost()
