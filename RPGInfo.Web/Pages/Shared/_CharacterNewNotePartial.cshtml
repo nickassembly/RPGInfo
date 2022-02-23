@@ -28,8 +28,10 @@
 
     <button type="button" id="addNoteForm" class="btn btn-primary">Add</button>
 
-    @Html.AntiForgeryToken()
-    <button class="btn btn-primary" type="button" onclick="addCurrentNotes(data)"> Save Notes</button>
+   @* @Html.AntiForgeryToken()
+    <button class="btn btn-primary" type="button" onclick="addCurrentNotes(data)"> Save Notes</button>*@
+
+  @*  TODO: Move Form, put notes in scroll?/cleanup*@
 
 </form>
 
@@ -43,7 +45,7 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
 
-       data = [];
+    data = [];
 
     $("#addNoteForm").click(function() {
        addNote();
@@ -90,26 +92,26 @@
 
        console.log(listItemId + ' ' + noteDate + ' ' + noteTitle + ' ' + noteContent);
 
-       var listItemToAppend =  '<li id="li-'+ listItemId + '" class="list-group-item rmv_btn'+ listItemId + '">'
-                 + '<div class="row">'
-                   + '<div class="col-10 note-style">'
-                       + '<p>' + 'Title: ' + noteTitle + '</p>' + '<p>' + 'Date: ' + noteDate + '</p>' + '<p>' + 'Note: ' +  noteContent + '</p>'
-                   + '</div>'
-                   + '<div class="col-2">'
-                       + '<button type="button" id="btn-'+ listItemId +'" class="rmv_btn'+ listItemId + ' btn btn-danger btn-sm">' + "Remove" + '</button>'
-                   + '</div>'
-                 + '</div>'
-              + '</li>'
+       //var listitemtoappend =  '<li id="li-'+ listitemid + '" class="list-group-item rmv_btn'+ listitemid + '">'
+       //          + '<div class="row">'
+       //            + '<div class="col-10 note-style">'
+       //                + '<p>' + 'title: ' + notetitle + '</p>' + '<p>' + 'date: ' + notedate + '</p>' + '<p>' + 'note: ' +  notecontent + '</p>'
+       //            + '</div>'
+       //            + '<div class="col-2">'
+       //                + '<button type="button" id="btn-'+ listitemid +'" class="rmv_btn'+ listitemid + ' btn btn-danger btn-sm">' + "remove" + '</button>'
+       //            + '</div>'
+       //          + '</div>'
+       //       + '</li>'
 
-        $("#newNote").append(listItemToAppend);
+       // $("#newNote").append(listItemToAppend);
 
-        var newItem = $('#newNote').find('#li-'+ listItemId).text();
+      // var newItem = $('#newNote').find('#li-'+ listItemId).text();
+       var newItem = 'Title: ' + noteTitle + 'Date: ' + noteDate + 'Note: ' + noteContent;
         addData(newItem);
 
-        var itemToRemove = $('#newNote').find('#li-'+ listItemId);
-        removeData(itemToRemove);
+      //  var itemToRemove = $('#newNote').find('#li-'+ listItemId);
+      //  removeData(itemToRemove);
 
-        // TODO: Remove unnecessary code. Need to do ajax post one note at a time and redirect to character page
         addCurrentNotes(data);
 
        }
@@ -127,19 +129,6 @@
         }
 
        function addCurrentNotes(data) {
-          var notes = [];
-
-          if (data.length <= 0) return;
-
-          for(let i = 0; i < data.length; i++) {
-             var note = {};
-             note.noteTitle = "";
-             note.noteDate = new Date('0001-01-01');
-             note.noteContent = data[i];
-             notes.push(note);
-          }
-
-          notes = JSON.stringify({'notes': notes });
 
           $.ajax({
               contentType: 'application/json; charset=utf-8',
