@@ -43,7 +43,7 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
 
-    data = [];
+       data = [];
 
     $("#addNoteForm").click(function() {
        addNote();
@@ -108,6 +108,9 @@
 
         var itemToRemove = $('#newNote').find('#li-'+ listItemId);
         removeData(itemToRemove);
+
+        // TODO: Remove unnecessary code. Need to do ajax post one note at a time and redirect to character page
+        addCurrentNotes(data);
 
        }
 
