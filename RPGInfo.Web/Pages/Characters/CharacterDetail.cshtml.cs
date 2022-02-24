@@ -55,6 +55,8 @@ namespace RPGInfo.Web.Pages
         {
             var noteToEdit = _context.Notes.Where(note => note.Id == editedNote.Id).FirstOrDefault();
 
+            // TODO: Why are some of these values coming back null?
+
             noteToEdit.NoteContent = editedNote.NoteContent;
             noteToEdit.NoteTitle = editedNote.NoteTitle;
             noteToEdit.NoteDate = editedNote.NoteDate;
