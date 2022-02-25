@@ -14,7 +14,7 @@
             <label for="NoteTitle">Title</label>
             <input type="text" id="noteTitle" name="NoteTitle" class="form-control">
         </div>
-        
+
         <div class="form-group  col-6">
             <label for="NoteDate">Date</label>
             <input type="datetime" id="noteDate" onchange="validateDate()" name="NoteDate" class="form-control">
@@ -142,10 +142,9 @@
                             xhr.setRequestHeader("XSRF-TOKEN",
                             $('input:hidden[name="__RequestVerificationToken"]').val());
               }
+            });
 
-          });
-              window.location.reload();
-
+           window.location.reload();
         };
 
 </script>

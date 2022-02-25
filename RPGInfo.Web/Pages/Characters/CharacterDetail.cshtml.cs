@@ -55,15 +55,12 @@ namespace RPGInfo.Web.Pages
         {
             var noteToEdit = _context.Notes.Where(note => note.Id == editedNote.Id).FirstOrDefault();
 
-            // TODO: Why are some of these values coming back null?
-
-            noteToEdit.NoteContent = editedNote.NoteContent;
-            noteToEdit.NoteTitle = editedNote.NoteTitle;
+            noteToEdit.NoteContent = editedNote.NoteContent != null ? editedNote.NoteContent : noteToEdit.NoteContent;
+            noteToEdit.NoteTitle = editedNote.NoteTitle != null ? editedNote.NoteTitle : noteToEdit.NoteTitle;
             noteToEdit.NoteDate = editedNote.NoteDate;
             _context.SaveChanges();
 
-            // TODO: need to refresh current page, or redirect to action that will display notes again?
-            return RedirectToPage("CharacterDetail", $"Characters/CharacterDetail/{Character.Id}");
+            return RedirectToPage();
         }
 
         public ActionResult OnPost()
@@ -72,7 +69,7 @@ namespace RPGInfo.Web.Pages
             // save properties from character detail page
 
             // TODO: Pass List of Notes, List of Characters to this method
-            return RedirectToPage("CharacterList");
+            return RedirectToPage();
         }
 
         private List<Note> ConvertStringsToNotes(string[] stringsToConvert)

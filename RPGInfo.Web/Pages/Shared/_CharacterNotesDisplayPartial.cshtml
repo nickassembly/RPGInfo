@@ -39,6 +39,7 @@
 
                             <div class="form-group  col-6">
                                 <label for="NoteDate">Date</label>
+                                @*TODO: Date field clears on click...not sure why*@
                                 <input type="datetime" id="noteDate" onchange="validateDate()" value="" name="NoteDate" class="form-control">
                             </div>
                         </div>
@@ -58,8 +59,6 @@
         </div>
     </div>
 </div>
-
-@*TODO: Need a way to delete notes*@
 
 <style>
     .bs-example {
@@ -111,10 +110,7 @@
 
     function editSelectedNote(noteId) {
         var noteToEdit = {};
-        // TODO: handle when button clicked without changes
-        // possibly pass in selected note
-        // fix issue edit happening when click/dismiss multiple times.
-       
+
       noteToEdit.id = noteId;
       noteToEdit.noteTitle = title;
       noteToEdit.noteDate = date;
@@ -139,9 +135,9 @@
                     }
         });
 
-        $('#noteModal').modal('hide');
+       $('#noteModal').modal('hide');
 
-        window.location.reload();
+      window.location.reload();
      
     }
 
