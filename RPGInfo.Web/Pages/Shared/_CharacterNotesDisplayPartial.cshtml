@@ -39,8 +39,8 @@
 
                             <div class="form-group  col-6">
                                 <label for="NoteDate">Date</label>
-                                @*TODO: Date field clears on click...not sure why*@
-                                <input type="datetime" id="noteDate" onchange="validateDate()" value="" name="NoteDate" class="form-control">
+                               
+                                <input type="datetime" id="noteDate" value="" name="NoteDate" class="form-control">
                             </div>
                         </div>
 
@@ -50,6 +50,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" id="deleteNote" class="btn btn-danger mr-5">Delete Note</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         @Html.AntiForgeryToken()
                         <button type="button" id="saveNote" class="btn btn-primary">Save</button>
@@ -106,6 +107,10 @@
        editSelectedNote(noteId);
      });
 
+      $('#deleteNote').click(function() {
+       deleteSelectedNote(noteId);
+     });
+
     });
 
     function editSelectedNote(noteId) {
@@ -140,6 +145,11 @@
       window.location.reload();
      
     }
+
+     function deleteSelectedNote(noteId) {
+         // TODO: Ajax method to delete note and update db
+         console.log("delete clicked: " + noteId);
+     }
 
        function validateDate() {
               var dateInput = $('input[id="noteDate"]').val();
