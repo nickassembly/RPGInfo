@@ -63,12 +63,16 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
+        public ActionResult OnPutDeleteNote(Note noteToDelete)
+        {
+
+            return RedirectToPage();
+        }
+
         public ActionResult OnPost()
         {
-            // TODO: Save changes comes here
-            // save properties from character detail page
+            // TODO: Save changes from character form comes here
 
-            // TODO: Pass List of Notes, List of Characters to this method
             return RedirectToPage();
         }
 
