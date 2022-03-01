@@ -62,11 +62,6 @@
         }
      }
 
-     function addData(item) {
-      data.push(item);
-      console.log(data);
-     }
-
      function removeData(itemToRemove) {
        $(itemToRemove).on("click", itemToRemove, function() {
        $(this).remove();
@@ -82,32 +77,14 @@
        var noteTitle = $('input[id="noteTitle"]').val();
        var noteDate = $('input[id="noteDate"]').val();
        var noteContent = $('input[id="noteContent"]').val();
-
        var listItemId = getListItemId(4).toLowerCase();
 
-       console.log(listItemId + ' ' + noteDate + ' ' + noteTitle + ' ' + noteContent);
-
-       //var listitemtoappend =  '<li id="li-'+ listitemid + '" class="list-group-item rmv_btn'+ listitemid + '">'
-       //          + '<div class="row">'
-       //            + '<div class="col-10 note-style">'
-       //                + '<p>' + 'title: ' + notetitle + '</p>' + '<p>' + 'date: ' + notedate + '</p>' + '<p>' + 'note: ' +  notecontent + '</p>'
-       //            + '</div>'
-       //            + '<div class="col-2">'
-       //                + '<button type="button" id="btn-'+ listitemid +'" class="rmv_btn'+ listitemid + ' btn btn-danger btn-sm">' + "remove" + '</button>'
-       //            + '</div>'
-       //          + '</div>'
-       //       + '</li>'
-
-       // $("#newNote").append(listItemToAppend);
-
-      // var newItem = $('#newNote').find('#li-'+ listItemId).text();
        var newItem = 'Title: ' + noteTitle + 'Date: ' + noteDate + 'Note: ' + noteContent;
-        addData(newItem);
+       
+       data.push(newItem);
+       console.log(data);
 
-      //  var itemToRemove = $('#newNote').find('#li-'+ listItemId);
-      //  removeData(itemToRemove);
-
-        addCurrentNotes(data);
+       addCurrentNotes(data);
 
        }
 

@@ -65,6 +65,13 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPutDeleteNote(Note noteToDelete)
         {
+            var noteToRemove = _context.Notes.Where(note => note.Id == noteToDelete.Id).FirstOrDefault();
+
+            if (noteToRemove != null)
+            {
+                _context.Notes.Remove(noteToRemove);
+                _context.SaveChanges();
+            }
 
             return RedirectToPage();
         }
