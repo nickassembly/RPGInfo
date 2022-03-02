@@ -19,9 +19,6 @@
                 {
                     <img class="card-img-top" src="~/images/NoImageAvailable.png" />
                 }
-                <div>
-                    <partial name="_CharacterNewNotePartial" model="@Model.CharacterNoteStrings" />
-                </div>
             </div>
 
             <div class="col-lg-8 col-md-7">
@@ -33,7 +30,7 @@
                                 <div class="row">
                                     <div class="col-md-5 col-5">
                                         <i class="text-orange"></i>
-                                        <strong class="margin-10px-left text-orange">Race: </strong>
+                                        <strong class="margin-10px-left">Race: </strong>
                                     </div>
                                     <div class="col-md-7 col-7">
                                         <p>@Model.Character.Race</p>
@@ -45,7 +42,7 @@
                                 <div class="row">
                                     <div class="col-md-5 col-5">
                                         <i class="text-yellow"></i>
-                                        <strong class="margin-10px-left text-yellow">Class: </strong>
+                                        <strong class="margin-10px-left">Class: </strong>
                                     </div>
                                     <div class="col-md-7 col-7">
                                         <p>@Model.Character.Class</p>
@@ -57,7 +54,7 @@
                                 <div class="row">
                                     <div class="col-md-5 col-5">
                                         <i class="text-yellow"></i>
-                                        <strong class="margin-10px-left text-yellow">Description: </strong>
+                                        <strong class="margin-10px-left">Description: </strong>
                                     </div>
                                     <div class="col-md-7 col-7">
                                         <p>@Model.Character.Description</p>
@@ -69,7 +66,7 @@
                                 <div class="row">
                                     <div class="col-md-5 col-5">
                                         <i class="text-yellow"></i>
-                                        <strong class="margin-10px-left text-yellow">Backstory: </strong>
+                                        <strong class="margin-10px-left">Backstory: </strong>
                                     </div>
                                     <div class="col-md-7 col-7">
                                         <p>@Model.Character.Backstory</p>
@@ -77,14 +74,18 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
-                    <div>
-                        <partial name="_CharacterNotesDisplayPartial" model="@Model.Character.CharacterNotes" />
-                    </div>
 
-                    <div>
-                        <partial name="_CharacterRelationshipPartial" model="@Model" />
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-7">
+                    <partial name="_CharacterNewNotePartial" model="@Model.CharacterNoteStrings" />
+
+                    <partial name="_CharacterNotesDisplayPartial" model="@Model.Character.CharacterNotes" />
+                </div>
+                <div class="col-md-5 col-5">
+                    <partial name="_CharacterRelationshipPartial" model="@Model" />
                 </div>
             </div>
         </div>
