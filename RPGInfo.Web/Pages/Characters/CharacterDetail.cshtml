@@ -25,51 +25,47 @@
                 <div class="team-single-text padding-50px-left sm-no-padding-left">
                     <h3 class="font-size38 sm-font-size32 xs-font-size30">@Model.Character.Name</h3>
                     <div class="contact-info-section margin-40px-tb">
-                        <ul class="list-style9 no-margin">
-                            <li>
+                        <ul class="list-group no-margin">
+                            <li class="list-group-item">
                                 <div class="row">
                                     <div class="col-md-5 col-5">
-                                        <i class="text-orange"></i>
                                         <strong class="margin-10px-left">Race: </strong>
                                     </div>
                                     <div class="col-md-7 col-7">
-                                        <p>@Model.Character.Race</p>
+                                        <h4>@Model.Character.Race</h4>
                                     </div>
                                 </div>
                             </li>
 
-                            <li>
+                            <li class="list-group-item">
                                 <div class="row">
                                     <div class="col-md-5 col-5">
-                                        <i class="text-yellow"></i>
                                         <strong class="margin-10px-left">Class: </strong>
                                     </div>
                                     <div class="col-md-7 col-7">
-                                        <p>@Model.Character.Class</p>
+                                        <h4>@Model.Character.Class</h4>
                                     </div>
                                 </div>
                             </li>
 
-                            <li>
+                            <li class="list-group-item">
                                 <div class="row">
                                     <div class="col-md-5 col-5">
-                                        <i class="text-yellow"></i>
                                         <strong class="margin-10px-left">Description: </strong>
                                     </div>
                                     <div class="col-md-7 col-7">
-                                        <p>@Model.Character.Description</p>
+                                        <h4>@Model.Character.Description</h4>
                                     </div>
                                 </div>
                             </li>
 
-                            <li>
+                            <li class="list-group-item">
                                 <div class="row">
                                     <div class="col-md-5 col-5">
-                                        <i class="text-yellow"></i>
                                         <strong class="margin-10px-left">Backstory: </strong>
                                     </div>
                                     <div class="col-md-7 col-7">
-                                        <p>@Model.Character.Backstory</p>
+                                        <p class="backstoryStyle">@Model.Character.Backstory</p>
                                     </div>
                                 </div>
                             </li>
@@ -97,6 +93,14 @@
         <button type="submit" class="btn btn-info">Save Changes</button>
     </form>
 </div>
+
+<style>
+
+    .backstoryStyle {
+        word-wrap: normal;
+    }
+
+</style>
 
 
 

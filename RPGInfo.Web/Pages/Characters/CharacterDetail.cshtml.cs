@@ -94,13 +94,11 @@ namespace RPGInfo.Web.Pages
                 string titleKey = "Title:";
                 string dateKey = "Date:";
                 string contentKey = "Note:";
-              //  string buttonTextKey = "Remove";
                 int stringLength = stringsToConvert[i].Length;
 
                 int titleIndex = stringsToConvert[i].IndexOf(titleKey);
                 int dateIndex = stringsToConvert[i].IndexOf(dateKey);
                 int contentIndex = stringsToConvert[i].IndexOf(contentKey);
-               // int buttonIndex = stringsToConvert[i].IndexOf(buttonTextKey);
 
                 string extractedTitle = stringsToConvert[i][titleIndex..dateIndex];
                 string extractedDate = stringsToConvert[i][dateIndex..contentIndex];
