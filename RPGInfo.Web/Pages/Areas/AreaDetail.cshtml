@@ -3,3 +3,68 @@
 @{
     ViewData["Title"] = "Area Detail";
 }
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+<div class="container">
+    <div class="team-single">
+        <div class="row">
+            <div class="col-lg-4 col-md-5 xs-margin-30px-bottom">
+                @if (Model.Area.AreaImage != null)
+                {
+                    <div class="team-single-img">
+                        <img height="300" width="300" class="rounded-sm" src="data:image;base64,@System.Convert.ToBase64String(Model.Area.AreaImage)" alt="">
+                    </div>
+                }
+                else
+                {
+                    <img class="card-img-top" src="~/images/NoImageAvailable.png" />
+                }
+            </div>
+
+            <div class="col-lg-8 col-md-7">
+                <div class="team-single-text padding-50px-left sm-no-padding-left">
+                    <h3 class="font-size38 sm-font-size32 xs-font-size30">@Model.Area.AreaName</h3>
+                    <div class="contact-info-section margin-40px-tb">
+                        <ul class="list-group no-margin">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <strong class="margin-10px-left">Race: </strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <h4>@Model.Area.AreaDescription</h4>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+           @* <div class="row">
+                <div class="col-md-7 col-7">
+                    <partial name="_CharacterNewNotePartial" model="@Model.CharacterNoteStrings" />
+
+                    <partial name="_CharacterNotesDisplayPartial" model="@Model.Character.CharacterNotes" />
+                </div>
+                <div class="col-md-5 col-5">
+                    <partial name="_CharacterRelationshipPartial" model="@Model" />
+                </div>
+            </div>*@
+        </div>
+    </div>
+</div>
+
+<div>
+    <form method="post">
+        <button type="submit" class="btn btn-info">Save Changes</button>
+    </form>
+</div>
+
+<style>
+
+    .backstoryStyle {
+        word-wrap: normal;
+    }
+
+</style>

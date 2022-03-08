@@ -17,3 +17,40 @@
    
     <button type="submit">Submit</button>
 </form>
+
+<div class="container">
+
+    <h1 class="p-3 text-center">Areas</h1>
+
+        <div class="row">
+            @foreach (var item in Model.AreaList)
+            {
+                <div class="col-lg-4 col-sm-6 portfolio-item">
+                    <div class="card h-100">
+                        <a asp-page="AreaDetail" asp-route-id="@item.Id">
+                            @if (item.AreaImage != null)
+                            {
+                                <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(item.AreaImage)" alt="">
+                            }
+                            else
+                            {
+                                <img class="card-img-top" src="~/images/NoImageAvailable.png" />
+                            }
+                        </a>
+
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a class="color-main" href="/AreaDetail/@item.Id">@item.AreaName</a>
+                            </h4>
+                            <p class="card-text">@item.AreaDescription</p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-page="AreaDetail" asp-route-id="@item.Id" class="btn btn-success w-100">Area Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+
+</div>
