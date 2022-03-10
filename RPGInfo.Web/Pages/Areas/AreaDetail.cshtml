@@ -42,16 +42,16 @@
                 </div>
             </div>
 
-           @* TODO: Change Model, test Notes for Area <div class="row">
+            <div class="row">
                 <div class="col-md-7 col-7">
-                    <partial name="_CharacterNewNotePartial" model="@Model.CharacterNoteStrings" />
+                    <partial name="_CharacterNewNotePartial" model="@Model.AreaNoteStrings" />
 
-                    <partial name="_CharacterNotesDisplayPartial" model="@Model.Character.CharacterNotes" />
+                    <partial name="_CharacterNotesDisplayPartial" model="@Model.Area.AreaNotes" />
                 </div>
                 <div class="col-md-5 col-5">
                     <partial name="_CharacterRelationshipPartial" model="@Model" />
                 </div>
-            </div>*@
+            </div>
         </div>
     </div>
 </div>
