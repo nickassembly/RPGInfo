@@ -103,7 +103,7 @@ namespace RPGInfo.Web.Pages
 
                 note.NoteContent = extractedContent.Substring(5);
 
-                note.CharacterId = Area.Id;
+                note.AreaId = Area.Id;
 
                 newNotes.Add(note);
             }

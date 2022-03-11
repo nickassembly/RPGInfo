@@ -31,7 +31,7 @@ namespace RPGInfo.Web.Pages
             Character.CharacterNotes = _context.Notes.Where(note => note.CharacterId == id).ToList();   
         }
 
-
+        // TODO: Need to mirror Character Notes but with Known Character properties
         [BindProperty]
         public List<Note> CharacterNotes { get; set; } 
 
