@@ -8,7 +8,7 @@ namespace RPGInfo.Web.Models
         public string AreaName { get; set; }
         public string AreaDescription { get; set; }
         public List<Note> AreaNotes { get; set; } = new List<Note>();
-        public List<Character> AreaCharacters { get; set; } = new List<Character>();
+        public List<RelatedNpc> RelatedNpcs { get; set; } = new List<RelatedNpc>();
         public List<WorldEvent> AreaEvents { get; set; } = new List<WorldEvent>();
     }
 }

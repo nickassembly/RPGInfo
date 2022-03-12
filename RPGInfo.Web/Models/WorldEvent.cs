@@ -11,7 +11,7 @@ namespace RPGInfo.Web.Models
         public DateTime EventDate { get; set; }
         public List<Note> EventNotes { get; set; } = new List<Note>();
         public List<Area> EventLocations { get; set; } = new List<Area>();
-        public List<Character> EventCharacters { get; set; } = new List<Character>();
+        public List<RelatedNpc> RelatedNpcs { get; set; } = new List<RelatedNpc>();
 
     }
 }

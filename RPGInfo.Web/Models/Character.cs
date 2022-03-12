@@ -13,7 +13,7 @@ namespace RPGInfo.Web.Models
         public List<WorldEvent> CharacterEvents { get; set; } = new List<WorldEvent>();
         public List<Note> CharacterNotes { get; set; } = new List<Note>();
         public List<Area> KnownAreas { get; set; } = new List<Area>();
-        public List<Character> KnownCharacters { get; set; } = new List<Character>();
+        public List<RelatedNpc> RelatedNpcs { get; set; } = new List<RelatedNpc>();
 
     }
 }
