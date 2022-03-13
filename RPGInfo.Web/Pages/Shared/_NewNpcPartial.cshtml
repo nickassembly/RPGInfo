@@ -1,4 +1,54 @@
 ﻿@using RPGInfo.Web.Models
-@model string[]
+@model List<RelatedNpc>
 
-@*TODO: Add View to add Npc properties*@
+<h4>Add Npc Relationship</h4>
+
+<ul>
+    @foreach(var relationship in @Model)
+    {
+        <li>@relationship.Name </li>
+    }
+</ul>
+
+<form asp-page-handler="AddNpcs" class="mt-4 mb-4">
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="Name">Name</label>
+            <input type="text" id="npcName" name="Name" class="form-control">
+        </div>
+
+        <div class="form-group  col-6">
+            <label for="Description">Description</label>
+            <input type="text" id="npcDescription" name="Description" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Backstory">Backstory</label>
+        <input type="text" id="npcBackstory" name="Backstory" class="form-control">
+    </div>
+
+    <button type="submit" onClick = "addCurrentNpc()" id="addNoteForm" class="btn btn-primary">Add</button>
+</form>
+
+<script src="/lib/jquery/dist/jquery.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+<script>
+ function addCurrentNpc() {
+        var newNpc = new Object();
+        newNpc.Name = $('#npcName').text();
+        newNpc.Description = $('#npcDescription').text();
+        newNpc.Backstory = $('#npcBackstory').text();
+        
+        $.ajax({
+            type: "POST",
+            url: window.location.href + '?handler=AddNpcs',
+            data: newNpc,
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        });
+
+     window.location.reload();
+    };
+
+</script>

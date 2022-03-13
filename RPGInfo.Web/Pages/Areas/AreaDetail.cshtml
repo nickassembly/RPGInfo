@@ -37,29 +37,25 @@
                                 </div>
                             </li>
                         </ul>
-
+                        <div class="m-2">
+                            <form method="post"><button type="submit" class="btn btn-success">Edit @Model.Area.AreaName</button></form>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-7 col-7">
-                    <partial name="_CharacterNewNotePartial" model="@Model.AreaNoteStrings" />
+                    <partial name="_NewNotePartial" model="@Model.AreaNoteStrings" />
 
-                    <partial name="_CharacterNotesDisplayPartial" model="@Model.Area.AreaNotes" />
+                    <partial name="_NotesDisplayPartial" model="@Model.Area.AreaNotes" />
                 </div>
-              @*  <div class="col-md-5 col-5">
-                    <partial name="_CharacterRelationshipPartial" model="@Model.Area.RelatedNpcs" />
-                </div>*@
+                <div class="col-md-5 col-5">
+                    <partial name="_NewNpcPartial" model="@Model.Area.RelatedNpcs" />
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div>
-    <form method="post">
-        <button type="submit" class="btn btn-info">Save Changes</button>
-    </form>
 </div>
 
 <style>

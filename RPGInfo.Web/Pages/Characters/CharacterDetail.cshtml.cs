@@ -6,6 +6,7 @@ using RPGInfo.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Pages
 {
@@ -53,6 +54,13 @@ namespace RPGInfo.Web.Pages
             Character.CharacterNotes.AddRange(newNotes);
 
             return RedirectToPage();
+        }
+
+        public async Task<ActionResult> OnPostAddNpcs([FromForm] NpcViewModel npcToAdd)
+        {
+            // TODO: Add npc incoming to database (related npcs table)
+            // Create Edit method similar to _newNpcPartial or _noteDisplayPartial if needed
+            return null;
         }
 
         public ActionResult OnPutEditNote(Note editedNote)
@@ -127,5 +135,12 @@ namespace RPGInfo.Web.Pages
         }
 
 
+    }
+
+    public class NpcViewModel
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Backstory { get; set; }
     }
 }

@@ -72,6 +72,13 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
+        public ActionResult OnPost()
+        {
+            // TODO: Save changes from character form comes here
+
+            return RedirectToPage();
+        }
+
         private List<Note> ConvertStringsToNotes(string[] stringsToConvert)
         {
             List<Note> newNotes = new List<Note>();
