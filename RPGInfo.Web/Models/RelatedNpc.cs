@@ -10,8 +10,8 @@ namespace RPGInfo.Web.Models
     {
         public byte[] Portrait { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public string Backstory { get; set; }
+        public string Relationship { get; set; }
+        public string Background { get; set; }
         public string Race { get; set; }
         public string Class { get; set; }
 

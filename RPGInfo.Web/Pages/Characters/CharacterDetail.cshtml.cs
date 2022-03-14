@@ -56,8 +56,9 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
-        public async Task<ActionResult> OnPostAddNpcs([FromForm] NpcViewModel npcToAdd)
+        public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
+
             // TODO: Add npc incoming to database (related npcs table)
             // Create Edit method similar to _newNpcPartial or _noteDisplayPartial if needed
             return null;
