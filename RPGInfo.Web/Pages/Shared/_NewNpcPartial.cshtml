@@ -10,10 +10,7 @@
     }
 </ul>
 
-<form asp-page-handler="AddNpcs" class="mt-4 mb-4">
-    <div class="m-1">
-         <input type="file" id="npcPortrait" name="Portrait" />
-    </div>
+<form asp-page-handler="AddNpcs" method="post" enctype="multipart/form-data" class="mt-4 mb-4">
     <div class="row">
         <div class="form-group col-6">
             <label for="Name">Name</label>
@@ -43,26 +40,21 @@
 <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
 
 <script>
-    function addCurrentNpc() {
-           var newNpc = new Object();
 
-          let formData = new FormData(document.getElementById('npcPortrait'));
-
-           newNpc.Portrait = formData;
-           newNpc.Name = $('#npcName').text();
-           newNpc.Description = $('#npcDescription').text();
-           newNpc.Backstory = $('#npcBackstory').text();
-           newNpc.Class = $('#npcClass').text();
-           newNpc.Race = $('#npcRace').text();
-
-           $.ajax({
-               type: "POST",
-               url: window.location.href + '?handler=AddNpcs',
-               data: newNpc,
-               contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-           });
-
-        window.location.reload();
-       };
+  function addCurrentNpc() {
+      var newNpc = new Object();
+      newNpc.Name = $('#npcName').text();
+      newNpc.Description = $('#npcDescription').text();
+      newNpc.Backstory = $('#npcBackstory').text();
+      newNpc.Class = $('#npcClass').text();
+      newNpc.Race = $('#npcRace').text();
+      $.ajax({
+          type: "POST",
+          url: window.location.href + '?handler=AddNpcs',
+          data: newNpc,
+          contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+      });
+   window.location.reload();
+  };
 
 </script>

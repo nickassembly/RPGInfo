@@ -56,6 +56,7 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
+
         public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
 
