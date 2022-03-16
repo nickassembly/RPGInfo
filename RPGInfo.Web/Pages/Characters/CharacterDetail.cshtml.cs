@@ -60,8 +60,6 @@ namespace RPGInfo.Web.Pages
         public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
 
-            // TODO: Add npc incoming to database (related npcs table)
-            // Create Edit method similar to _newNpcPartial or _noteDisplayPartial if needed
             return null;
         }
 
