@@ -59,8 +59,20 @@ namespace RPGInfo.Web.Pages
 
         public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
+            RelatedNpc newNpc = new RelatedNpc
+            {
+                CharacterId = Character.Id,
+                Name = npcToAdd.Name,
+                Relationship = npcToAdd.Relationship,
+                Background = npcToAdd.Background,
+                Race = npcToAdd.Race,
+                Class = npcToAdd.Class
+            };
 
-            return null;
+            _context.RelatedNpcs.Add(newNpc);
+            _context.SaveChanges();
+
+            return RedirectToPage();
         }
 
         public ActionResult OnPutEditNote(Note editedNote)
