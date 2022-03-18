@@ -1,7 +1,7 @@
 ﻿@page "{id}"
 @model RPGInfo.Web.Pages.CharacterDetailModel
 @{
-    ViewData["Title"] = "Character Detail";
+    ViewData["heightththte"] = "Character Detail";
 }
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
@@ -70,23 +70,28 @@
                                 </div>
                             </li>
                         </ul>
-                        <div class="m-2">
-                            <form method="post">
-                                <button type="submit" class="btn btn-success">Edit @Model.Character.Name</button>
-                            </form>
+                        <div class="mt-4 mb-4 row">
+                            <div class="col-6">
+                                <form method="post">
+                                    <button type="submit" class="btn btn-success">Edit @Model.Character.Name</button>
+                                </form>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" id="addNote" class="btn btn-info" onclick="showDetails()">Notes And Npcs</button>
+                            </div>
                         </div>
-
+                        <div style="visibility:hidden;max-height:0" id="showDetails" class="row">
+                            <div class="col-6">
+                                <partial name="_NewNotePartial" model="@Model.CharacterNoteStrings" />
+                            </div>
+                            <div class="col-6">
+                                <partial name="_NewNpcPartial" model="@Model.Character.RelatedNpcs" />
+                            </div>
+                        </div>
+                        <div id="tabbedPage" style="visibility:visible">
+                            <partial name="_NotesDisplayPartial" model="@Model.Character.CharacterNotes" />
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-7 col-7">
-                    <partial name="_NewNotePartial" model="@Model.CharacterNoteStrings" />
-
-                    <partial name="_NotesDisplayPartial" model="@Model.Character.CharacterNotes" />
-                </div>
-                <div class="col-md-5 col-5">
-                    <partial name="_NewNpcPartial" model="@Model.Character.RelatedNpcs" />
                 </div>
             </div>
         </div>
@@ -94,12 +99,26 @@
 </div>
 
 <style>
-
     .backstoryStyle {
         word-wrap: normal;
     }
-
 </style>
+
+<script src="/lib/jquery/dist/jquery.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+    function showDetails() {
+       if ($('#showDetails').css('visibility') == 'hidden') {
+         $('#showDetails').css('visibility', 'visible');
+         $('#tabbedPage').css('visibility', 'hidden');
+       }
+       else{
+        $('#showDetails').css('visibility', 'hidden');
+         $('#tabbedPage').css('visibility', 'visible');
+       }
+    }
+
+</script>
 
 
 
