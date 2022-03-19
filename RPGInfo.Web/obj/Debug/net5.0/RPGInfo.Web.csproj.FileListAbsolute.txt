@@ -333,3 +333,4 @@ D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_NewNotePartial.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_NotesDisplayPartial.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.csproj.AssemblyReference.cache
+D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_NpcsDisplayPartial.cshtml.g.cs

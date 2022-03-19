@@ -1,0 +1,161 @@
+﻿@using RPGInfo.Web.Models
+@model List<RelatedNpc>
+
+ @for (int i = 0; i < Model.Count; i++)
+ {
+    <div id="npcToEdit" class="col-md-12">
+        <h1 id="noteTitle">@Model[i].Name</h1>
+        <h1 id="noteTitle">@Model[i].Race</h1>
+        <h1 id="noteTitle">@Model[i].Class</h1>
+        <h1 id="noteTitle">@Model[i].Background</h1>
+            <div>
+                <button type="button" id="@Model[i].Id" class="btn btn-primary editButton">Edit Npc</button>
+            </div>
+        <hr>
+    </div>
+ }
+
+<style>
+    .bs-example {
+        margin: 20px;
+    }
+</style>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript">
+    var title = '';
+    var date = '';
+    var content = '';
+
+    $('#cancelNote').click(function() {
+        $('#noteModal').hide();
+        window.location.reload();
+    });
+
+    $('.close').click(function() {
+        $('#noteModal').hide();
+        window.location.reload();
+    });
+
+    $('input[id="noteTitle"]').keyup(function() {
+         title = $(this).val();
+    });
+
+    $('input[id="noteDate"]').keyup(function() {
+         date = $(this).val();
+    });
+
+    $('input[id="noteContent"]').keyup(function() {
+        content = $(this).val();
+    });
+
+    $('.editButton').click(function() {
+     notes = @Html.Raw(Json.Serialize(Model));
+
+     const noteId = this.id;
+     var selectedNote = notes.filter(function(el) {
+         return el.id == noteId
+     });
+
+     console.log(selectedNote);
+
+     $('input[id="noteTitle"]').val(selectedNote[0].noteTitle);
+     $('input[id="noteDate"]').val(selectedNote[0].noteDate);
+     $('input[id="noteContent"]').val(selectedNote[0].noteContent);
+
+     $('#noteModal').modal('show');
+
+     $('#saveNote').click(function() {
+       editSelectedNote(noteId);
+     });
+
+      $('#deleteNote').click(function() {
+       deleteSelectedNote(noteId);
+     });
+
+    });
+
+    function editSelectedNote(noteId) {
+        var noteToEdit = {};
+
+      noteToEdit.id = noteId;
+      noteToEdit.noteTitle = title;
+      noteToEdit.noteDate = date;
+      noteToEdit.noteContent = content;
+
+      $.ajax({
+       contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+       dataType: 'json',
+       type: 'PUT',
+       url: window.location.href + '?handler=EditNote',
+       data: {editedNote: noteToEdit },
+       success: function() {
+           window.location.href="url";
+           console.log("ajax Notes post called");
+       },
+       failure: function(response) {
+           console.log(response);
+       },
+       beforeSend: function (xhr) {
+                     xhr.setRequestHeader("XSRF-TOKEN",
+                     $('input:hidden[name="__RequestVerificationToken"]').val());
+                    }
+        });
+
+       $('#noteModal').modal('hide');
+
+      window.location.reload();
+     
+    }
+
+     function deleteSelectedNote(noteId) {
+      var noteToDelete = {};
+
+      noteToDelete.id = noteId;
+      noteToDelete.noteTitle = title;
+      noteToDelete.noteDate = date;
+      noteToDelete.noteContent = content;
+
+      console.log("delete clicked: " + noteId);
+
+      $.ajax({
+       contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+       dataType: 'json',
+       type: 'PUT',
+       url: window.location.href + '?handler=DeleteNote',
+       data: {noteToDelete: noteToDelete },
+       success: function() {
+           window.location.href="url";
+           console.log("ajax Notes post called");
+       },
+       failure: function(response) {
+           console.log(response);
+       },
+       beforeSend: function (xhr) {
+                     xhr.setRequestHeader("XSRF-TOKEN",
+                     $('input:hidden[name="__RequestVerificationToken"]').val());
+                    }
+        });
+
+      $('#noteModal').modal('hide');
+
+      window.location.reload();
+
+     }
+
+       function validateDate() {
+              var dateInput = $('input[id="noteDate"]').val();
+
+              var match = dateInput.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+
+              if (!match) {
+                $('input[id="noteDate"]').val('');
+              } else {
+                $('input[id="noteDate"]').val(dateInput);
+              }
+      }
+
+
+</script>

@@ -3,9 +3,6 @@
 
 <h4>Add Npc Relationship</h4>
 
-@*TODO: Display related characters
-TODO: Revise Character Detail design page display*@
-
 <form asp-page-handler="AddNpcs" method="post" enctype="multipart/form-data" class="mt-4 mb-4">
     <div class="row">
         <div class="form-group col-6">
@@ -31,13 +28,6 @@ TODO: Revise Character Detail design page display*@
 
     <button type="submit" onClick="addCurrentNpc()" id="addNoteForm" class="btn btn-primary">Add</button>
 </form>
-
-<ul>
-    @foreach (var relationship in @Model)
-    {
-        <li>@relationship.Name </li>
-    }
-</ul>
 
 <script src="/lib/jquery/dist/jquery.js"></script>
 <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
