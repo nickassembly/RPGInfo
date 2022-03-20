@@ -92,7 +92,7 @@
                 </div>
             </div>
         </div>
-        <div id="tabbedPage" style="visibility:visible">
+        <div id="tabbedPage" style="visibility:visible;margin-left:28%;">
             <div class="tabs">
                 <div class="tab-button-outer">
                     <ul id="tab-button">
@@ -102,11 +102,9 @@
                 </div>
 
                 <div id="tab01" class="tab-contents">
-                    <h2>Character Notes</h2>
                     <partial name="_NotesDisplayPartial" model="@Model.Character.CharacterNotes" />
                 </div>
                 <div id="tab02" class="tab-contents">
-                    <h2>Known Npcs</h2>
                     <partial name="_NpcsDisplayPartial" model="@Model.Character.RelatedNpcs" />
                 </div>
             </div>

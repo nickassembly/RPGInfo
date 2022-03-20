@@ -87,6 +87,18 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
+        public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
+        {
+            //var noteToEdit = _context.Notes.Where(note => note.Id == editedNote.Id).FirstOrDefault();
+
+            //noteToEdit.NoteContent = editedNote.NoteContent != null ? editedNote.NoteContent : noteToEdit.NoteContent;
+            //noteToEdit.NoteTitle = editedNote.NoteTitle != null ? editedNote.NoteTitle : noteToEdit.NoteTitle;
+            //noteToEdit.NoteDate = editedNote.NoteDate;
+            //_context.SaveChanges();
+
+            return RedirectToPage();
+        }
+
         public ActionResult OnPutDeleteNote(Note noteToDelete)
         {
             var noteToRemove = _context.Notes.Where(note => note.Id == noteToDelete.Id).FirstOrDefault();
@@ -147,12 +159,5 @@ namespace RPGInfo.Web.Pages
         }
 
 
-    }
-
-    public class NpcViewModel
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Backstory { get; set; }
     }
 }
