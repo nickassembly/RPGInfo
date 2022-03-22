@@ -89,6 +89,7 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
         {
+            // TODO: Add logic to edit, and delete
             //var noteToEdit = _context.Notes.Where(note => note.Id == editedNote.Id).FirstOrDefault();
 
             //noteToEdit.NoteContent = editedNote.NoteContent != null ? editedNote.NoteContent : noteToEdit.NoteContent;

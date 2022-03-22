@@ -4,11 +4,11 @@
  @for (int i = 0; i < Model.Count; i++)
  {
     <div id="npcToEdit" class="col-md-12">
-        <h1 id="npcName">@Model[i].Name</h1>
-        <h1 id="npcRace">@Model[i].Race</h1>
+        <h1 id="name">@Model[i].Name</h1>
+        <h1 id="race">@Model[i].Race</h1>
         <h3 id="npcClass">@Model[i].Class</h3>
-        <p id="npcBackground">@Model[i].Background</p>
-        <p id="npcRelationship">@Model[i].Relationship</p>
+        <p id="background">@Model[i].Background</p>
+        <p id="relationship">@Model[i].Relationship</p>
             <div>
                 <button type="button" id="@Model[i].Id" class="btn btn-primary editButton">Edit Npc</button>
             </div>
@@ -29,29 +29,29 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="Name">Name</label>
-                                <input type="text" id="npcName" name="" value="Name" class="form-control">
+                                <input type="text" id="name" name="Name" value="" class="form-control">
                             </div>
 
                             <div class="form-group  col-6">
                                 <label for="Race">Race</label>
 
-                                <input type="text" id="npcRace" value="Race" name="Race" class="form-control">
+                                <input type="text" id="race" value="Race" name="Race" class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="Class">Class</label>
-                            <input type="text" id="npcClass" name="Class" value="Class" class="form-control">
+                            <input type="text" id="npcClass" name="Class" value="" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label for="Relationship">Relationship</label>
-                            <input type="text" id="npcRelationship" name="Relationship" value="Relationship" class="form-control">
+                            <input type="text" id="relationship" name="Relationship" value="" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label for="Background">Background</label>
-                            <input type="text" id="npcBackground" name="Background" value="Background" class="form-control">
+                            <input type="text" id="background" name="Background" value="" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -75,11 +75,11 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
-    var npcName = '';
-    var npcRace = '';
+    var name = '';
+    var race = '';
     var npcClass = '';
-    var npcRelationship = '';
-    var npcBackground = '';
+    var relationship = '';
+    var background = '';
 
     $('#cancelNpc').click(function() {
         $('#npcModal').hide();
@@ -91,30 +91,28 @@
         window.location.reload();
     });
 
-    $('input[id="npcName"]').keyup(function() {
-         npcName = $(this).val();
+    $('input[id="name"]').keyup(function() {
+         name = $(this).val();
     });
 
-    $('input[id="npcRace"]').keyup(function() {
-         npcRace = $(this).val();
+    $('input[id="race"]').keyup(function() {
+         race = $(this).val();
     });
 
      $('input[id="npcClass"]').keyup(function() {
          npcClass = $(this).val();
     });
 
-    $('input[id="npcRelationship"]').keyup(function() {
-        npcRelationship = $(this).val();
+    $('input[id="relationship"]').keyup(function() {
+        relationship = $(this).val();
     });
 
-     $('input[id="npcBackground"]').keyup(function() {
-         npcBackground = $(this).val();
+     $('input[id="background"]').keyup(function() {
+         background = $(this).val();
     });
 
     $('.editButton').click(function() {
-        console.log("Edit clicked npc");
      npcs = @Html.Raw(Json.Serialize(Model));
-
      const npcId = this.id;
      var selectedNpc = npcs.filter(function(el) {
          return el.id == npcId;
@@ -122,11 +120,11 @@
 
      console.log(selectedNpc);
 
-     $('input[id="npcName"]').val(selectedNpc[0].npcName);
-     $('input[id="npcRace"]').val(selectedNpc[0].npcRace);
-     $('input[id="npcClass"]').val(selectedNpc[0].npcClass);
-     $('input[id="npcRelationship"]').val(selectedNpc[0].npcRelationship);
-     $('input[id="npcBackground"]').val(selectedNpc[0].npcBackground);
+     $('input[id="name"]').val(selectedNpc[0].name);
+     $('input[id="race"]').val(selectedNpc[0].race);
+     $('input[id="npcClass"]').val(selectedNpc[0].class);
+     $('input[id="relationship"]').val(selectedNpc[0].relationship);
+     $('input[id="background"]').val(selectedNpc[0].background);
 
      $('#npcModal').modal('show');
 
@@ -140,15 +138,15 @@
 
     });
 
-    function editSelectedNpc(noteId) {
+    function editSelectedNpc(npcId) {
         var npcToEdit = {};
 
-      npcToEdit.npcId = npcId;
-      npcToEdit.npcName = npcName;
-      npcToEdit.npcRace = npcRace;
+      npcToEdit.id = npcId;
+      npcToEdit.name = name;
+      npcToEdit.race = race;
       npcToEdit.npcClass = npcClass;
-      npcToEdit.npcRelationship = npcRelationship;
-      npcToEdit.npcBackground = npcBackground;
+      npcToEdit.relationship = relationship;
+      npcToEdit.background = background;
       
 
       $.ajax({
@@ -175,7 +173,7 @@
       window.location.reload();
      
     }
-    //////////////// TODO: Test edit and finish delete method
+
      function deleteSelectedNpc(npcId) {
       var npcToDelete = {};
 

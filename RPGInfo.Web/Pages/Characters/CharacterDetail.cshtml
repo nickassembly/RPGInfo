@@ -109,131 +109,134 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <style>
-            body {
-                font-family: 'Open Sans', sans-serif;
-                font-weight: 300;
-            }
 
-            .tabs {
-                max-width: 640px;
-                margin: 0 auto;
-                padding: 0 20px;
-            }
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+    }
 
-            #tab-button {
-                display: table;
-                table-layout: fixed;
-                width: 100%;
-                margin: 0;
-                padding: 0;
-                list-style: none;
-            }
+    .tabs {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
 
-                #tab-button li {
-                    display: table-cell;
-                    width: 20%;
-                }
+    #tab-button {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
 
-                    #tab-button li a {
-                        display: block;
-                        padding: .5em;
-                        background: #eee;
-                        border: 1px solid #ddd;
-                        text-align: center;
-                        color: #000;
-                        text-decoration: none;
-                    }
+        #tab-button li {
+            display: table-cell;
+            width: 20%;
+        }
 
-                    #tab-button li:not(:first-child) a {
-                        border-left: none;
-                    }
-
-                    #tab-button li a:hover,
-                    #tab-button .is-active a {
-                        border-bottom-color: transparent;
-                        background: #fff;
-                    }
-
-            .tab-contents {
-                padding: .5em 2em 1em;
-                border: 1px solid #ddd;
-            }
-
-            .tab-button-outer {
-                display: none;
-            }
-
-            .tab-contents {
-                margin-top: 20px;
-            }
-
-            .tab-button-outer {
-                position: relative;
-                z-index: 2;
+            #tab-button li a {
                 display: block;
+                padding: .5em;
+                background: #eee;
+                border: 1px solid #ddd;
+                text-align: center;
+                color: #000;
+                text-decoration: none;
             }
 
-            .tab-select-outer {
-                display: none;
+            #tab-button li:not(:first-child) a {
+                border-left: none;
             }
 
-            .tab-contents {
-                position: relative;
-                top: -1px;
-                margin-top: 0;
+            #tab-button li a:hover,
+            #tab-button .is-active a {
+                border-bottom-color: transparent;
+                background: #fff;
             }
 
-            .backstoryStyle {
-                word-wrap: normal;
-            }
-        </style>
+    .tab-contents {
+        padding: .5em 2em 1em;
+        border: 1px solid #ddd;
+    }
 
-        <script src="/lib/jquery/dist/jquery.js"></script>
-        <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script>
-             function showDetails() {
-                if ($('#showDetails').css('visibility') == 'hidden') {
-                  $('#showDetails').css('visibility', 'visible');
-                  $('#tabbedPage').css('visibility', 'hidden');
-                }
-                else{
-                 $('#showDetails').css('visibility', 'hidden');
-                  $('#tabbedPage').css('visibility', 'visible');
-                }
-             }
+    .tab-button-outer {
+        display: none;
+    }
 
-            var $tabButtonItem = $('#tab-button li'),
-                 $tabSelect = $('#tab-select'),
-                 $tabContents = $('.tab-contents'),
-                 activeClass = 'is-active';
+    .tab-contents {
+        margin-top: 20px;
+    }
 
-             $tabButtonItem.first().addClass(activeClass);
-             $tabContents.not(':first').hide();
+    .tab-button-outer {
+        position: relative;
+        z-index: 2;
+        display: block;
+    }
 
-             $tabButtonItem.find('a').on('click', function(e) {
-               var target = $(this).attr('href');
+    .tab-select-outer {
+        display: none;
+    }
 
-               $tabButtonItem.removeClass(activeClass);
-               $(this).parent().addClass(activeClass);
-               $tabSelect.val(target);
-               $tabContents.hide();
-               $(target).show();
-               e.preventDefault();
-             });
+    .tab-contents {
+        position: relative;
+        top: -1px;
+        margin-top: 0;
+    }
 
-             $tabSelect.on('change', function() {
-               var target = $(this).val(),
-                   targetSelectNum = $(this).prop('selectedIndex');
+    .backstoryStyle {
+        word-wrap: normal;
+    }
+</style>
 
-               $tabButtonItem.removeClass(activeClass);
-               $tabButtonItem.eq(targetSelectNum).addClass(activeClass);
-               $tabContents.hide();
-               $(target).show();
-             });
+<script src="/lib/jquery/dist/jquery.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+     function showDetails() {
+        if ($('#showDetails').css('visibility') == 'hidden') {
+          $('#showDetails').css('visibility', 'visible');
+          $('#tabbedPage').css('visibility', 'hidden');
+        }
+        else{
+         $('#showDetails').css('visibility', 'hidden');
+          $('#tabbedPage').css('visibility', 'visible');
+        }
+     }
 
-        </script>
+    var $tabButtonItem = $('#tab-button li'),
+         $tabSelect = $('#tab-select'),
+         $tabContents = $('.tab-contents'),
+         activeClass = 'is-active';
+
+     $tabButtonItem.first().addClass(activeClass);
+     $tabContents.not(':first').hide();
+
+     $tabButtonItem.find('a').on('click', function(e) {
+       var target = $(this).attr('href');
+
+       $tabButtonItem.removeClass(activeClass);
+       $(this).parent().addClass(activeClass);
+       $tabSelect.val(target);
+       $tabContents.hide();
+       $(target).show();
+       e.preventDefault();
+     });
+
+     $tabSelect.on('change', function() {
+       var target = $(this).val(),
+           targetSelectNum = $(this).prop('selectedIndex');
+
+       $tabButtonItem.removeClass(activeClass);
+       $tabButtonItem.eq(targetSelectNum).addClass(activeClass);
+       $tabContents.hide();
+       $(target).show();
+     });
+
+</script>
 
 
 
