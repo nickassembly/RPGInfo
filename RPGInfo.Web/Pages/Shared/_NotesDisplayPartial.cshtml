@@ -96,6 +96,7 @@
     });
 
     $('.editButton').click(function() {
+        console.log("edit clicked");
      notes = @Html.Raw(Json.Serialize(Model));
 
      const noteId = this.id;

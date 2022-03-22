@@ -177,19 +177,16 @@
      function deleteSelectedNpc(npcId) {
       var npcToDelete = {};
 
-      noteToDelete.id = noteId;
-      noteToDelete.noteTitle = title;
-      noteToDelete.noteDate = date;
-      noteToDelete.noteContent = content;
+      npcToDelete.id = npcId;
 
-      console.log("delete clicked: " + noteId);
+      console.log("delete clicked: " + npcId);
 
       $.ajax({
        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
        dataType: 'json',
        type: 'PUT',
-       url: window.location.href + '?handler=DeleteNote',
-       data: {noteToDelete: noteToDelete },
+       url: window.location.href + '?handler=DeleteNpc',
+       data: {npcToDelete: npcToDelete },
        success: function() {
            window.location.href="url";
            console.log("ajax Notes post called");

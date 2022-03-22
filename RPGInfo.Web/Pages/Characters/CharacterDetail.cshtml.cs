@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
@@ -89,24 +90,39 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
         {
-            // TODO: Add logic to edit, and delete
-            //var noteToEdit = _context.Notes.Where(note => note.Id == editedNote.Id).FirstOrDefault();
 
-            //noteToEdit.NoteContent = editedNote.NoteContent != null ? editedNote.NoteContent : noteToEdit.NoteContent;
-            //noteToEdit.NoteTitle = editedNote.NoteTitle != null ? editedNote.NoteTitle : noteToEdit.NoteTitle;
-            //noteToEdit.NoteDate = editedNote.NoteDate;
-            //_context.SaveChanges();
+            var npcToEdit = _context.RelatedNpcs.Where(npc => npc.Id == editedNpc.Id).FirstOrDefault();
+
+            npcToEdit.Name = editedNpc.Name != null ? editedNpc.Name : npcToEdit.Name;
+            npcToEdit.Relationship = editedNpc.Relationship != null ? editedNpc.Relationship : npcToEdit.Relationship;
+            npcToEdit.Background = editedNpc.Background != null ? editedNpc.Background : npcToEdit.Background;
+            npcToEdit.Race = editedNpc.Race != null ? editedNpc.Race : npcToEdit.Race;
+            npcToEdit.Class = editedNpc.Class != null ? editedNpc.Class : npcToEdit.Class;
+            _context.SaveChanges();
 
             return RedirectToPage();
         }
 
         public ActionResult OnPutDeleteNote(Note noteToDelete)
         {
-            var noteToRemove = _context.Notes.Where(note => note.Id == noteToDelete.Id).FirstOrDefault();
+            var noteToRemove = _context.Notes.AsNoTracking().Where(note => note.Id == noteToDelete.Id).FirstOrDefault();
 
             if (noteToRemove != null)
             {
                 _context.Notes.Remove(noteToRemove);
+                _context.SaveChanges();
+            }
+
+            return RedirectToPage();
+        }
+
+        public ActionResult OnPutDeleteNpc(RelatedNpc npcToDelete)
+        {
+            var npcToRemove = _context.RelatedNpcs.AsNoTracking().Where(npc => npc.Id == npcToDelete.Id).FirstOrDefault();
+
+            if (npcToDelete != null)
+            {
+                _context.RelatedNpcs.Remove(npcToDelete);
                 _context.SaveChanges();
             }
 
