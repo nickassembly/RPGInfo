@@ -37,21 +37,42 @@
                                 </div>
                             </li>
                         </ul>
-                        <div class="m-2">
-                            <form method="post"><button type="submit" class="btn btn-success">Edit @Model.Area.AreaName</button></form>
+                        <div class="mt-4 mb-4 row">
+                            <div class="col-6">
+                                <form method="post">
+                                    <button type="submit" class="btn btn-success">Edit @Model.Area.AreaName</button>
+                                </form>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" id="addNote" class="btn btn-info" onclick="showDetails()">Add Character Notes / Npc Info</button>
+                            </div>
+                        </div>
+                        <div style="visibility:hidden;max-height:0" id="showDetails" class="row">
+                            <div class="col-6">
+                                <partial name="_NewNotePartial" model="@Model.AreaNoteStrings" />
+                            </div>
+                            <div class="col-6">
+                                <partial name="_NewNpcPartial" model="@Model.Area.RelatedNpcs" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="tabbedPage" style="visibility:visible;margin-left:28%;">
+            <div class="tabs">
+                <div class="tab-button-outer">
+                    <ul id="tab-button">
+                        <li><a href="#tab01">Character Notes</a></li>
+                        <li><a href="#tab02">Known Npcs</a></li>
+                    </ul>
+                </div>
 
-            <div class="row">
-                <div class="col-md-7 col-7">
-                    <partial name="_NewNotePartial" model="@Model.AreaNoteStrings" />
-
+                <div id="tab01" class="tab-contents">
                     <partial name="_NotesDisplayPartial" model="@Model.Area.AreaNotes" />
                 </div>
-                <div class="col-md-5 col-5">
-                    <partial name="_NewNpcPartial" model="@Model.Area.RelatedNpcs" />
+                <div id="tab02" class="tab-contents">
+                    <partial name="_NpcsDisplayPartial" model="@Model.Area.RelatedNpcs" />
                 </div>
             </div>
         </div>
@@ -59,9 +80,127 @@
 </div>
 
 <style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+    }
+
+    .tabs {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    #tab-button {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+        #tab-button li {
+            display: table-cell;
+            width: 20%;
+        }
+
+            #tab-button li a {
+                display: block;
+                padding: .5em;
+                background: #eee;
+                border: 1px solid #ddd;
+                text-align: center;
+                color: #000;
+                text-decoration: none;
+            }
+
+            #tab-button li:not(:first-child) a {
+                border-left: none;
+            }
+
+            #tab-button li a:hover,
+            #tab-button .is-active a {
+                border-bottom-color: transparent;
+                background: #fff;
+            }
+
+    .tab-contents {
+        padding: .5em 2em 1em;
+        border: 1px solid #ddd;
+    }
+
+    .tab-button-outer {
+        display: none;
+    }
+
+    .tab-contents {
+        margin-top: 20px;
+    }
+
+    .tab-button-outer {
+        position: relative;
+        z-index: 2;
+        display: block;
+    }
+
+    .tab-select-outer {
+        display: none;
+    }
+
+    .tab-contents {
+        position: relative;
+        top: -1px;
+        margin-top: 0;
+    }
 
     .backstoryStyle {
         word-wrap: normal;
     }
-
 </style>
+
+<script src="/lib/jquery/dist/jquery.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+     function showDetails() {
+        if ($('#showDetails').css('visibility') == 'hidden') {
+          $('#showDetails').css('visibility', 'visible');
+          $('#tabbedPage').css('visibility', 'hidden');
+        }
+        else{
+         $('#showDetails').css('visibility', 'hidden');
+          $('#tabbedPage').css('visibility', 'visible');
+        }
+     }
+
+    var $tabButtonItem = $('#tab-button li'),
+         $tabSelect = $('#tab-select'),
+         $tabContents = $('.tab-contents'),
+         activeClass = 'is-active';
+
+     $tabButtonItem.first().addClass(activeClass);
+     $tabContents.not(':first').hide();
+
+     $tabButtonItem.find('a').on('click', function(e) {
+       var target = $(this).attr('href');
+
+       $tabButtonItem.removeClass(activeClass);
+       $(this).parent().addClass(activeClass);
+       $tabSelect.val(target);
+       $tabContents.hide();
+       $(target).show();
+       e.preventDefault();
+     });
+
+     $tabSelect.on('change', function() {
+       var target = $(this).val(),
+           targetSelectNum = $(this).prop('selectedIndex');
+
+       $tabButtonItem.removeClass(activeClass);
+       $tabButtonItem.eq(targetSelectNum).addClass(activeClass);
+       $tabContents.hide();
+       $(target).show();
+     });
+
+</script>
+
