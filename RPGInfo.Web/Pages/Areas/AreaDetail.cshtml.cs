@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
@@ -30,6 +31,8 @@ namespace RPGInfo.Web.Pages
             Area = _context.AreasOfInterest.Where(x => x.Id == id).FirstOrDefault();
 
             Area.AreaNotes = _context.Notes.Where(note => note.AreaId == id).ToList();
+
+            Area.RelatedNpcs = _context.RelatedNpcs.Where(npc => npc.AreaId == id).ToList();
         }
 
         [BindProperty]
@@ -47,6 +50,25 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
+        public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
+        {
+            RelatedNpc newNpc = new RelatedNpc
+            {
+                AreaId = Area.Id,
+                Name = npcToAdd.Name,
+                Relationship = npcToAdd.Relationship,
+                Background = npcToAdd.Background,
+                Race = npcToAdd.Race,
+                Class = npcToAdd.Class
+            };
+
+            _context.RelatedNpcs.Add(newNpc);
+            _context.SaveChanges();
+
+            return RedirectToPage();
+        }
+
+
         public ActionResult OnPutEditNote(Note editedNote)
         {
             var noteToEdit = _context.Notes.Where(note => note.Id == editedNote.Id).FirstOrDefault();
@@ -54,6 +76,21 @@ namespace RPGInfo.Web.Pages
             noteToEdit.NoteContent = editedNote.NoteContent != null ? editedNote.NoteContent : noteToEdit.NoteContent;
             noteToEdit.NoteTitle = editedNote.NoteTitle != null ? editedNote.NoteTitle : noteToEdit.NoteTitle;
             noteToEdit.NoteDate = editedNote.NoteDate;
+            _context.SaveChanges();
+
+            return RedirectToPage();
+        }
+
+        public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
+        {
+
+            var npcToEdit = _context.RelatedNpcs.Where(npc => npc.Id == editedNpc.Id).FirstOrDefault();
+
+            npcToEdit.Name = editedNpc.Name != null ? editedNpc.Name : npcToEdit.Name;
+            npcToEdit.Relationship = editedNpc.Relationship != null ? editedNpc.Relationship : npcToEdit.Relationship;
+            npcToEdit.Background = editedNpc.Background != null ? editedNpc.Background : npcToEdit.Background;
+            npcToEdit.Race = editedNpc.Race != null ? editedNpc.Race : npcToEdit.Race;
+            npcToEdit.Class = editedNpc.Class != null ? editedNpc.Class : npcToEdit.Class;
             _context.SaveChanges();
 
             return RedirectToPage();
@@ -72,9 +109,22 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
+        public ActionResult OnPutDeleteNpc(RelatedNpc npcToDelete)
+        {
+            var npcToRemove = _context.RelatedNpcs.AsNoTracking().Where(npc => npc.Id == npcToDelete.Id).FirstOrDefault();
+
+            if (npcToDelete != null)
+            {
+                _context.RelatedNpcs.Remove(npcToDelete);
+                _context.SaveChanges();
+            }
+
+            return RedirectToPage();
+        }
+
         public ActionResult OnPost()
         {
-            // TODO: Save changes from character form comes here
+            // TODO: Edit Main Area properties
 
             return RedirectToPage();
         }

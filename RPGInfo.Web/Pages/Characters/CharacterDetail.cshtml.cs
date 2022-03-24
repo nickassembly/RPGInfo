@@ -131,7 +131,7 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPost()
         {
-            // TODO: Save changes from character form comes here
+            // TODO: Edit main character properties
 
             return RedirectToPage();
         }
