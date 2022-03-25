@@ -5,113 +5,100 @@
 }
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+
 <div class="container">
-    <div class="team-single">
+    <form method="post" asp-page-handler="OnPost" enctype="multipart/form-data">
         <div class="row">
             <div class="col-lg-4 col-md-5 xs-margin-30px-bottom">
                 @if (Model.Character.Portrait != null)
                 {
                     <div class="team-single-img">
                         <img height="300" width="300" class="rounded-sm" src="data:image;base64,@System.Convert.ToBase64String(Model.Character.Portrait)" alt="">
+                        <h4>@Model.Character.Name</h4>
                     </div>
                 }
                 else
                 {
-                    <img class="card-img-top" src="~/images/NoImageAvailable.png" />
+                    <div class="team-single-img">
+                        <img class="card-img-top" src="~/images/NoImageAvailable.png" />
+                        <h4>@Model.Character.Name</h4>
+                    </div>
                 }
             </div>
 
             <div class="col-lg-8 col-md-7">
-                <div class="team-single-text padding-50px-left sm-no-padding-left">
-                    <h3 class="font-size38 sm-font-size32 xs-font-size30">@Model.Character.Name</h3>
-                    <div class="contact-info-section margin-40px-tb">
-                        <ul class="list-group no-margin">
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-md-5 col-5">
-                                        <strong class="margin-10px-left">Race: </strong>
-                                    </div>
-                                    <div class="col-md-7 col-7">
-                                        <h4>@Model.Character.Race</h4>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-md-5 col-5">
-                                        <strong class="margin-10px-left">Class: </strong>
-                                    </div>
-                                    <div class="col-md-7 col-7">
-                                        <h4>@Model.Character.Class</h4>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-md-5 col-5">
-                                        <strong class="margin-10px-left">Description: </strong>
-                                    </div>
-                                    <div class="col-md-7 col-7">
-                                        <h4>@Model.Character.Description</h4>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-md-5 col-5">
-                                        <strong class="margin-10px-left">Backstory: </strong>
-                                    </div>
-                                    <div class="col-md-7 col-7">
-                                        <p class="backstoryStyle">@Model.Character.Backstory</p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="mt-4 mb-4 row">
-                            <div class="col-6">
-                                <form method="post">
-                                    <button type="submit" class="btn btn-success">Edit @Model.Character.Name</button>
-                                </form>
-                            </div>
-                            <div class="col-6">
-                                <button type="button" id="addNote" class="btn btn-info" onclick="showDetails()">Add Character Notes / Npc Info</button>
-                            </div>
-                        </div>
-                        <div style="visibility:hidden;max-height:0" id="showDetails" class="row">
-                            <div class="col-6">
-                                <partial name="_NewNotePartial" model="@Model.CharacterNoteStrings" />
-                            </div>
-                            <div class="col-6">
-                                <partial name="_NewNpcPartial" model="@Model.Character.RelatedNpcs" />
-                            </div>
-                        </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Name</span>
                     </div>
+                    <input hidden asp-for="Character.Id" />
+                    <input asp-for="@Model.Character.Name" value="@Model.Character.Name" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Race</span>
+                    </div>
+                    <input asp-for="@Model.Character.Race" value="@Model.Character.Race" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Class</span>
+                    </div>
+                    <input asp-for="@Model.Character.Class" value="@Model.Character.Class" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Backstory</span>
+                    </div>
+                    <input asp-for="@Model.Character.Backstory" value="@Model.Character.Backstory" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Description</span>
+                    </div>
+                    <input asp-for="@Model.Character.Description" value="@Model.Character.Description" class="form-control">
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-success">Edit @Model.Character.Name</button>
                 </div>
             </div>
         </div>
-        <div id="tabbedPage" style="visibility:visible;margin-left:28%;">
-            <div class="tabs">
-                <div class="tab-button-outer">
-                    <ul id="tab-button">
-                        <li><a href="#tab01">Character Notes</a></li>
-                        <li><a href="#tab02">Known Npcs</a></li>
-                    </ul>
-                </div>
+    </form>
 
-                <div id="tab01" class="tab-contents">
-                    <partial name="_NotesDisplayPartial" model="@Model.Character.CharacterNotes" />
-                </div>
-                <div id="tab02" class="tab-contents">
-                    <partial name="_NpcsDisplayPartial" model="@Model.Character.RelatedNpcs" />
-                </div>
+    <div class="row mt-4 mb-4">
+        <div class="col-12">
+            <button type="button" id="addNote" class="btn btn-info" onclick="showDetails()">Add Character Notes / Npc Info</button>
+        </div>
+    </div>
+
+    <div class="row" style="visibility:hidden;max-height:0" id="showDetails">
+        <div class="col-6">
+            <partial name="_NewNotePartial" model="@Model.CharacterNoteStrings" />
+        </div>
+        <div class="col-6">
+            <partial name="_NewNpcPartial" model="@Model.Character.RelatedNpcs" />
+        </div>
+    </div>
+
+    <div id="tabbedPage" style="visibility:visible;margin-left:28%;">
+        <div class="tabs">
+            <div class="tab-button-outer">
+                <ul id="tab-button">
+                    <li><a href="#tab01">Character Notes</a></li>
+                    <li><a href="#tab02">Known Npcs</a></li>
+                </ul>
+            </div>
+
+            <div id="tab01" class="tab-contents">
+                <partial name="_NotesDisplayPartial" model="@Model.Character.CharacterNotes" />
+            </div>
+            <div id="tab02" class="tab-contents">
+                <partial name="_NpcsDisplayPartial" model="@Model.Character.RelatedNpcs" />
             </div>
         </div>
     </div>
 </div>
-
 
 <style>
     body {

@@ -120,9 +120,9 @@ namespace RPGInfo.Web.Pages
         {
             var npcToRemove = _context.RelatedNpcs.AsNoTracking().Where(npc => npc.Id == npcToDelete.Id).FirstOrDefault();
 
-            if (npcToDelete != null)
+            if (npcToRemove != null)
             {
-                _context.RelatedNpcs.Remove(npcToDelete);
+                _context.RelatedNpcs.Remove(npcToRemove);
                 _context.SaveChanges();
             }
 
@@ -131,7 +131,22 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPost()
         {
-            // TODO: Edit main character properties
+            if (ModelState.IsValid)
+            {
+                var characterToEdit = _context.Characters.Where(x => x.Id == Character.Id).FirstOrDefault();
+
+                if (characterToEdit != null)
+                {
+                    characterToEdit.Name = Character.Name;
+                    characterToEdit.Race = Character.Race;
+                    characterToEdit.Class = Character.Class;
+                    characterToEdit.Backstory = Character.Backstory;
+                    characterToEdit.Description = Character.Description;
+                }
+
+                _context.Characters.Update(characterToEdit);
+                _context.SaveChanges();
+            }
 
             return RedirectToPage();
         }
