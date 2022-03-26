@@ -124,7 +124,19 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPost()
         {
-            // TODO: Edit Main Area properties
+            if (ModelState.IsValid)
+            {
+                var areaToEdit = _context.AreasOfInterest.Where(x => x.Id == Area.Id).FirstOrDefault();
+
+                if (areaToEdit != null)
+                {
+                    areaToEdit.AreaName = Area.AreaName;
+                    areaToEdit.AreaDescription = Area.AreaDescription;
+                }
+
+                _context.AreasOfInterest.Update(areaToEdit);
+                _context.SaveChanges();
+            }
 
             return RedirectToPage();
         }
