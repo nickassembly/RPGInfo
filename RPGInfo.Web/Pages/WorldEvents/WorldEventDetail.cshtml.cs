@@ -1,23 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using RPGInfo.Web.Data;
-using System;
-using System.Collections.Generic;
+using RPGInfo.Web.Models;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Pages.WorldEvents
 {
-    public class WorldEventDetail : PageModel
+    public class WorldEventDetailModel : PageModel
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<CharacterDetailModel> _logger;
 
-        public WorldEventDetail(ApplicationDbContext context, ILogger<CharacterDetailModel> logger)
+        public WorldEventDetailModel(ApplicationDbContext context, ILogger<CharacterDetailModel> logger)
         {
             _context = context;
             _logger = logger;
         }
+
+        [BindProperty]
+        public WorldEvent WorldEvent { get; set; }
+
+        public void OnGet(int id)
+        {
+            WorldEvent = _context.WorldEvents.Where(x => x.Id == id).FirstOrDefault();
+
+            WorldEvent.EventNotes = _context.Notes.Where(note => note.WorldEventId == id).ToList();
+
+            WorldEvent.RelatedNpcs = _context.RelatedNpcs.Where(npc => npc.WorldEventId == id).ToList();
+        }
+
     }
 }

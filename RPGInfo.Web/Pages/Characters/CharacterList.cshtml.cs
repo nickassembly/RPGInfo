@@ -52,8 +52,8 @@ namespace RPGInfo.Web.Pages
         {
             if (!ModelState.IsValid) return Page();
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            DateTimeOffset createdDate = DateTime.Now;
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //DateTimeOffset createdDate = DateTime.Now;
 
             var character = Character;
             character.Name = Character.Name;
