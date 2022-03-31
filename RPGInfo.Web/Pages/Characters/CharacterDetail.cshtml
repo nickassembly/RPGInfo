@@ -1,8 +1,5 @@
 ﻿@page "{id}"
 @model RPGInfo.Web.Pages.CharacterDetailModel
-@{
-    ViewData["heightththte"] = "Character Detail";
-}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 
@@ -60,7 +57,7 @@
                 </div>
 
                 <div>
-                    <button type="submit" class="btn btn-success">Edit @Model.Character.Name</button>
+                    <button type="submit" class="btn btn-success">Save Changes: @Model.Character.Name</button>
                 </div>
             </div>
         </div>

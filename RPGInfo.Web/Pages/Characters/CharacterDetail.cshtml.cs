@@ -36,12 +36,6 @@ namespace RPGInfo.Web.Pages
         }
 
         [BindProperty]
-        public List<Note> CharacterNotes { get; set; } 
-
-        [BindProperty]
-        public List<RelatedNpc> RelatedNpcs { get; set; }
-
-        [BindProperty]
         public string[] CharacterNoteStrings { get; set; }
 
 

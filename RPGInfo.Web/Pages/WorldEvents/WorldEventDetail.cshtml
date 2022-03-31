@@ -1,8 +1,5 @@
 ﻿@page "{id}"
 @model RPGInfo.Web.Pages.WorldEvents.WorldEventDetailModel
-@{
-    ViewData["heightththte"] = "Character Detail";
-}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 
@@ -44,9 +41,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">Event Date</span>
                     </div>
-                    <input asp-for="@Model.WorldEvent.EventDate" value="@Model.WorldEvent.EventDate" class="form-control">
+                    <input asp-for="@Model.WorldEvent.EventDate" value="@Model.WorldEvent.EventDate.ToShortDateString()" class="form-control">
                 </div>
-
                 <div>
                     <button type="submit" class="btn btn-success">Edit @Model.WorldEvent.EventName</button>
                 </div>

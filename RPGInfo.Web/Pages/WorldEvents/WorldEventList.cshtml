@@ -40,7 +40,7 @@
                             <a class="color-main" href="/WorldEventDetail/@item.Id">@item.EventName</a>
                         </h4>
                         <p class="card-text">@item.EventDescription</p>
-                        <p class="card-text">@item.EventDate</p>
+                        <p class="card-text">@item.EventDate.ToShortDateString()</p>
                     </div>
                     <div class="card-footer">
                         <a asp-page="WorldEventDetail" asp-route-id="@item.Id" class="btn btn-success w-100">Event Details</a>
