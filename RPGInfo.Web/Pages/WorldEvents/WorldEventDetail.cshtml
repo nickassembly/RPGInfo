@@ -41,7 +41,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">Event Date</span>
                     </div>
-                    <input asp-for="@Model.WorldEvent.EventDate" value="@Model.WorldEvent.EventDate.ToShortDateString()" class="form-control">
+                    <input asp-for="@Model.WorldEvent.EventDate" value="@Model.WorldEvent.EventDate.ToShortDateString()" type="text" class="form-control">
                 </div>
                 <div>
                     <button type="submit" class="btn btn-success">Edit @Model.WorldEvent.EventName</button>
@@ -56,12 +56,12 @@
         </div>
     </div>
 
-   @* <div class="row" style="visibility:hidden;max-height:0" id="showDetails">
+    <div class="row" style="visibility:hidden;max-height:0" id="showDetails">
         <div class="col-6">
-            <partial name="_NewNotePartial" model="@Model.CharacterNoteStrings" />
+            <partial name="_NewNotePartial" model="@Model.EventNoteStrings" />
         </div>
         <div class="col-6">
-            <partial name="_NewNpcPartial" model="@Model.Character.RelatedNpcs" />
+            <partial name="_NewNpcPartial" model="@Model.WorldEvent.RelatedNpcs" />
         </div>
     </div>
 
@@ -69,20 +69,20 @@
         <div class="tabs">
             <div class="tab-button-outer">
                 <ul id="tab-button">
-                    <li><a href="#tab01">Character Notes</a></li>
-                    <li><a href="#tab02">Known Npcs</a></li>
+                    <li><a href="#tab01">Event Notes</a></li>
+                    <li><a href="#tab02">Important Npcs</a></li>
                 </ul>
             </div>
 
             <div id="tab01" class="tab-contents">
-                <partial name="_NotesDisplayPartial" model="@Model.Character.CharacterNotes" />
+                <partial name="_NotesDisplayPartial" model="@Model.WorldEvent.EventNotes" />
             </div>
             <div id="tab02" class="tab-contents">
-                <partial name="_NpcsDisplayPartial" model="@Model.Character.RelatedNpcs" />
+                <partial name="_NpcsDisplayPartial" model="@Model.WorldEvent.RelatedNpcs" />
             </div>
         </div>
     </div>
-</div>*@
+</div>
 
 <style>
     body {
