@@ -20,4 +20,12 @@ namespace RPGInfo.Web.Models
         public int? CharacterId { get; set; }
 
     }
+
+    public enum NoteType
+    { 
+        CharacterNote,
+        AreaNote,
+        EventNote
+    }
+
 }

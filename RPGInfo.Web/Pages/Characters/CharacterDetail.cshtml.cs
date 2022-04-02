@@ -39,6 +39,7 @@ namespace RPGInfo.Web.Pages
         public string[] CharacterNoteStrings { get; set; }
 
 
+        // TODO: Call INote to get list of notes back
         public ActionResult OnPostAddNotes([FromBody]string[] noteStrings)
         {
             List<Note> newNotes = ConvertStringsToNotes(noteStrings);
