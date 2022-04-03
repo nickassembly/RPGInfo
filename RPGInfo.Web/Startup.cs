@@ -60,6 +60,8 @@ namespace RPGInfo.Web
             });
 
             services.AddTransient<IEmailSender, EmailSender>();
+
+            services.AddScoped<INote, GeneralNote>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
         }
 
