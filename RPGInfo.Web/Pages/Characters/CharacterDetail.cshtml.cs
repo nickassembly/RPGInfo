@@ -40,8 +40,7 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public string[] CharacterNoteStrings { get; set; }
 
-        // TODO: Refactor Area and Event to use Note Interface
-        // Create methods for INpc and refactor
+        // TODO: Test Character, Area, World Event notes
 
         public ActionResult OnPostAddNotes([FromBody] string[] noteStrings)
         {
