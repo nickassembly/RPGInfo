@@ -17,12 +17,14 @@ namespace RPGInfo.Web.Pages.WorldEvents
         private readonly ApplicationDbContext _context;
         private readonly ILogger<CharacterDetailModel> _logger;
         private readonly INote _notes;
+        private readonly INpc _npcs;
 
-        public WorldEventDetailModel(ApplicationDbContext context, ILogger<CharacterDetailModel> logger, INote notes)
+        public WorldEventDetailModel(ApplicationDbContext context, ILogger<CharacterDetailModel> logger, INote notes, INpc npcs)
         {
             _context = context;
             _logger = logger;
             _notes = notes;
+            _npcs = npcs;
         }
 
         [BindProperty]
@@ -65,45 +67,48 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
-            RelatedNpc newNpc = new RelatedNpc
-            {
-                WorldEventId = WorldEvent.Id,
-                Name = npcToAdd.Name,
-                Relationship = npcToAdd.Relationship,
-                Background = npcToAdd.Background,
-                Race = npcToAdd.Race,
-                Class = npcToAdd.Class
-            };
+            _npcs.AddNpcs(npcToAdd, RpgEntityType.EventType, WorldEvent.Id);
+            //RelatedNpc newNpc = new RelatedNpc
+            //{
+            //    WorldEventId = WorldEvent.Id,
+            //    Name = npcToAdd.Name,
+            //    Relationship = npcToAdd.Relationship,
+            //    Background = npcToAdd.Background,
+            //    Race = npcToAdd.Race,
+            //    Class = npcToAdd.Class
+            //};
 
-            _context.RelatedNpcs.Add(newNpc);
-            _context.SaveChanges();
+            //_context.RelatedNpcs.Add(newNpc);
+            //_context.SaveChanges();
 
             return RedirectToPage();
         }
 
         public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
         {
-            var npcToEdit = _context.RelatedNpcs.Where(npc => npc.Id == editedNpc.Id).FirstOrDefault();
+            _npcs.EditNpc(editedNpc);
+            //var npcToEdit = _context.RelatedNpcs.Where(npc => npc.Id == editedNpc.Id).FirstOrDefault();
 
-            npcToEdit.Name = editedNpc.Name != null ? editedNpc.Name : npcToEdit.Name;
-            npcToEdit.Relationship = editedNpc.Relationship != null ? editedNpc.Relationship : npcToEdit.Relationship;
-            npcToEdit.Background = editedNpc.Background != null ? editedNpc.Background : npcToEdit.Background;
-            npcToEdit.Race = editedNpc.Race != null ? editedNpc.Race : npcToEdit.Race;
-            npcToEdit.Class = editedNpc.Class != null ? editedNpc.Class : npcToEdit.Class;
-            _context.SaveChanges();
+            //npcToEdit.Name = editedNpc.Name != null ? editedNpc.Name : npcToEdit.Name;
+            //npcToEdit.Relationship = editedNpc.Relationship != null ? editedNpc.Relationship : npcToEdit.Relationship;
+            //npcToEdit.Background = editedNpc.Background != null ? editedNpc.Background : npcToEdit.Background;
+            //npcToEdit.Race = editedNpc.Race != null ? editedNpc.Race : npcToEdit.Race;
+            //npcToEdit.Class = editedNpc.Class != null ? editedNpc.Class : npcToEdit.Class;
+            //_context.SaveChanges();
 
             return RedirectToPage();
         }
 
         public ActionResult OnPutDeleteNpc(RelatedNpc npcToDelete)
         {
-            var npcToRemove = _context.RelatedNpcs.AsNoTracking().Where(npc => npc.Id == npcToDelete.Id).FirstOrDefault();
+            _npcs.DeleteNpc(npcToDelete);
+            //var npcToRemove = _context.RelatedNpcs.AsNoTracking().Where(npc => npc.Id == npcToDelete.Id).FirstOrDefault();
 
-            if (npcToDelete != null)
-            {
-                _context.RelatedNpcs.Remove(npcToDelete);
-                _context.SaveChanges();
-            }
+            //if (npcToDelete != null)
+            //{
+            //    _context.RelatedNpcs.Remove(npcToDelete);
+            //    _context.SaveChanges();
+            //}
 
             return RedirectToPage();
         }

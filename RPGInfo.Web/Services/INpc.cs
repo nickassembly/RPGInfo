@@ -6,7 +6,8 @@ namespace RPGInfo.Web.Services
 {
     public interface INpc
     {
-        Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd, RpgEntityType npcType, int id);
-
+        void AddNpcs([FromForm] RelatedNpc npcToAdd, RpgEntityType npcType, int id);
+        void EditNpc(RelatedNpc editedNpc);
+        void DeleteNpc(RelatedNpc npcToDelete);
     }
 }

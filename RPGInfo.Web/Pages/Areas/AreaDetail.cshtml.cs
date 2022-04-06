@@ -18,12 +18,14 @@ namespace RPGInfo.Web.Pages
         private readonly ApplicationDbContext _context;
         private readonly ILogger<AreaDetailModel> _logger;
         private readonly INote _notes;
+        private readonly INpc _npcs;
 
-        public AreaDetailModel(ApplicationDbContext context, ILogger<AreaDetailModel> logger, INote notes)
+        public AreaDetailModel(ApplicationDbContext context, ILogger<AreaDetailModel> logger, INote notes, INpc npcs)
         {
             _context = context;
             _logger = logger;
             _notes = notes;
+            _npcs = npcs;
         }
 
         [BindProperty]
@@ -66,46 +68,50 @@ namespace RPGInfo.Web.Pages
 
         public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
-            RelatedNpc newNpc = new RelatedNpc
-            {
-                AreaId = Area.Id,
-                Name = npcToAdd.Name,
-                Relationship = npcToAdd.Relationship,
-                Background = npcToAdd.Background,
-                Race = npcToAdd.Race,
-                Class = npcToAdd.Class
-            };
+            //RelatedNpc newNpc = new RelatedNpc
+            //{
+            //    AreaId = Area.Id,
+            //    Name = npcToAdd.Name,
+            //    Relationship = npcToAdd.Relationship,
+            //    Background = npcToAdd.Background,
+            //    Race = npcToAdd.Race,
+            //    Class = npcToAdd.Class
+            //};
 
-            _context.RelatedNpcs.Add(newNpc);
-            _context.SaveChanges();
+            //_context.RelatedNpcs.Add(newNpc);
+            //_context.SaveChanges();
+
+            _npcs.AddNpcs(npcToAdd, RpgEntityType.AreaType, Area.Id);
 
             return RedirectToPage();
         }
 
         public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
         {
+            _npcs.EditNpc(editedNpc);
+            //var npcToEdit = _context.RelatedNpcs.Where(npc => npc.Id == editedNpc.Id).FirstOrDefault();
 
-            var npcToEdit = _context.RelatedNpcs.Where(npc => npc.Id == editedNpc.Id).FirstOrDefault();
-
-            npcToEdit.Name = editedNpc.Name != null ? editedNpc.Name : npcToEdit.Name;
-            npcToEdit.Relationship = editedNpc.Relationship != null ? editedNpc.Relationship : npcToEdit.Relationship;
-            npcToEdit.Background = editedNpc.Background != null ? editedNpc.Background : npcToEdit.Background;
-            npcToEdit.Race = editedNpc.Race != null ? editedNpc.Race : npcToEdit.Race;
-            npcToEdit.Class = editedNpc.Class != null ? editedNpc.Class : npcToEdit.Class;
-            _context.SaveChanges();
+            //npcToEdit.Name = editedNpc.Name != null ? editedNpc.Name : npcToEdit.Name;
+            //npcToEdit.Relationship = editedNpc.Relationship != null ? editedNpc.Relationship : npcToEdit.Relationship;
+            //npcToEdit.Background = editedNpc.Background != null ? editedNpc.Background : npcToEdit.Background;
+            //npcToEdit.Race = editedNpc.Race != null ? editedNpc.Race : npcToEdit.Race;
+            //npcToEdit.Class = editedNpc.Class != null ? editedNpc.Class : npcToEdit.Class;
+            //_context.SaveChanges();
 
             return RedirectToPage();
         }
 
         public ActionResult OnPutDeleteNpc(RelatedNpc npcToDelete)
         {
-            var npcToRemove = _context.RelatedNpcs.AsNoTracking().Where(npc => npc.Id == npcToDelete.Id).FirstOrDefault();
+            _npcs.DeleteNpc(npcToDelete);
 
-            if (npcToDelete != null)
-            {
-                _context.RelatedNpcs.Remove(npcToDelete);
-                _context.SaveChanges();
-            }
+            //var npcToRemove = _context.RelatedNpcs.AsNoTracking().Where(npc => npc.Id == npcToDelete.Id).FirstOrDefault();
+
+            //if (npcToDelete != null)
+            //{
+            //    _context.RelatedNpcs.Remove(npcToDelete);
+            //    _context.SaveChanges();
+            //}
 
             return RedirectToPage();
         }

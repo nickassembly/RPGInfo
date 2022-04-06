@@ -15,12 +15,14 @@ namespace RPGInfo.Web.Pages
         private readonly ApplicationDbContext _context;
         private readonly ILogger<CharacterDetailModel> _logger;
         private readonly INote _notes;
+        private readonly INpc _npcs;
 
-        public CharacterDetailModel(ApplicationDbContext context, ILogger<CharacterDetailModel> logger, INote notes)
+        public CharacterDetailModel(ApplicationDbContext context, ILogger<CharacterDetailModel> logger, INote notes, INpc npcs)
         {
             _context = context;
             _logger = logger;
             _notes = notes;
+            _npcs = npcs;
         }
 
         [BindProperty]
@@ -63,46 +65,52 @@ namespace RPGInfo.Web.Pages
 
         public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
-            RelatedNpc newNpc = new RelatedNpc
-            {
-                CharacterId = Character.Id,
-                Name = npcToAdd.Name,
-                Relationship = npcToAdd.Relationship,
-                Background = npcToAdd.Background,
-                Race = npcToAdd.Race,
-                Class = npcToAdd.Class
-            };
+            // TODO: Test all npcs add/edit/delete
 
-            _context.RelatedNpcs.Add(newNpc);
-            _context.SaveChanges();
+            //RelatedNpc newNpc = new RelatedNpc
+            //{
+            //    CharacterId = Character.Id,
+            //    Name = npcToAdd.Name,
+            //    Relationship = npcToAdd.Relationship,
+            //    Background = npcToAdd.Background,
+            //    Race = npcToAdd.Race,
+            //    Class = npcToAdd.Class
+            //};
+
+           _npcs.AddNpcs(npcToAdd, RpgEntityType.CharacterType, Character.Id);
+
+            //_context.RelatedNpcs.Add(newNpc);
+            //_context.SaveChanges();
 
             return RedirectToPage();
         }
 
         public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
         {
+            _npcs.EditNpc(editedNpc);
+            //var npcToEdit = _context.RelatedNpcs.Where(npc => npc.Id == editedNpc.Id).FirstOrDefault();
 
-            var npcToEdit = _context.RelatedNpcs.Where(npc => npc.Id == editedNpc.Id).FirstOrDefault();
-
-            npcToEdit.Name = editedNpc.Name != null ? editedNpc.Name : npcToEdit.Name;
-            npcToEdit.Relationship = editedNpc.Relationship != null ? editedNpc.Relationship : npcToEdit.Relationship;
-            npcToEdit.Background = editedNpc.Background != null ? editedNpc.Background : npcToEdit.Background;
-            npcToEdit.Race = editedNpc.Race != null ? editedNpc.Race : npcToEdit.Race;
-            npcToEdit.Class = editedNpc.Class != null ? editedNpc.Class : npcToEdit.Class;
-            _context.SaveChanges();
+            //npcToEdit.Name = editedNpc.Name != null ? editedNpc.Name : npcToEdit.Name;
+            //npcToEdit.Relationship = editedNpc.Relationship != null ? editedNpc.Relationship : npcToEdit.Relationship;
+            //npcToEdit.Background = editedNpc.Background != null ? editedNpc.Background : npcToEdit.Background;
+            //npcToEdit.Race = editedNpc.Race != null ? editedNpc.Race : npcToEdit.Race;
+            //npcToEdit.Class = editedNpc.Class != null ? editedNpc.Class : npcToEdit.Class;
+            //_context.SaveChanges();
 
             return RedirectToPage();
         }
 
         public ActionResult OnPutDeleteNpc(RelatedNpc npcToDelete)
         {
-            var npcToRemove = _context.RelatedNpcs.AsNoTracking().Where(npc => npc.Id == npcToDelete.Id).FirstOrDefault();
+            //var npcToRemove = _context.RelatedNpcs.AsNoTracking().Where(npc => npc.Id == npcToDelete.Id).FirstOrDefault();
 
-            if (npcToRemove != null)
-            {
-                _context.RelatedNpcs.Remove(npcToRemove);
-                _context.SaveChanges();
-            }
+            //if (npcToRemove != null)
+            //{
+            //    _context.RelatedNpcs.Remove(npcToRemove);
+            //    _context.SaveChanges();
+            //}
+
+            _npcs.DeleteNpc(npcToDelete);
 
             return RedirectToPage();
         }
