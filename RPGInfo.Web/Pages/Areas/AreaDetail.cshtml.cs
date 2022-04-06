@@ -43,7 +43,7 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPostAddNotes([FromBody] string[] noteStrings)
         {
-            var newNotes = _notes.AddNotes(noteStrings, NoteType.AreaNote, Area.Id);
+            var newNotes = _notes.AddNotes(noteStrings, RpgEntityType.AreaType, Area.Id);
 
             Area.AreaNotes.AddRange(newNotes);
 

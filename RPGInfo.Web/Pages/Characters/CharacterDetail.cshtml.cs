@@ -5,8 +5,6 @@ using Microsoft.Extensions.Logging;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
 using RPGInfo.Web.Services;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,11 +38,9 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public string[] CharacterNoteStrings { get; set; }
 
-        // TODO: Test Character, Area, World Event notes
-
         public ActionResult OnPostAddNotes([FromBody] string[] noteStrings)
         {
-            var newNotes = _notes.AddNotes(noteStrings, NoteType.CharacterNote, Character.Id);
+            var newNotes = _notes.AddNotes(noteStrings, RpgEntityType.CharacterType, Character.Id);
 
             Character.CharacterNotes.AddRange(newNotes);
 

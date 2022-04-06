@@ -21,11 +21,4 @@ namespace RPGInfo.Web.Models
 
     }
 
-    public enum NoteType
-    { 
-        CharacterNote,
-        AreaNote,
-        EventNote
-    }
-
 }

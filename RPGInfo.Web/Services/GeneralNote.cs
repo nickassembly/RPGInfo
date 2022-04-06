@@ -17,7 +17,7 @@ namespace RPGInfo.Web.Services
             _context = context;
         }
 
-        public List<Note> AddNotes([FromBody] string[] stringsToConvert, NoteType noteType, int id)
+        public List<Note> AddNotes([FromBody] string[] stringsToConvert, RpgEntityType noteType, int id)
         {
             List<Note> newNotes = new List<Note>();
 
@@ -48,9 +48,9 @@ namespace RPGInfo.Web.Services
 
                 note.NoteContent = extractedContent.Substring(5);
 
-                if (noteType == NoteType.CharacterNote)
+                if (noteType == RpgEntityType.CharacterType)
                     note.CharacterId = id;
-                else if (noteType == NoteType.AreaNote)
+                else if (noteType == RpgEntityType.AreaType)
                     note.AreaId = id;
                 else
                     note.WorldEventId = id;

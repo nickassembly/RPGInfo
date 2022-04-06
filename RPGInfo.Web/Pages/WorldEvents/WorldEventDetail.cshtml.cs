@@ -42,7 +42,7 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public ActionResult OnPostAddNotes([FromBody] string[] noteStrings)
         {
-            var newNotes = _notes.AddNotes(noteStrings, NoteType.EventNote, WorldEvent.Id);
+            var newNotes = _notes.AddNotes(noteStrings, RpgEntityType.EventType, WorldEvent.Id);
 
             WorldEvent.EventNotes.AddRange(newNotes);
 
