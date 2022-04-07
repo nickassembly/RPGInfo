@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
 using RPGInfo.Web.Services;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -68,18 +65,6 @@ namespace RPGInfo.Web.Pages.WorldEvents
         public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
             _npcs.AddNpcs(npcToAdd, RpgEntityType.EventType, WorldEvent.Id);
-            //RelatedNpc newNpc = new RelatedNpc
-            //{
-            //    WorldEventId = WorldEvent.Id,
-            //    Name = npcToAdd.Name,
-            //    Relationship = npcToAdd.Relationship,
-            //    Background = npcToAdd.Background,
-            //    Race = npcToAdd.Race,
-            //    Class = npcToAdd.Class
-            //};
-
-            //_context.RelatedNpcs.Add(newNpc);
-            //_context.SaveChanges();
 
             return RedirectToPage();
         }
@@ -87,14 +72,6 @@ namespace RPGInfo.Web.Pages.WorldEvents
         public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
         {
             _npcs.EditNpc(editedNpc);
-            //var npcToEdit = _context.RelatedNpcs.Where(npc => npc.Id == editedNpc.Id).FirstOrDefault();
-
-            //npcToEdit.Name = editedNpc.Name != null ? editedNpc.Name : npcToEdit.Name;
-            //npcToEdit.Relationship = editedNpc.Relationship != null ? editedNpc.Relationship : npcToEdit.Relationship;
-            //npcToEdit.Background = editedNpc.Background != null ? editedNpc.Background : npcToEdit.Background;
-            //npcToEdit.Race = editedNpc.Race != null ? editedNpc.Race : npcToEdit.Race;
-            //npcToEdit.Class = editedNpc.Class != null ? editedNpc.Class : npcToEdit.Class;
-            //_context.SaveChanges();
 
             return RedirectToPage();
         }
@@ -102,13 +79,6 @@ namespace RPGInfo.Web.Pages.WorldEvents
         public ActionResult OnPutDeleteNpc(RelatedNpc npcToDelete)
         {
             _npcs.DeleteNpc(npcToDelete);
-            //var npcToRemove = _context.RelatedNpcs.AsNoTracking().Where(npc => npc.Id == npcToDelete.Id).FirstOrDefault();
-
-            //if (npcToDelete != null)
-            //{
-            //    _context.RelatedNpcs.Remove(npcToDelete);
-            //    _context.SaveChanges();
-            //}
 
             return RedirectToPage();
         }

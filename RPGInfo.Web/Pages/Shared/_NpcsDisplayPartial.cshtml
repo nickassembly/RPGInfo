@@ -144,10 +144,11 @@
       npcToEdit.id = npcId;
       npcToEdit.name = name;
       npcToEdit.race = race;
-      npcToEdit.npcClass = npcClass;
+      npcToEdit.npcClass = npcClass; // TODO: Class not getting passed to server
       npcToEdit.relationship = relationship;
       npcToEdit.background = background;
       
+      console.log(npcToEdit);
 
       $.ajax({
        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',

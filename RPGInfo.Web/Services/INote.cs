@@ -12,5 +12,4 @@ namespace RPGInfo.Web.Services
         void DeleteNote(Note deletedNote);
     }
 
-
 }
