@@ -9,6 +9,7 @@ namespace RPGInfo.Web.Models
         public byte[] EventImage { get; set; }
         public string EventName { get; set; }
         public string EventDescription { get; set; }
+        public string UserId { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime EventDate { get; set; }

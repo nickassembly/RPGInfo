@@ -18,6 +18,7 @@ namespace RPGInfo.Web.Models
         public int? AreaId { get; set; }
         public int? WorldEventId { get; set; }
         public int? CharacterId { get; set; }
+        public string UserId { get; set; }
 
     }
 

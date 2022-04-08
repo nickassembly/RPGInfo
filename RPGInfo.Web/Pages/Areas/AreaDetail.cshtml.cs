@@ -27,6 +27,8 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public Area Area { get; set; }
 
+        // TODO: Change ALL methods to only retrive logged in user
+        // need to wire up UserManager<LoggedInUser>
         public void OnGet(int id)
         {
             Area = _context.AreasOfInterest.Where(x => x.Id == id).FirstOrDefault();

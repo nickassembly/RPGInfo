@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RPGInfo.Web.Data;
 
 namespace RPGInfo.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220408115928_UserId")]
+    partial class UserId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -322,9 +324,6 @@ namespace RPGInfo.Web.Data.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("WorldEventId")
                         .HasColumnType("int");
 
@@ -365,9 +364,6 @@ namespace RPGInfo.Web.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Relationship")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("WorldEventId")

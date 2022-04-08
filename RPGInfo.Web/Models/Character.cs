@@ -10,6 +10,7 @@ namespace RPGInfo.Web.Models
         public string Backstory { get; set; }
         public string Race { get; set; }
         public string Class { get; set; }
+        public string UserId { get; set; }
         public List<WorldEvent> CharacterEvents { get; set; } = new List<WorldEvent>();
         public List<Note> CharacterNotes { get; set; } = new List<Note>();
         public List<Area> KnownAreas { get; set; } = new List<Area>();
