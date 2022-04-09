@@ -31,7 +31,9 @@ namespace RPGInfo.Web.Pages
         // need to wire up UserManager<LoggedInUser>
         public void OnGet(int id)
         {
-            Area = _context.AreasOfInterest.Where(x => x.Id == id).FirstOrDefault();
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            Area = _context.AreasOfInterest.Where(x => x.Id == id && x.UserId == loggedInUserId).FirstOrDefault();
 
             Area.AreaNotes = _context.Notes.Where(note => note.AreaId == id).ToList();
 

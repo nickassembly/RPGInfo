@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
+using RPGInfo.Web.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -37,7 +38,9 @@ namespace RPGInfo.Web.Pages
 
         public void OnGet()
         {
-            WorldEventList = _context.WorldEvents.ToList();
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            WorldEventList = _context.WorldEvents.Where(u => u.UserId == loggedInUserId).ToList();
         }
 
         public IActionResult OnPost()

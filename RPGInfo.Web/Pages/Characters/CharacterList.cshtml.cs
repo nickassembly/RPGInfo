@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
+using RPGInfo.Web.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -35,7 +36,9 @@ namespace RPGInfo.Web.Pages
 
         public void OnGet()
         {
-            CharacterList = _context.Characters.ToList();
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            CharacterList = _context.Characters.Where(u => u.UserId == loggedInUserId).ToList();
         }
 
         public IActionResult OnPostDelete(int id)
@@ -50,6 +53,8 @@ namespace RPGInfo.Web.Pages
 
         public IActionResult OnPost()
         {
+            // TODO: Add user Id to add methods
+            // Test, Reset Database to verify migrations are working as expected
             if (!ModelState.IsValid) return Page();
 
             var character = Character;

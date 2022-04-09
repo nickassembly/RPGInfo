@@ -29,7 +29,9 @@ namespace RPGInfo.Web.Pages
 
         public void OnGet(int id)
         {
-            Character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            Character = _context.Characters.Where(x => x.Id == id && x.UserId == loggedInUserId).FirstOrDefault();
 
             Character.CharacterNotes = _context.Notes.Where(note => note.CharacterId == id).ToList();
 

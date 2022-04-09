@@ -29,7 +29,9 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public void OnGet(int id)
         {
-            WorldEvent = _context.WorldEvents.Where(x => x.Id == id).FirstOrDefault();
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            WorldEvent = _context.WorldEvents.Where(x => x.Id == id && x.UserId == loggedInUserId).FirstOrDefault();
 
             WorldEvent.EventNotes = _context.Notes.Where(note => note.WorldEventId == id).ToList();
 
