@@ -5,12 +5,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
 using RPGInfo.Web.Services;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
-using System.Security.Claims;
 
 namespace RPGInfo.Web.Pages
 {
@@ -31,6 +29,8 @@ namespace RPGInfo.Web.Pages
         [NotMapped]
         [BindProperty]
         public IFormFile Portrait { get; set; }
+
+        public string LoggedInUser { get; set; }
 
         public List<Character> CharacterList { get; set; } = new List<Character>();
 
@@ -53,14 +53,15 @@ namespace RPGInfo.Web.Pages
 
         public IActionResult OnPost()
         {
-            // TODO: Add user Id to add methods
-            // Test, Reset Database to verify migrations are working as expected
             if (!ModelState.IsValid) return Page();
+
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
 
             var character = Character;
             character.Name = Character.Name;
             character.Race = Character.Race;
             character.Class = Character.Class;
+            character.UserId = loggedInUserId;
 
             if (Portrait != null)
             {

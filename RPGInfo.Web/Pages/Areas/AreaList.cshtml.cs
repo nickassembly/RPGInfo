@@ -5,14 +5,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
 using RPGInfo.Web.Services;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGInfo.Web.Pages
 {
@@ -57,12 +53,12 @@ namespace RPGInfo.Web.Pages
         {
             if (!ModelState.IsValid) return Page();
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            DateTimeOffset createdDate = DateTime.Now;
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
 
             var area = Area;
             area.AreaName = Area.AreaName;
             area.AreaDescription = Area.AreaDescription;
+            area.UserId = loggedInUserId;
             
             if (AreaImage != null)
             {
