@@ -17,7 +17,7 @@ namespace RPGInfo.Web.Services
             _context = context;
         }
 
-        public List<Note> AddNotes([FromBody] string[] stringsToConvert, RpgEntityType noteType, int id)
+        public List<Note> AddNotes([FromBody] string[] stringsToConvert, string userId, RpgEntityType noteType, int id)
         {
             List<Note> newNotes = new List<Note>();
 
@@ -55,6 +55,8 @@ namespace RPGInfo.Web.Services
                 else
                     note.WorldEventId = id;
 
+                note.UserId = userId;
+
                 newNotes.Add(note);
             }
 
@@ -64,13 +66,14 @@ namespace RPGInfo.Web.Services
             return newNotes;
         }
 
-        public void EditNote(Note editedNote)
+        public void EditNote(Note editedNote, string userId)
         {
             var noteToEdit = _context.Notes.Where(n => n.Id == editedNote.Id).FirstOrDefault();
 
             noteToEdit.NoteContent = editedNote.NoteContent != null ? editedNote.NoteContent : noteToEdit.NoteContent;
             noteToEdit.NoteTitle = editedNote.NoteTitle != null ? editedNote.NoteTitle : noteToEdit.NoteTitle;
             noteToEdit.NoteDate = editedNote.NoteDate;
+            noteToEdit.UserId = userId;
             _context.SaveChanges();
         }
 

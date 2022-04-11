@@ -15,7 +15,7 @@ namespace RPGInfo.Web.Services
             _context = context;
         }
 
-        public void AddNpcs([FromForm] RelatedNpc npcToAdd, RpgEntityType npcType, int id)
+        public void AddNpcs([FromForm] RelatedNpc npcToAdd, string userId, RpgEntityType npcType, int id)
         {
             RelatedNpc newNpc = new RelatedNpc();
 
@@ -37,13 +37,14 @@ namespace RPGInfo.Web.Services
             newNpc.Background = npcToAdd.Background;
             newNpc.Race = npcToAdd.Race;
             newNpc.Class = npcToAdd.Class;
+            newNpc.UserId = userId;
 
             _context.RelatedNpcs.Add(newNpc);
             _context.SaveChanges();
 
         }
 
-        public void EditNpc(RelatedNpc editedNpc)
+        public void EditNpc(RelatedNpc editedNpc, string userId)
         {
             var npcToEdit = _context.RelatedNpcs.Where(npc => npc.Id == editedNpc.Id).FirstOrDefault();
 
@@ -52,6 +53,7 @@ namespace RPGInfo.Web.Services
             npcToEdit.Background = editedNpc.Background != null ? editedNpc.Background : npcToEdit.Background;
             npcToEdit.Race = editedNpc.Race != null ? editedNpc.Race : npcToEdit.Race;
             npcToEdit.Class = editedNpc.Class != null ? editedNpc.Class : npcToEdit.Class;
+            npcToEdit.UserId = userId;
 
             _context.SaveChanges();
         }

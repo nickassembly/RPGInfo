@@ -43,7 +43,13 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public ActionResult OnPostAddNotes([FromBody] string[] noteStrings)
         {
-            var newNotes = _notes.AddNotes(noteStrings, RpgEntityType.EventType, WorldEvent.Id);
+            // TODO: test npc/notes for all types
+            // refactor to eliminate duplication of user id
+            // possibly inject UserManager<LoginUser> into classes?
+
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            var newNotes = _notes.AddNotes(noteStrings, loggedInUserId, RpgEntityType.EventType, WorldEvent.Id);
 
             WorldEvent.EventNotes.AddRange(newNotes);
 
@@ -52,7 +58,9 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public ActionResult OnPutEditNote(Note editedNote)
         {
-            _notes.EditNote(editedNote);
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            _notes.EditNote(editedNote, loggedInUserId);
 
             return RedirectToPage();
         }
@@ -66,14 +74,18 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
-            _npcs.AddNpcs(npcToAdd, RpgEntityType.EventType, WorldEvent.Id);
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            _npcs.AddNpcs(npcToAdd, loggedInUserId, RpgEntityType.EventType, WorldEvent.Id);
 
             return RedirectToPage();
         }
 
         public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
         {
-            _npcs.EditNpc(editedNpc);
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            _npcs.EditNpc(editedNpc, loggedInUserId);
 
             return RedirectToPage();
         }
@@ -87,6 +99,8 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public ActionResult OnPost()
         {
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
             if (ModelState.IsValid)
             {
                 var eventToEdit = _context.WorldEvents.Where(x => x.Id == WorldEvent.Id).FirstOrDefault();
@@ -96,6 +110,7 @@ namespace RPGInfo.Web.Pages.WorldEvents
                     eventToEdit.EventName = WorldEvent.EventName;
                     eventToEdit.EventDescription = WorldEvent.EventDescription;
                     eventToEdit.EventDate = WorldEvent.EventDate;
+                    eventToEdit.UserId = loggedInUserId;
                 }
 
                 _context.WorldEvents.Update(eventToEdit);

@@ -43,7 +43,9 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPostAddNotes([FromBody] string[] noteStrings)
         {
-            var newNotes = _notes.AddNotes(noteStrings, RpgEntityType.CharacterType, Character.Id);
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            var newNotes = _notes.AddNotes(noteStrings, loggedInUserId, RpgEntityType.CharacterType, Character.Id);
 
             Character.CharacterNotes.AddRange(newNotes);
 
@@ -52,7 +54,9 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPutEditNote(Note editedNote)
         {
-            _notes.EditNote(editedNote);
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            _notes.EditNote(editedNote, loggedInUserId);
 
             return RedirectToPage();
         }
@@ -66,14 +70,18 @@ namespace RPGInfo.Web.Pages
 
         public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
-           _npcs.AddNpcs(npcToAdd, RpgEntityType.CharacterType, Character.Id);
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            _npcs.AddNpcs(npcToAdd, loggedInUserId, RpgEntityType.CharacterType, Character.Id);
 
             return RedirectToPage();
         }
 
         public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
         {
-            _npcs.EditNpc(editedNpc);
+            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            _npcs.EditNpc(editedNpc, loggedInUserId);
 
             return RedirectToPage();
         }

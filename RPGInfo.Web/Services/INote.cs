@@ -7,8 +7,8 @@ namespace RPGInfo.Web.Services
 {
     public interface INote
     {
-        List<Note> AddNotes([FromBody] string[] stringsToConvert, RpgEntityType noteType, int id);
-        void EditNote(Note editedNote);
+        List<Note> AddNotes([FromBody] string[] stringsToConvert, string userId, RpgEntityType noteType, int id);
+        void EditNote(Note editedNote, string userId);
         void DeleteNote(Note deletedNote);
     }
 

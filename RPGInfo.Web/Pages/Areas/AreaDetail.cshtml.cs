@@ -27,8 +27,6 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public Area Area { get; set; }
 
-        // TODO: Change ALL methods to only retrive logged in user
-        // need to wire up UserManager<LoggedInUser>
         public void OnGet(int id)
         {
             string loggedInUserId = UserUtils.GetLoggedInUser(User);
@@ -43,18 +41,18 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public string[] AreaNoteStrings { get; set; }
 
-        public ActionResult OnPostAddNotes([FromBody] string[] noteStrings)
+        public ActionResult OnPostAddNotes([FromBody] string[] noteStrings, string userId)
         {
-            var newNotes = _notes.AddNotes(noteStrings, RpgEntityType.AreaType, Area.Id);
+            var newNotes = _notes.AddNotes(noteStrings, userId, RpgEntityType.AreaType, Area.Id);
 
             Area.AreaNotes.AddRange(newNotes);
 
             return RedirectToPage();
         }
 
-        public ActionResult OnPutEditNote(Note editedNote)
+        public ActionResult OnPutEditNote(Note editedNote, string userId)
         {
-            _notes.EditNote(editedNote);
+            _notes.EditNote(editedNote, userId);
 
             return RedirectToPage();
         }
@@ -66,16 +64,16 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
-        public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
+        public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd, string userId)
         {
-            _npcs.AddNpcs(npcToAdd, RpgEntityType.AreaType, Area.Id);
+            _npcs.AddNpcs(npcToAdd, userId, RpgEntityType.AreaType, Area.Id);
 
             return RedirectToPage();
         }
 
-        public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
+        public ActionResult OnPutEditNpc(RelatedNpc editedNpc, string userId)
         {
-            _npcs.EditNpc(editedNpc);
+            _npcs.EditNpc(editedNpc, userId);
 
             return RedirectToPage();
         }
