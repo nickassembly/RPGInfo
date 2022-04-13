@@ -1,6 +1,12 @@
 ﻿@page "{id}"
 @model RPGInfo.Web.Pages.CharacterDetailModel
 
+@*TODO: Move NPC and NOTES panel up under button
+      Separate Buttons for Add Note and Add NPC
+      Adjust These so they are verticle (or somewhere else)
+      Improve Look and Feel of Add forms for Characters/Areas/Events
+      Refactor to use UserManager and not have repeated UserId code*@
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 
 <div class="container">
@@ -63,7 +69,7 @@
         </div>
     </form>
 
-    <div class="row mt-4 mb-4">
+    <div class="row mt-4 mb-2">
         <div class="col-12">
             <button type="button" id="addNote" class="btn btn-info" onclick="showDetails()">Add Character Notes or Npcs</button>
         </div>
