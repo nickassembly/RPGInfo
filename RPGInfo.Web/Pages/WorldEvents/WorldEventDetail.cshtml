@@ -10,8 +10,12 @@
                 @if (Model.WorldEvent.EventImage != null)
                 {
                     <div class="team-single-img">
-                        <img height="300" width="300" class="rounded-sm" src="data:image;base64,@System.Convert.ToBase64String(Model.WorldEvent.EventImage)" alt="">
+                        <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(Model.WorldEvent.EventImage)" alt="">
                         <h4>@Model.WorldEvent.EventName</h4>
+                        <div class="mt-2 mb-2 btn-group">
+                            <button type="button" id="addNote" class="btn btn-success" onclick="showDetails()">Add Event Notes *</button>
+                            <button type="button" id="addNote" class="btn btn-primary" onclick="">Add Npcs</button>
+                        </div>
                     </div>
                 }
                 else
@@ -19,6 +23,10 @@
                     <div class="team-single-img">
                         <img class="card-img-top" src="~/images/NoImageAvailable.png" />
                         <h4>@Model.WorldEvent.EventName</h4>
+                        <div class="mt-2 mb-2 btn-group">
+                            <button type="button" id="addNote" class="btn btn-success" onclick="showDetails()">Add Event Notes *</button>
+                            <button type="button" id="addNote" class="btn btn-primary" onclick="">Add Npcs</button>
+                        </div>
                     </div>
                 }
             </div>
@@ -46,15 +54,33 @@
                 <div>
                     <button type="submit" class="btn btn-success">Edit @Model.WorldEvent.EventName</button>
                 </div>
+
+                <div class="mt-5" id="tabbedPage" style="visibility:visible;">
+                    <div class="tabs">
+                        <div class="tab-button-outer">
+                            <ul id="tab-button">
+                                <li><a href="#tab01">Event Notes</a></li>
+                                <li><a href="#tab02">Important Npcs</a></li>
+                            </ul>
+                        </div>
+
+                        <div id="tab01" class="tab-contents">
+                            <partial name="_NotesDisplayPartial" model="@Model.WorldEvent.EventNotes" />
+                        </div>
+                        <div id="tab02" class="tab-contents">
+                            <partial name="_NpcsDisplayPartial" model="@Model.WorldEvent.RelatedNpcs" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
 
-    <div class="row mt-4 mb-4">
+   @* <div class="row mt-4 mb-4">
         <div class="col-12">
-            <button type="button" id="addNote" class="btn btn-info" onclick="showDetails()">Add Character Notes or Npcs</button>
+            <button type="button" id="addNote" class="btn btn-info" onclick="showDetails()">Add Event Notes or Npcs</button>
         </div>
-    </div>
+    </div>*@
 
     <div class="row" style="visibility:hidden;max-height:0" id="showDetails">
         <div class="col-6">
@@ -65,23 +91,6 @@
         </div>
     </div>
 
-    <div id="tabbedPage" style="visibility:visible;margin-left:28%;">
-        <div class="tabs">
-            <div class="tab-button-outer">
-                <ul id="tab-button">
-                    <li><a href="#tab01">Event Notes</a></li>
-                    <li><a href="#tab02">Important Npcs</a></li>
-                </ul>
-            </div>
-
-            <div id="tab01" class="tab-contents">
-                <partial name="_NotesDisplayPartial" model="@Model.WorldEvent.EventNotes" />
-            </div>
-            <div id="tab02" class="tab-contents">
-                <partial name="_NpcsDisplayPartial" model="@Model.WorldEvent.RelatedNpcs" />
-            </div>
-        </div>
-    </div>
 </div>
 
 <style>
