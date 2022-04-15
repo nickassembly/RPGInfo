@@ -1,9 +1,8 @@
 ﻿@page "{id}"
 @model RPGInfo.Web.Pages.CharacterDetailModel
 
-@*TODO: Move NPC and NOTES panel up under button
-    Separate Buttons for Add Note and Add NPC
-    Adjust These so they are verticle (or somewhere else)
+@*TODO:
+    Move Note / Npc form (possibly where normal stat form is)
     Refactor to use UserManager and not have repeated UserId code
     TODO: Add note -- title and date not working. Edit/delete work*@
 
@@ -19,8 +18,8 @@
                         <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(Model.Character.Portrait)" alt="">
                         <h4>@Model.Character.Name</h4>
                         <div class="mt-2 mb-2 btn-group">
-                            <button type="button" id="addNote" class="btn btn-success" onclick="showDetails()">Add Character Notes *</button>
-                            <button type="button" id="addNote" class="btn btn-primary" onclick="">Add Npcs</button>
+                            <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Character Notes</button>
+                            <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails()">Add Npc</button>
                         </div>
                     </div>
                 }
@@ -30,12 +29,12 @@
                         <img class="card-img-top" src="~/images/NoImageAvailable.png" />
                         <h4>@Model.Character.Name</h4>
                         <div class="mt-2 mb-2 btn-group">
-                            <button type="button" id="addNote" class="btn btn-success" onclick="showDetails()">Add Character Notes *</button>
-                            <button type="button" id="addNote" class="btn btn-primary" onclick="">Add Npcs</button>
+                            <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Character Notes</button>
+                            <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails()">Add Npc</button>
                         </div>
                     </div>
                 }
-                
+
             </div>
 
             <div class="col-lg-8 col-md-7">
@@ -92,20 +91,16 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </form>
 
-    <div class="row" style="visibility:hidden;max-height:0" id="showDetails">
-        <div class="col-6">
-            <partial name="_NewNotePartial" model="@Model.CharacterNoteStrings" />
-        </div>
-        <div class="col-6">
-            <partial name="_NewNpcPartial" model="@Model.Character.RelatedNpcs" />
-        </div>
+    <div style="visibility:hidden;max-height:0" id="showNoteDetails">
+        <partial name="_NewNotePartial" model="@Model.CharacterNoteStrings" />
     </div>
-
+    <div style="visibility:hidden;max-height:0" id="showNpcDetails">
+        <partial name="_NewNpcPartial" model="@Model.Character.RelatedNpcs" />
+    </div>
 
 </div>
 
@@ -192,13 +187,28 @@
 <script src="/lib/jquery/dist/jquery.js"></script>
 <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
 <script>
-     function showDetails() {
-        if ($('#showDetails').css('visibility') == 'hidden') {
-          $('#showDetails').css('visibility', 'visible');
+     function showNoteDetails() {
+        if ($('#showNoteDetails').css('visibility') == 'hidden') {
+          $('#showNoteDetails').css('visibility', 'visible');
           $('#tabbedPage').css('visibility', 'hidden');
+          $('#showNpcDetails').css('visibility', 'hidden');
         }
         else{
-         $('#showDetails').css('visibility', 'hidden');
+         $('#showNoteDetails').css('visibility', 'hidden');
+         $('#showNpcDetails').css('visibility', 'hidden');
+          $('#tabbedPage').css('visibility', 'visible');
+        }
+     }
+
+     function showNpcDetails() {
+        if ($('#showNpcDetails').css('visibility') == 'hidden') {
+          $('#showNpcDetails').css('visibility', 'visible');
+          $('#tabbedPage').css('visibility', 'hidden');
+          $('#showNoteDetails').css('visibility', 'hidden');
+        }
+        else{
+         $('#showNpcDetails').css('visibility', 'hidden');
+         $('#showNoteDetails').css('visibility', 'hidden');
           $('#tabbedPage').css('visibility', 'visible');
         }
      }

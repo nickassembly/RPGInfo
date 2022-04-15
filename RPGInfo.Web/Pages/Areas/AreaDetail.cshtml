@@ -16,8 +16,8 @@
                         <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(Model.Area.AreaImage)" alt="">
                         <h4>@Model.Area.AreaName</h4>
                         <div class="mt-2 mb-2 btn-group">
-                            <button type="button" id="addNote" class="btn btn-success" onclick="showDetails()">Add Area Notes *</button>
-                            <button type="button" id="addNote" class="btn btn-primary" onclick="">Add Npcs</button>
+                            <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Area Notes</button>
+                            <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails()">Add Npcs</button>
                         </div>
                     </div>
                 }
@@ -27,8 +27,8 @@
                         <img class="card-img-top" src="~/images/NoImageAvailable.png" />
                         <h4>@Model.Area.AreaName</h4>
                         <div class="mt-2 mb-2 btn-group">
-                            <button type="button" id="addNote" class="btn btn-success" onclick="showDetails()">Add Area Notes *</button>
-                            <button type="button" id="addNote" class="btn btn-primary" onclick="">Add Npcs</button>
+                            <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Area Notes *</button>
+                            <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails">Add Npcs</button>
                         </div>
                     </div>
                 }
@@ -74,22 +74,12 @@
         </div>
     </form>
 
-    @*  <div class="row mt-4 mb-4">
-        <div class="col-12">
-        <button type="button" id="addNote" class="btn btn-info" onclick="showDetails()">Add Area Notes or Npcs</button>
-        </div>
-        </div>*@
-
-    <div class="row" style="visibility:hidden;max-height:0" id="showDetails">
-        <div class="col-6">
-            <partial name="_NewNotePartial" model="@Model.AreaNoteStrings" />
-        </div>
-        <div class="col-6">
-            <partial name="_NewNpcPartial" model="@Model.Area.RelatedNpcs" />
-        </div>
+     <div style="visibility:hidden;max-height:0" id="showNoteDetails">
+        <partial name="_NewNotePartial" model="@Model.AreaNoteStrings" />
     </div>
-
-
+    <div style="visibility:hidden;max-height:0" id="showNpcDetails">
+        <partial name="_NewNpcPartial" model="@Model.Area.RelatedNpcs" />
+    </div>
 </div>
 
 <style>
@@ -175,13 +165,28 @@
 <script src="/lib/jquery/dist/jquery.js"></script>
 <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
 <script>
-     function showDetails() {
-        if ($('#showDetails').css('visibility') == 'hidden') {
-          $('#showDetails').css('visibility', 'visible');
+    function showNoteDetails() {
+        if ($('#showNoteDetails').css('visibility') == 'hidden') {
+          $('#showNoteDetails').css('visibility', 'visible');
           $('#tabbedPage').css('visibility', 'hidden');
+          $('#showNpcDetails').css('visibility', 'hidden');
         }
         else{
-         $('#showDetails').css('visibility', 'hidden');
+         $('#showNoteDetails').css('visibility', 'hidden');
+         $('#showNpcDetails').css('visibility', 'hidden');
+          $('#tabbedPage').css('visibility', 'visible');
+        }
+     }
+
+     function showNpcDetails() {
+        if ($('#showNpcDetails').css('visibility') == 'hidden') {
+          $('#showNpcDetails').css('visibility', 'visible');
+          $('#tabbedPage').css('visibility', 'hidden');
+          $('#showNoteDetails').css('visibility', 'hidden');
+        }
+        else{
+         $('#showNpcDetails').css('visibility', 'hidden');
+         $('#showNoteDetails').css('visibility', 'hidden');
           $('#tabbedPage').css('visibility', 'visible');
         }
      }
