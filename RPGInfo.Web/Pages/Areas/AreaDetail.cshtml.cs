@@ -24,14 +24,23 @@ namespace RPGInfo.Web.Pages
             _npcs = npcs;
         }
 
+        public string LoggedInUser
+        {
+            get
+            {
+                return UserUtils.GetLoggedInUser(User);
+            }
+
+        }
+
         [BindProperty]
         public Area Area { get; set; }
 
         public void OnGet(int id)
         {
-            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+          //  string loggedInUserId = UserUtils.GetLoggedInUser(User);
 
-            Area = _context.AreasOfInterest.Where(x => x.Id == id && x.UserId == loggedInUserId).FirstOrDefault();
+            Area = _context.AreasOfInterest.Where(x => x.Id == id && x.UserId == LoggedInUser).FirstOrDefault();
 
             Area.AreaNotes = _context.Notes.Where(note => note.AreaId == id).ToList();
 
@@ -41,18 +50,18 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public string[] AreaNoteStrings { get; set; }
 
-        public ActionResult OnPostAddNotes([FromBody] string[] noteStrings, string userId)
+        public ActionResult OnPostAddNotes([FromBody] string[] noteStrings/*, string userId*/)
         {
-            var newNotes = _notes.AddNotes(noteStrings, userId, RpgEntityType.AreaType, Area.Id);
+            var newNotes = _notes.AddNotes(noteStrings, LoggedInUser, RpgEntityType.AreaType, Area.Id);
 
             Area.AreaNotes.AddRange(newNotes);
 
             return RedirectToPage();
         }
 
-        public ActionResult OnPutEditNote(Note editedNote, string userId)
+        public ActionResult OnPutEditNote(Note editedNote/*, string userId*/)
         {
-            _notes.EditNote(editedNote, userId);
+            _notes.EditNote(editedNote, LoggedInUser);
 
             return RedirectToPage();
         }
@@ -64,16 +73,16 @@ namespace RPGInfo.Web.Pages
             return RedirectToPage();
         }
 
-        public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd, string userId)
+        public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd/*, string userId*/)
         {
-            _npcs.AddNpcs(npcToAdd, userId, RpgEntityType.AreaType, Area.Id);
+            _npcs.AddNpcs(npcToAdd, LoggedInUser, RpgEntityType.AreaType, Area.Id);
 
             return RedirectToPage();
         }
 
-        public ActionResult OnPutEditNpc(RelatedNpc editedNpc, string userId)
+        public ActionResult OnPutEditNpc(RelatedNpc editedNpc/*, string userId*/)
         {
-            _npcs.EditNpc(editedNpc, userId);
+            _npcs.EditNpc(editedNpc, LoggedInUser);
 
             return RedirectToPage();
         }
@@ -95,6 +104,7 @@ namespace RPGInfo.Web.Pages
                 {
                     areaToEdit.AreaName = Area.AreaName;
                     areaToEdit.AreaDescription = Area.AreaDescription;
+                    areaToEdit.UserId = LoggedInUser;
                 }
 
                 _context.AreasOfInterest.Update(areaToEdit);

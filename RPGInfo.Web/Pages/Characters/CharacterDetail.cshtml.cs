@@ -25,14 +25,25 @@ namespace RPGInfo.Web.Pages
             _npcs = npcs;
         }
 
+        public string LoggedInUser 
+        {
+            get
+            {
+              return  UserUtils.GetLoggedInUser(User);
+            }
+
+        }
+
         [BindProperty]
         public Character Character { get; set; }
 
         public void OnGet(int id)
         {
-            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+            // TODO: Test all notes, test edit, test user records
 
-            Character = _context.Characters.Where(x => x.Id == id && x.UserId == loggedInUserId).FirstOrDefault();
+          //  string loggedInUserId = UserUtils.GetLoggedInUser(User);
+
+            Character = _context.Characters.Where(x => x.Id == id && x.UserId == LoggedInUser).FirstOrDefault();
 
             Character.CharacterNotes = _context.Notes.Where(note => note.CharacterId == id).ToList();
 
@@ -44,9 +55,9 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPostAddNotes([FromBody] string[] noteStrings)
         {
-            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+           // string loggedInUserId = UserUtils.GetLoggedInUser(User);
 
-            var newNotes = _notes.AddNotes(noteStrings, loggedInUserId, RpgEntityType.CharacterType, Character.Id);
+            var newNotes = _notes.AddNotes(noteStrings, LoggedInUser, RpgEntityType.CharacterType, Character.Id);
 
             Character.CharacterNotes.AddRange(newNotes);
 
@@ -55,9 +66,9 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPutEditNote(Note editedNote)
         {
-            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+           // string loggedInUserId = UserUtils.GetLoggedInUser(User);
 
-            _notes.EditNote(editedNote, loggedInUserId);
+            _notes.EditNote(editedNote, LoggedInUser);
 
             return RedirectToPage();
         }
@@ -71,18 +82,18 @@ namespace RPGInfo.Web.Pages
 
         public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
-            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+          //  string loggedInUserId = UserUtils.GetLoggedInUser(User);
 
-            _npcs.AddNpcs(npcToAdd, loggedInUserId, RpgEntityType.CharacterType, Character.Id);
+            _npcs.AddNpcs(npcToAdd, LoggedInUser, RpgEntityType.CharacterType, Character.Id);
 
             return RedirectToPage();
         }
 
         public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
         {
-            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+          //  string loggedInUserId = UserUtils.GetLoggedInUser(User);
 
-            _npcs.EditNpc(editedNpc, loggedInUserId);
+            _npcs.EditNpc(editedNpc, LoggedInUser);
 
             return RedirectToPage();
         }
@@ -107,6 +118,7 @@ namespace RPGInfo.Web.Pages
                     characterToEdit.Class = Character.Class;
                     characterToEdit.Backstory = Character.Backstory;
                     characterToEdit.Description = Character.Description;
+                    characterToEdit.UserId = LoggedInUser;
                 }
 
                 _context.Characters.Update(characterToEdit);
