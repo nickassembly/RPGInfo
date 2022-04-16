@@ -12,10 +12,6 @@
                     <div class="team-single-img">
                         <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(Model.WorldEvent.EventImage)" alt="">
                         <h4>@Model.WorldEvent.EventName</h4>
-                        <div class="mt-2 mb-2 btn-group">
-                            <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Event Note</button>
-                            <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails()">Add Npc</button>
-                        </div>
                     </div>
                 }
                 else
@@ -23,10 +19,6 @@
                     <div class="team-single-img">
                         <img class="card-img-top" src="~/images/NoImageAvailable.png" />
                         <h4>@Model.WorldEvent.EventName</h4>
-                        <div class="mt-2 mb-2 btn-group">
-                            <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Event Note</button>
-                            <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails()">Add Npc</button>
-                        </div>
                     </div>
                 }
             </div>
@@ -52,7 +44,18 @@
                     <input asp-for="@Model.WorldEvent.EventDate" value="@Model.WorldEvent.EventDate.ToShortDateString()" type="text" class="form-control">
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-success">Edit @Model.WorldEvent.EventName</button>
+                    <button type="submit" class="btn btn-success">Save Changes:  @Model.WorldEvent.EventName</button>
+                    <div class="ml-5 mt-2 mb-2 btn-group">
+                        <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Event Note</button>
+                        <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails()">Add Npc</button>
+                    </div>
+                </div>
+
+                <div style="visibility:hidden;max-height:0" id="showNoteDetails">
+                    <partial name="_NewNotePartial" model="@Model.EventNoteStrings" />
+                </div>
+                <div style="visibility:hidden;max-height:0" id="showNpcDetails">
+                    <partial name="_NewNpcPartial" model="@Model.WorldEvent.RelatedNpcs" />
                 </div>
 
                 <div class="mt-5" id="tabbedPage" style="visibility:visible;">
@@ -75,20 +78,6 @@
             </div>
         </div>
     </form>
-
-   @* <div class="row mt-4 mb-4">
-        <div class="col-12">
-            <button type="button" id="addNote" class="btn btn-info" onclick="showDetails()">Add Event Notes or Npcs</button>
-        </div>
-    </div>*@
-
-    <div style="visibility:hidden;max-height:0" id="showNoteDetails">
-        <partial name="_NewNotePartial" model="@Model.EventNoteStrings" />
-    </div>
-    <div style="visibility:hidden;max-height:0" id="showNpcDetails">
-        <partial name="_NewNpcPartial" model="@Model.WorldEvent.RelatedNpcs" />
-    </div>
-
 </div>
 
 <style>

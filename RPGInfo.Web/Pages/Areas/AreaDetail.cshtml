@@ -15,10 +15,6 @@
                     <div class="team-single-img">
                         <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(Model.Area.AreaImage)" alt="">
                         <h4>@Model.Area.AreaName</h4>
-                        <div class="mt-2 mb-2 btn-group">
-                            <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Area Notes</button>
-                            <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails()">Add Npcs</button>
-                        </div>
                     </div>
                 }
                 else
@@ -26,10 +22,6 @@
                     <div class="team-single-img">
                         <img class="card-img-top" src="~/images/NoImageAvailable.png" />
                         <h4>@Model.Area.AreaName</h4>
-                        <div class="mt-2 mb-2 btn-group">
-                            <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Area Notes *</button>
-                            <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails">Add Npcs</button>
-                        </div>
                     </div>
                 }
             </div>
@@ -50,6 +42,17 @@
                 </div>
                 <div>
                     <button type="submit" class="btn btn-success">Save Changes: @Model.Area.AreaName</button>
+                    <div class="mt-2 mb-2 btn-group">
+                        <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Area Note </button>
+                        <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails()">Add Npc</button>
+                    </div>
+                </div>
+
+                <div style="visibility:hidden;max-height:0" id="showNoteDetails">
+                    <partial name="_NewNotePartial" model="@Model.AreaNoteStrings" />
+                </div>
+                <div style="visibility:hidden;max-height:0" id="showNpcDetails">
+                    <partial name="_NewNpcPartial" model="@Model.Area.RelatedNpcs" />
                 </div>
 
                 <div class="mt-5" id="tabbedPage" style="visibility:visible;">
@@ -69,17 +72,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </form>
 
-     <div style="visibility:hidden;max-height:0" id="showNoteDetails">
-        <partial name="_NewNotePartial" model="@Model.AreaNoteStrings" />
-    </div>
-    <div style="visibility:hidden;max-height:0" id="showNpcDetails">
-        <partial name="_NewNpcPartial" model="@Model.Area.RelatedNpcs" />
-    </div>
 </div>
 
 <style>

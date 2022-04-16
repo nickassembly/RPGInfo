@@ -1,11 +1,6 @@
 ﻿@page "{id}"
 @model RPGInfo.Web.Pages.CharacterDetailModel
 
-@*TODO:
-    Move Note / Npc form (possibly where normal stat form is)
-    Refactor to use UserManager and not have repeated UserId code
-    TODO: Add note -- title and date not working. Edit/delete work*@
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 
 <div class="container">
@@ -17,10 +12,6 @@
                     <div class="team-single-img">
                         <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(Model.Character.Portrait)" alt="">
                         <h4>@Model.Character.Name</h4>
-                        <div class="mt-2 mb-2 btn-group">
-                            <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Character Notes</button>
-                            <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails()">Add Npc</button>
-                        </div>
                     </div>
                 }
                 else
@@ -28,10 +19,6 @@
                     <div class="team-single-img">
                         <img class="card-img-top" src="~/images/NoImageAvailable.png" />
                         <h4>@Model.Character.Name</h4>
-                        <div class="mt-2 mb-2 btn-group">
-                            <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Character Notes</button>
-                            <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails()">Add Npc</button>
-                        </div>
                     </div>
                 }
 
@@ -72,6 +59,17 @@
 
                 <div>
                     <button type="submit" class="btn btn-success">Save Changes: @Model.Character.Name</button>
+                    <div class="ml-5 mt-2 mb-2 btn-group">
+                        <button type="button" id="addNote" class="btn btn-success" onclick="showNoteDetails()">Add Character Note</button>
+                        <button type="button" id="addNpc" class="btn btn-primary" onclick="showNpcDetails()">Add Npc</button>
+                    </div>
+                </div>
+
+                <div style="visibility:hidden;max-height:0" id="showNoteDetails">
+                    <partial name="_NewNotePartial" model="@Model.CharacterNoteStrings" />
+                </div>
+                <div style="visibility:hidden;max-height:0" id="showNpcDetails">
+                    <partial name="_NewNpcPartial" model="@Model.Character.RelatedNpcs" />
                 </div>
 
                 <div class="mt-5" id="tabbedPage" style="visibility:visible;">
