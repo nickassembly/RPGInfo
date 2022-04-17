@@ -30,7 +30,6 @@ namespace RPGInfo.Web.Pages
             {
                 return UserUtils.GetLoggedInUser(User);
             }
-
         }
 
         [BindProperty]
@@ -38,8 +37,6 @@ namespace RPGInfo.Web.Pages
 
         public void OnGet(int id)
         {
-          //  string loggedInUserId = UserUtils.GetLoggedInUser(User);
-
             Area = _context.AreasOfInterest.Where(x => x.Id == id && x.UserId == LoggedInUser).FirstOrDefault();
 
             Area.AreaNotes = _context.Notes.Where(note => note.AreaId == id).ToList();
@@ -50,7 +47,7 @@ namespace RPGInfo.Web.Pages
         [BindProperty]
         public string[] AreaNoteStrings { get; set; }
 
-        public ActionResult OnPostAddNotes([FromBody] string[] noteStrings/*, string userId*/)
+        public ActionResult OnPostAddNotes([FromBody] string[] noteStrings)
         {
             var newNotes = _notes.AddNotes(noteStrings, LoggedInUser, RpgEntityType.AreaType, Area.Id);
 

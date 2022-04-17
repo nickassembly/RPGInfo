@@ -30,7 +30,6 @@ namespace RPGInfo.Web.Pages.WorldEvents
             {
                 return UserUtils.GetLoggedInUser(User);
             }
-
         }
 
         [BindProperty]
@@ -38,8 +37,6 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public void OnGet(int id)
         {
-           // string loggedInUserId = UserUtils.GetLoggedInUser(User);
-
             WorldEvent = _context.WorldEvents.Where(x => x.Id == id && x.UserId == LoggedInUser).FirstOrDefault();
 
             WorldEvent.EventNotes = _context.Notes.Where(note => note.WorldEventId == id).ToList();
@@ -52,8 +49,6 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public ActionResult OnPostAddNotes([FromBody] string[] noteStrings)
         {
-            //string loggedInUserId = UserUtils.GetLoggedInUser(User);
-
             var newNotes = _notes.AddNotes(noteStrings, LoggedInUser, RpgEntityType.EventType, WorldEvent.Id);
 
             WorldEvent.EventNotes.AddRange(newNotes);
@@ -63,8 +58,6 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public ActionResult OnPutEditNote(Note editedNote)
         {
-          //  string loggedInUserId = UserUtils.GetLoggedInUser(User);
-
             _notes.EditNote(editedNote, LoggedInUser);
 
             return RedirectToPage();
@@ -79,8 +72,6 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
-         //   string loggedInUserId = UserUtils.GetLoggedInUser(User);
-
             _npcs.AddNpcs(npcToAdd, LoggedInUser, RpgEntityType.EventType, WorldEvent.Id);
 
             return RedirectToPage();
@@ -88,8 +79,6 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
         {
-          //  string loggedInUserId = UserUtils.GetLoggedInUser(User);
-
             _npcs.EditNpc(editedNpc, LoggedInUser);
 
             return RedirectToPage();
@@ -104,8 +93,6 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public ActionResult OnPost()
         {
-           // string loggedInUserId = UserUtils.GetLoggedInUser(User);
-
             if (ModelState.IsValid)
             {
                 var eventToEdit = _context.WorldEvents.Where(x => x.Id == WorldEvent.Id).FirstOrDefault();
@@ -121,9 +108,7 @@ namespace RPGInfo.Web.Pages.WorldEvents
                 _context.WorldEvents.Update(eventToEdit);
                 _context.SaveChanges();
             }
-
             return RedirectToPage();
         }
-
     }
 }

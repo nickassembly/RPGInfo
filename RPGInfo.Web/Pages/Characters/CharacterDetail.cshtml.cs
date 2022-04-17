@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using RPGInfo.Web.Data;
@@ -39,9 +38,6 @@ namespace RPGInfo.Web.Pages
 
         public void OnGet(int id)
         {
-            // TODO: Test all notes, test edit, test user records
-
-          //  string loggedInUserId = UserUtils.GetLoggedInUser(User);
 
             Character = _context.Characters.Where(x => x.Id == id && x.UserId == LoggedInUser).FirstOrDefault();
 
@@ -55,8 +51,6 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPostAddNotes([FromBody] string[] noteStrings)
         {
-           // string loggedInUserId = UserUtils.GetLoggedInUser(User);
-
             var newNotes = _notes.AddNotes(noteStrings, LoggedInUser, RpgEntityType.CharacterType, Character.Id);
 
             Character.CharacterNotes.AddRange(newNotes);
@@ -66,8 +60,6 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPutEditNote(Note editedNote)
         {
-           // string loggedInUserId = UserUtils.GetLoggedInUser(User);
-
             _notes.EditNote(editedNote, LoggedInUser);
 
             return RedirectToPage();
@@ -82,8 +74,6 @@ namespace RPGInfo.Web.Pages
 
         public async Task<ActionResult> OnPostAddNpcs([FromForm] RelatedNpc npcToAdd)
         {
-          //  string loggedInUserId = UserUtils.GetLoggedInUser(User);
-
             _npcs.AddNpcs(npcToAdd, LoggedInUser, RpgEntityType.CharacterType, Character.Id);
 
             return RedirectToPage();
@@ -91,8 +81,6 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPutEditNpc(RelatedNpc editedNpc)
         {
-          //  string loggedInUserId = UserUtils.GetLoggedInUser(User);
-
             _npcs.EditNpc(editedNpc, LoggedInUser);
 
             return RedirectToPage();
