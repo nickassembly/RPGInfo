@@ -7,6 +7,11 @@ using RPGInfo.Web.Services;
 using System.Linq;
 using System.Threading.Tasks;
 
+// TODO: Final testing for V1
+// Clear DB tables
+// Generate SQL script then delete DB and Test recreation with migration
+// Deploy DB to azure
+
 namespace RPGInfo.Web.Pages
 {
     public class CharacterDetailModel : PageModel
