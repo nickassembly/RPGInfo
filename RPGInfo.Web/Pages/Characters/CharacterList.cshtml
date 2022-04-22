@@ -6,54 +6,71 @@
 
 <h1>Add Character</h1>
 
-<form method="post" enctype="multipart/form-data">
-    <input type="file" asp-for="Portrait" />
-
-    <input type="text" asp-for="Character.Name" placeholder="Name" />
-    <input type="text" asp-for="Character.Race" placeholder="Race" />
-    <input type="text" asp-for="Character.Class" placeholder="Class" />
-    <input type="text" asp-for="Character.Description" placeholder="Description" />
-    <input type="text" asp-for="Character.Backstory" placeholder="Backstory" />
-   
-    <button type="submit">Submit</button>
-</form>
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="file" asp-for="Portrait" />
+        </div>
+        <div class="form-group">
+            <label for="Character.Name">Name</label>
+            <input class="form-control" type="text" asp-for="Character.Name" />
+        </div>
+        <div class="form-group">
+            <label for="Character.Race">Race</label>
+            <input class="form-control" type="text" asp-for="Character.Race" />
+        </div>
+        <div class="form-group">
+            <label for="Character.Class">Class</label>
+            <input class="form-control" type="text" asp-for="Character.Class" />
+        </div>
+        <div class="form-group">
+            <label for="Class.Description">Description</label>
+            <input class="form-control" type="text" asp-for="Character.Description" />
+        </div>
+        <div class="form-group">
+            <label for="Character.Backstory">Backstory</label>
+            <input class="form-control" type="text" asp-for="Character.Backstory" />
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
 
 <div class="container">
 
     <h1 class="p-3 text-center">Characters</h1>
 
-        <div class="row">
-            @foreach (var item in Model.CharacterList)
-            {
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                    <div class="card h-100">
-                        <a asp-page="CharacterDetail" asp-route-id="@item.Id">
-                            @if (item.Portrait != null)
-                            {
-                                <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(item.Portrait)" alt="">
-                            }
-                            else
-                            {
-                                <img class="card-img-top" src="~/images/NoImageAvailable.png" />
-                            }
-                        </a>
+    <div class="row">
+        @foreach (var item in Model.CharacterList)
+        {
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a asp-page="CharacterDetail" asp-route-id="@item.Id">
+                        @if (item.Portrait != null)
+                        {
+                            <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(item.Portrait)" alt="">
+                        }
+                        else
+                        {
+                            <img class="card-img-top" src="~/images/NoImageAvailable.png" />
+                        }
+                    </a>
 
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a class="color-main" href="/CharacterDetail/@item.Id">@item.Name</a>
-                            </h4>
-                            <p class="card-text">@item.Race</p>
-                            <p class="card-text">@item.Class</p>
-                            <p class="card-text">@item.Description</p>
-                            <p class="card-text">@item.Backstory</p>
-                        </div>
-                        <div class="card-footer">
-                            <a asp-page="CharacterDetail" asp-route-id="@item.Id" class="btn btn-success w-100">Character Details</a>
-                        </div>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a class="color-main" href="/CharacterDetail/@item.Id">@item.Name</a>
+                        </h4>
+                        <p class="card-text">@item.Race</p>
+                        <p class="card-text">@item.Class</p>
+                        <p class="card-text">@item.Description</p>
+                        <p class="card-text">@item.Backstory</p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-page="CharacterDetail" asp-route-id="@item.Id" class="btn btn-success w-100">Character Details</a>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
+    </div>
 
 
 </div>

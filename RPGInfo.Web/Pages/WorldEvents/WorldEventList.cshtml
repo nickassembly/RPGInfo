@@ -6,14 +6,26 @@
 
 <h1>Add World Event</h1>
 
-<form method="post" enctype="multipart/form-data">
-    <input type="file" asp-for="EventImage" />
-    <input type="text" asp-for="WorldEvent.EventName" placeholder="Name" />
-    <input type="text" asp-for="WorldEvent.EventDescription" placeholder="Description" />
-    <input type="text" asp-for="WorldEvent.EventDate" placeholder="Date" />
-
-    <button type="submit">Submit</button>
-</form>
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="file" asp-for="EventImage" />
+        </div>
+        <div class="form-group">
+            <label for="WorldEvent.EventName">Name</label>
+            <input class="form-control" type="text" asp-for="WorldEvent.EventName" />
+        </div>
+        <div class="form-group">
+            <label for="WorldEvent.EventDescription">Description</label>
+            <input class="form-control" type="text" asp-for="WorldEvent.EventDescription" placeholder="Description" />
+        </div>
+        <div class="form-group">
+            <label for="WorldEvent.EventDate">Date</label>
+            <input class="form-control" type="text" asp-for="WorldEvent.EventDate" placeholder="Date" />
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
 
 <div class="container">
 

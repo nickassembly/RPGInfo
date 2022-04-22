@@ -7,10 +7,10 @@ using RPGInfo.Web.Services;
 using System.Linq;
 using System.Threading.Tasks;
 
-// TODO: Final testing for V1
 // Clear DB tables
 // Generate SQL script then delete DB and Test recreation with migration
 // Deploy DB to azure
+// Improve Main Add Form
 
 namespace RPGInfo.Web.Pages
 {

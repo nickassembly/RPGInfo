@@ -7,50 +7,56 @@
 
 <h1>Add Area</h1>
 
-@*TODO: Need Horizontal display with image*@
-<form method="post" enctype="multipart/form-data">
-    <input type="file" asp-for="AreaImage" />
-
-    <input type="text" asp-for="Area.AreaName" placeholder="AreaName" />
-    <input type="text" asp-for="Area.AreaDescription" placeholder="AreaDescription" />
-    
-   
-    <button type="submit">Submit</button>
-</form>
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <input class="" type="file" asp-for="AreaImage" />
+        </div>
+        <div class="form-group">
+            <label for="Area.AreaName">Area Name</label>
+            <input class="form-control" type="text" asp-for="Area.AreaName" />
+        </div>
+        <div class="form-group">
+            <label for="Area.AreaDescription">Description</label>
+            <input class="form-control" type="text" asp-for="Area.AreaDescription" />
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
 
 <div class="container">
 
     <h1 class="p-3 text-center">Areas</h1>
 
-        <div class="row">
-            @foreach (var item in Model.AreaList)
-            {
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                    <div class="card h-100">
-                        <a asp-page="AreaDetail" asp-route-id="@item.Id">
-                            @if (item.AreaImage != null)
-                            {
-                                <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(item.AreaImage)" alt="">
-                            }
-                            else
-                            {
-                                <img class="card-img-top" src="~/images/NoImageAvailable.png" />
-                            }
-                        </a>
+    <div class="row">
+        @foreach (var item in Model.AreaList)
+        {
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a asp-page="AreaDetail" asp-route-id="@item.Id">
+                        @if (item.AreaImage != null)
+                        {
+                            <img class="card-img-top" src="data:image;base64,@System.Convert.ToBase64String(item.AreaImage)" alt="">
+                        }
+                        else
+                        {
+                            <img class="card-img-top" src="~/images/NoImageAvailable.png" />
+                        }
+                    </a>
 
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a class="color-main" href="/AreaDetail/@item.Id">@item.AreaName</a>
-                            </h4>
-                            <p class="card-text">@item.AreaDescription</p>
-                        </div>
-                        <div class="card-footer">
-                            <a asp-page="AreaDetail" asp-route-id="@item.Id" class="btn btn-success w-100">Area Details</a>
-                        </div>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a class="color-main" href="/AreaDetail/@item.Id">@item.AreaName</a>
+                        </h4>
+                        <p class="card-text">@item.AreaDescription</p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-page="AreaDetail" asp-route-id="@item.Id" class="btn btn-success w-100">Area Details</a>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
+    </div>
 
 
 </div>
