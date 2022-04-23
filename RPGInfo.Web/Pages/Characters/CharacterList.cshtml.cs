@@ -13,6 +13,7 @@ using System.Linq;
 
 namespace RPGInfo.Web.Pages
 {
+    // TODO: Need a way to delete Character, Areas, Events etc. 
     [Authorize]
     public class CharacterListModel : PageModel
     {
