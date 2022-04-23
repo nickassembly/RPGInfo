@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,9 +9,6 @@ using Microsoft.Extensions.Hosting;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RPGInfo.Web
 {
@@ -50,6 +45,13 @@ namespace RPGInfo.Web
                 // user settings
                 options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
+
+                // TODO: No Email confirmation enabled for version 1 **
+                // If option is enabled, it will let a user log in upon registering however if disconnect/reconnect it will say 'Invalid Login'
+                // this is very unhelpful and in order to work in proper email confirmation would need more code added to handle it
+                // for now, no email confirmation is required. This will be implemented in future version
+                // Ref to implement: https://code-maze.com/email-confirmation-aspnet-core-identity/
+                //options.SignIn.RequireConfirmedEmail = true;
             });
 
             services.ConfigureApplicationCookie(options => 
