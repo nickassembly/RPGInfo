@@ -1,5 +1,3 @@
-D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\appsettings.Development.json
-D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\appsettings.json
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\RPGInfo.Web.exe
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\RPGInfo.Web.deps.json
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\RPGInfo.Web.runtimeconfig.json
