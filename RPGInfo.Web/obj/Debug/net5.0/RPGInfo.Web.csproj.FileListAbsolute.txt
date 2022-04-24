@@ -333,5 +333,5 @@ D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\Shared\_NpcsDisplayPartial.cshtml.g.cs
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\libman.json
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\Razor\Pages\WorldEvents\WorldEventDetail.cshtml.g.cs
-D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.csproj.AssemblyReference.cache
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\appsettings.json
+D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\obj\Debug\net5.0\RPGInfo.Web.csproj.AssemblyReference.cache
