@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RPGInfo.Web.Models;
+
+// TODO: Remove Microsoft EF Core Identity, Adding Identity.Web (ref SuggestApp)
+// options for removing Identity for demo purposes, or using MongoDB
 
 namespace RPGInfo.Web.Data
 {

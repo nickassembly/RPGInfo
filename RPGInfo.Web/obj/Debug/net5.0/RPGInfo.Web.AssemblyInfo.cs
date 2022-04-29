@@ -11,7 +11,6 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap4")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-RPGInfo.Web-A92AB11D-3BD6-496E-90C1-2260C7A61C20")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("RPGInfo.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
