@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,15 +22,12 @@ namespace RPGInfo.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
 
             services.AddAntiforgery(token => token.HeaderName = "XSRF-TOKEN");
+
+            services.AddSingleton<IDbConnection, DbConnection>();
+            services.AddSingleton<ICategoryData, MongoCategoryData>();
 
             services.Configure<IdentityOptions>(options => 
             {
@@ -61,8 +56,6 @@ namespace RPGInfo.Web
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
             });
 
-            services.AddTransient<IEmailSender, EmailSender>();
-
             services.AddScoped<INote, GeneralNote>();
             services.AddScoped<INpc, GeneralNpc>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
@@ -74,7 +67,6 @@ namespace RPGInfo.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseMigrationsEndPoint();
             }
             else
             {
