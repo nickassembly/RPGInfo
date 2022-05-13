@@ -11,5 +11,8 @@ namespace RPGInfo.Web.Data
         // use as example for collections
        // Task CreateCategory(CategoryModel category);
        // Task<List<CategoryModel>> GetAllCategories();
+
+        // Set up Azure AD B2C
+        // redirect will be (for now: https://localhost:.../signin-oidc
     }
 }
