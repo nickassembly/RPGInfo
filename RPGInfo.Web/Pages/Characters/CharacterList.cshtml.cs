@@ -17,12 +17,10 @@ namespace RPGInfo.Web.Pages
     [Authorize]
     public class CharacterListModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _environment;
 
-        public CharacterListModel(ApplicationDbContext context, IWebHostEnvironment environment)
+        public CharacterListModel(IWebHostEnvironment environment)
         {
-            _context = context;
             _environment = environment;
         }
 
@@ -39,17 +37,17 @@ namespace RPGInfo.Web.Pages
 
         public void OnGet()
         {
-            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+            //string loggedInUserId = UserUtils.GetLoggedInUser(User);
 
-            CharacterList = _context.Characters.Where(u => u.UserId == loggedInUserId).ToList();
+            //CharacterList = _context.Characters.Where(u => u.UserId == loggedInUserId).ToList();
         }
 
         public IActionResult OnPostDelete(int id)
         {
-            var character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
+            //var character = _context.Characters.Where(x => x.Id == id).FirstOrDefault();
 
-            _context.Remove(character);
-            _context.SaveChanges();
+            //_context.Remove(character);
+            //_context.SaveChanges();
 
             return RedirectToAction("Get");
         }
@@ -83,8 +81,8 @@ namespace RPGInfo.Web.Pages
                 }
             }
 
-            _context.Add(character);
-            _context.SaveChanges();
+            //_context.Add(character);
+            //_context.SaveChanges();
 
             return RedirectToAction("/Get");
         }

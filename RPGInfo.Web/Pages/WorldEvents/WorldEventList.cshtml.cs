@@ -13,6 +13,8 @@ using System.Linq;
 
 namespace RPGInfo.Web.Pages
 {
+
+    // TODO: Remove all references to Context, need to call data from Mongodb
     [Authorize]
     public class WorldEventListModel : PageModel
     {

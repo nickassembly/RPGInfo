@@ -16,14 +16,12 @@ namespace RPGInfo.Web.Pages
 {
     public class CharacterDetailModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
         private readonly ILogger<CharacterDetailModel> _logger;
         private readonly INote _notes;
         private readonly INpc _npcs;
 
-        public CharacterDetailModel(ApplicationDbContext context, ILogger<CharacterDetailModel> logger, INote notes, INpc npcs)
+        public CharacterDetailModel(ILogger<CharacterDetailModel> logger, INote notes, INpc npcs)
         {
-            _context = context;
             _logger = logger;
             _notes = notes;
             _npcs = npcs;
@@ -44,11 +42,11 @@ namespace RPGInfo.Web.Pages
         public void OnGet(int id)
         {
 
-            Character = _context.Characters.Where(x => x.Id == id && x.UserId == LoggedInUser).FirstOrDefault();
+            //Character = _context.Characters.Where(x => x.Id == id && x.UserId == LoggedInUser).FirstOrDefault();
 
-            Character.CharacterNotes = _context.Notes.Where(note => note.CharacterId == id).ToList();
+            //Character.CharacterNotes = _context.Notes.Where(note => note.CharacterId == id).ToList();
 
-            Character.RelatedNpcs = _context.RelatedNpcs.Where(npc => npc.CharacterId == id).ToList();
+            //Character.RelatedNpcs = _context.RelatedNpcs.Where(npc => npc.CharacterId == id).ToList();
         }
 
         [BindProperty]
@@ -100,23 +98,23 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPost()
         {
-            if (ModelState.IsValid)
-            {
-                var characterToEdit = _context.Characters.Where(x => x.Id == Character.Id).FirstOrDefault();
+            //if (ModelState.IsValid)
+            //{
+            //    var characterToEdit = _context.Characters.Where(x => x.Id == Character.Id).FirstOrDefault();
 
-                if (characterToEdit != null)
-                {
-                    characterToEdit.Name = Character.Name;
-                    characterToEdit.Race = Character.Race;
-                    characterToEdit.Class = Character.Class;
-                    characterToEdit.Backstory = Character.Backstory;
-                    characterToEdit.Description = Character.Description;
-                    characterToEdit.UserId = LoggedInUser;
-                }
+            //    if (characterToEdit != null)
+            //    {
+            //        characterToEdit.Name = Character.Name;
+            //        characterToEdit.Race = Character.Race;
+            //        characterToEdit.Class = Character.Class;
+            //        characterToEdit.Backstory = Character.Backstory;
+            //        characterToEdit.Description = Character.Description;
+            //        characterToEdit.UserId = LoggedInUser;
+            //    }
 
-                _context.Characters.Update(characterToEdit);
-                _context.SaveChanges();
-            }
+            //    _context.Characters.Update(characterToEdit);
+            //    _context.SaveChanges();
+            //}
 
             return RedirectToPage();
         }

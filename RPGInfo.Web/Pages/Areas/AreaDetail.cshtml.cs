@@ -11,14 +11,12 @@ namespace RPGInfo.Web.Pages
 {
     public class AreaDetailModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
         private readonly ILogger<AreaDetailModel> _logger;
         private readonly INote _notes;
         private readonly INpc _npcs;
 
-        public AreaDetailModel(ApplicationDbContext context, ILogger<AreaDetailModel> logger, INote notes, INpc npcs)
+        public AreaDetailModel(ILogger<AreaDetailModel> logger, INote notes, INpc npcs)
         {
-            _context = context;
             _logger = logger;
             _notes = notes;
             _npcs = npcs;
@@ -37,11 +35,12 @@ namespace RPGInfo.Web.Pages
 
         public void OnGet(int id)
         {
-            Area = _context.AreasOfInterest.Where(x => x.Id == id && x.UserId == LoggedInUser).FirstOrDefault();
+            // update to pull from mongo db, or repository
+            //Area = _context.AreasOfInterest.Where(x => x.Id == id && x.UserId == LoggedInUser).FirstOrDefault();
 
-            Area.AreaNotes = _context.Notes.Where(note => note.AreaId == id).ToList();
+            //Area.AreaNotes = _context.Notes.Where(note => note.AreaId == id).ToList();
 
-            Area.RelatedNpcs = _context.RelatedNpcs.Where(npc => npc.AreaId == id).ToList();
+            //Area.RelatedNpcs = _context.RelatedNpcs.Where(npc => npc.AreaId == id).ToList();
         }
 
         [BindProperty]
@@ -93,20 +92,20 @@ namespace RPGInfo.Web.Pages
 
         public ActionResult OnPost()
         {
-            if (ModelState.IsValid)
-            {
-                var areaToEdit = _context.AreasOfInterest.Where(x => x.Id == Area.Id).FirstOrDefault();
+            //if (ModelState.IsValid)
+            //{
+            //    var areaToEdit = _context.AreasOfInterest.Where(x => x.Id == Area.Id).FirstOrDefault();
 
-                if (areaToEdit != null)
-                {
-                    areaToEdit.AreaName = Area.AreaName;
-                    areaToEdit.AreaDescription = Area.AreaDescription;
-                    areaToEdit.UserId = LoggedInUser;
-                }
+            //    if (areaToEdit != null)
+            //    {
+            //        areaToEdit.AreaName = Area.AreaName;
+            //        areaToEdit.AreaDescription = Area.AreaDescription;
+            //        areaToEdit.UserId = LoggedInUser;
+            //    }
 
-                _context.AreasOfInterest.Update(areaToEdit);
-                _context.SaveChanges();
-            }
+            //    _context.AreasOfInterest.Update(areaToEdit);
+            //    _context.SaveChanges();
+            //}
 
             return RedirectToPage();
         }

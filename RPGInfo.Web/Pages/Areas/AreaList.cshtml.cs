@@ -16,12 +16,11 @@ namespace RPGInfo.Web.Pages
     [Authorize]
     public class AreaListModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+ 
         private readonly IWebHostEnvironment _environment;
 
-        public AreaListModel(ApplicationDbContext context, IWebHostEnvironment environment)
+        public AreaListModel(IWebHostEnvironment environment)
         {
-            _context = context;
             _environment = environment;
         }
 
@@ -36,17 +35,17 @@ namespace RPGInfo.Web.Pages
 
         public void OnGet()
         {
-            string loggedInUserId = UserUtils.GetLoggedInUser(User);
+            //string loggedInUserId = UserUtils.GetLoggedInUser(User);
 
-            AreaList = _context.AreasOfInterest.Where(u => u.UserId == loggedInUserId).ToList();
+            //AreaList = _context.AreasOfInterest.Where(u => u.UserId == loggedInUserId).ToList();
         }
 
         public IActionResult OnPostDelete(int id)
         {
-            var area = _context.AreasOfInterest.Where(x => x.Id == id).FirstOrDefault();
+            //var area = _context.AreasOfInterest.Where(x => x.Id == id).FirstOrDefault();
 
-            _context.Remove(area);
-            _context.SaveChanges();
+            //_context.Remove(area);
+            //_context.SaveChanges();
 
             return RedirectToAction("Get");
         }
@@ -79,8 +78,8 @@ namespace RPGInfo.Web.Pages
                 }
             }
 
-            _context.Add(area);
-            _context.SaveChanges();
+            //_context.Add(area);
+            //_context.SaveChanges();
 
             return RedirectToAction("/Get");
         }

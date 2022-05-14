@@ -11,14 +11,12 @@ namespace RPGInfo.Web.Pages.WorldEvents
 {
     public class WorldEventDetailModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
         private readonly ILogger<CharacterDetailModel> _logger;
         private readonly INote _notes;
         private readonly INpc _npcs;
 
-        public WorldEventDetailModel(ApplicationDbContext context, ILogger<CharacterDetailModel> logger, INote notes, INpc npcs)
+        public WorldEventDetailModel(ILogger<CharacterDetailModel> logger, INote notes, INpc npcs)
         {
-            _context = context;
             _logger = logger;
             _notes = notes;
             _npcs = npcs;
@@ -37,11 +35,11 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public void OnGet(int id)
         {
-            WorldEvent = _context.WorldEvents.Where(x => x.Id == id && x.UserId == LoggedInUser).FirstOrDefault();
+            //WorldEvent = _context.WorldEvents.Where(x => x.Id == id && x.UserId == LoggedInUser).FirstOrDefault();
 
-            WorldEvent.EventNotes = _context.Notes.Where(note => note.WorldEventId == id).ToList();
+            //WorldEvent.EventNotes = _context.Notes.Where(note => note.WorldEventId == id).ToList();
 
-            WorldEvent.RelatedNpcs = _context.RelatedNpcs.Where(npc => npc.WorldEventId == id).ToList();
+            //WorldEvent.RelatedNpcs = _context.RelatedNpcs.Where(npc => npc.WorldEventId == id).ToList();
         }
 
         [BindProperty]
@@ -93,21 +91,21 @@ namespace RPGInfo.Web.Pages.WorldEvents
 
         public ActionResult OnPost()
         {
-            if (ModelState.IsValid)
-            {
-                var eventToEdit = _context.WorldEvents.Where(x => x.Id == WorldEvent.Id).FirstOrDefault();
+            //if (ModelState.IsValid)
+            //{
+            //    var eventToEdit = _context.WorldEvents.Where(x => x.Id == WorldEvent.Id).FirstOrDefault();
 
-                if (eventToEdit != null)
-                {
-                    eventToEdit.EventName = WorldEvent.EventName;
-                    eventToEdit.EventDescription = WorldEvent.EventDescription;
-                    eventToEdit.EventDate = WorldEvent.EventDate;
-                    eventToEdit.UserId = LoggedInUser;
-                }
+            //    if (eventToEdit != null)
+            //    {
+            //        eventToEdit.EventName = WorldEvent.EventName;
+            //        eventToEdit.EventDescription = WorldEvent.EventDescription;
+            //        eventToEdit.EventDate = WorldEvent.EventDate;
+            //        eventToEdit.UserId = LoggedInUser;
+            //    }
 
-                _context.WorldEvents.Update(eventToEdit);
-                _context.SaveChanges();
-            }
+            //    _context.WorldEvents.Update(eventToEdit);
+            //    _context.SaveChanges();
+           // }
             return RedirectToPage();
         }
     }
