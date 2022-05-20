@@ -18,12 +18,10 @@ namespace RPGInfo.Web.Pages
     [Authorize]
     public class WorldEventListModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _environment;
 
-        public WorldEventListModel(ApplicationDbContext context, IWebHostEnvironment environment)
+        public WorldEventListModel(IWebHostEnvironment environment)
         {
-            _context = context;
             _environment = environment;
         }
 
@@ -40,7 +38,6 @@ namespace RPGInfo.Web.Pages
         {
             string loggedInUserId = UserUtils.GetLoggedInUser(User);
 
-            WorldEventList = _context.WorldEvents.Where(u => u.UserId == loggedInUserId).ToList();
         }
 
         public IActionResult OnPost()
@@ -71,9 +68,6 @@ namespace RPGInfo.Web.Pages
                     }
                 }
             }
-
-            _context.Add(worldEvent);
-            _context.SaveChanges();
 
             return RedirectToAction("/Get");
         }

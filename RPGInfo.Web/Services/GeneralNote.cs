@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -10,13 +8,6 @@ namespace RPGInfo.Web.Services
 {
     public class GeneralNote : INote
     {
-        private readonly ApplicationDbContext _context;
-
-        public GeneralNote(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
         public List<Note> AddNotes([FromBody] string[] stringsToConvert, string userId, RpgEntityType noteType, int id)
         {
             List<Note> newNotes = new List<Note>();
@@ -60,32 +51,29 @@ namespace RPGInfo.Web.Services
                 newNotes.Add(note);
             }
 
-            _context.Notes.AddRange(newNotes);
-            _context.SaveChanges();
-
             return newNotes;
         }
 
         public void EditNote(Note editedNote, string userId)
         {
-            var noteToEdit = _context.Notes.Where(n => n.Id == editedNote.Id).FirstOrDefault();
+            //var noteToEdit = _context.Notes.Where(n => n.Id == editedNote.Id).FirstOrDefault();
 
-            noteToEdit.NoteContent = editedNote.NoteContent != null ? editedNote.NoteContent : noteToEdit.NoteContent;
-            noteToEdit.NoteTitle = editedNote.NoteTitle != null ? editedNote.NoteTitle : noteToEdit.NoteTitle;
-            noteToEdit.NoteDate = editedNote.NoteDate;
-            noteToEdit.UserId = userId;
-            _context.SaveChanges();
+            //noteToEdit.NoteContent = editedNote.NoteContent != null ? editedNote.NoteContent : noteToEdit.NoteContent;
+            //noteToEdit.NoteTitle = editedNote.NoteTitle != null ? editedNote.NoteTitle : noteToEdit.NoteTitle;
+            //noteToEdit.NoteDate = editedNote.NoteDate;
+            //noteToEdit.UserId = userId;
+            //_context.SaveChanges();
         }
 
         public void DeleteNote(Note deletedNote)
         {
-            var noteToRemove = _context.Notes.AsNoTracking().Where(n => n.Id == deletedNote.Id).FirstOrDefault();
+            //var noteToRemove = _context.Notes.AsNoTracking().Where(n => n.Id == deletedNote.Id).FirstOrDefault();
 
-            if (noteToRemove != null)
-            {
-                _context.Notes.Remove(noteToRemove);
-                _context.SaveChanges();
-            }
+            //if (noteToRemove != null)
+            //{
+            //    _context.Notes.Remove(noteToRemove);
+            //    _context.SaveChanges();
+            //}
         }
     }
 }

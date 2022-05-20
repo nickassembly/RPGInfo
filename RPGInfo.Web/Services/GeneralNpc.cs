@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using RPGInfo.Web.Data;
 using RPGInfo.Web.Models;
 using System.Linq;
 
@@ -8,12 +6,6 @@ namespace RPGInfo.Web.Services
 {
     public class GeneralNpc : INpc
     {
-        private readonly ApplicationDbContext _context;
-
-        public GeneralNpc(ApplicationDbContext context)
-        {
-            _context = context;
-        }
 
         public void AddNpcs([FromForm] RelatedNpc npcToAdd, string userId, RpgEntityType npcType, int id)
         {
@@ -39,34 +31,31 @@ namespace RPGInfo.Web.Services
             newNpc.Class = npcToAdd.Class;
             newNpc.UserId = userId;
 
-            _context.RelatedNpcs.Add(newNpc);
-            _context.SaveChanges();
-
         }
 
         public void EditNpc(RelatedNpc editedNpc, string userId)
         {
-            var npcToEdit = _context.RelatedNpcs.Where(npc => npc.Id == editedNpc.Id).FirstOrDefault();
+            //var npcToEdit = _context.RelatedNpcs.Where(npc => npc.Id == editedNpc.Id).FirstOrDefault();
 
-            npcToEdit.Name = editedNpc.Name != null ? editedNpc.Name : npcToEdit.Name;
-            npcToEdit.Relationship = editedNpc.Relationship != null ? editedNpc.Relationship : npcToEdit.Relationship;
-            npcToEdit.Background = editedNpc.Background != null ? editedNpc.Background : npcToEdit.Background;
-            npcToEdit.Race = editedNpc.Race != null ? editedNpc.Race : npcToEdit.Race;
-            npcToEdit.Class = editedNpc.Class != null ? editedNpc.Class : npcToEdit.Class;
-            npcToEdit.UserId = userId;
+            //npcToEdit.Name = editedNpc.Name != null ? editedNpc.Name : npcToEdit.Name;
+            //npcToEdit.Relationship = editedNpc.Relationship != null ? editedNpc.Relationship : npcToEdit.Relationship;
+            //npcToEdit.Background = editedNpc.Background != null ? editedNpc.Background : npcToEdit.Background;
+            //npcToEdit.Race = editedNpc.Race != null ? editedNpc.Race : npcToEdit.Race;
+            //npcToEdit.Class = editedNpc.Class != null ? editedNpc.Class : npcToEdit.Class;
+            //npcToEdit.UserId = userId;
 
-            _context.SaveChanges();
+            //_context.SaveChanges();
         }
 
         public void DeleteNpc(RelatedNpc npcToDelete)
         {
-            var npcToRemove = _context.RelatedNpcs.AsNoTracking().Where(npc => npc.Id == npcToDelete.Id).FirstOrDefault();
+            //var npcToRemove = _context.RelatedNpcs.AsNoTracking().Where(npc => npc.Id == npcToDelete.Id).FirstOrDefault();
 
-            if (npcToRemove != null)
-            {
-                _context.RelatedNpcs.Remove(npcToRemove);
-                _context.SaveChanges();
-            }
+            //if (npcToRemove != null)
+            //{
+            //    _context.RelatedNpcs.Remove(npcToRemove);
+            //    _context.SaveChanges();
+            //}
         }
     }
 }
