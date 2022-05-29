@@ -1,3 +1,4 @@
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -28,6 +29,10 @@ namespace RPGInfo.Web
 
             services.AddSingleton<IDbConnection, DbConnection>();
             services.AddSingleton<ICategoryData, MongoCategoryData>();
+
+            // TODO: May need to change the way Identity works with context
+            // due to Mongo
+            services.AddIdentity<IdentityUser, IdentityRole>();
 
             services.Configure<IdentityOptions>(options => 
             {
