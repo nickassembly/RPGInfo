@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RPGInfo.Web.Data;
 using RPGInfo.Web.Data.Settings;
+using RPGInfo.Web.Models;
 using RPGInfo.Web.Services;
 using System;
 
@@ -24,18 +25,19 @@ namespace RPGInfo.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // 3:14
             var mongoDbSettings = Configuration.GetSection(nameof(MongoDbConfig)).Get<MongoDbConfig>();
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+                .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
+                (
+                    mongoDbSettings.ConnectionString, mongoDbSettings.Name
+                );
+
             services.AddRazorPages();
 
             services.AddAntiforgery(token => token.HeaderName = "XSRF-TOKEN");
 
             services.AddSingleton<IDbConnection, DbConnection>();
             services.AddSingleton<ICategoryData, MongoCategoryData>();
-
-            // TODO: May need to change the way Identity works with context
-            // due to Mongo
-            services.AddIdentity<IdentityUser, IdentityRole>();
 
             services.Configure<IdentityOptions>(options => 
             {
