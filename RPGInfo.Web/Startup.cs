@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-=======
-using Microsoft.AspNet.Identity;
->>>>>>> ba8b6edbf3da2e5d16e572b8be54683586fae492
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,11 +26,6 @@ namespace RPGInfo.Web
         public void ConfigureServices(IServiceCollection services)
         {
             var mongoDbSettings = Configuration.GetSection(nameof(MongoDbConfig)).Get<MongoDbConfig>();
-            services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
-                (
-                    mongoDbSettings.ConnectionString, mongoDbSettings.Name
-                );
 
             services.AddRazorPages();
 
@@ -54,28 +44,6 @@ namespace RPGInfo.Web
                     policy.RequireClaim("jobTitle", "Admin");
                 });
             });
-
-            // TODO -- Reference Suggestion App to use Mongo with Azure B2C
-
-            //services.Configure<IdentityOptions>(options => 
-            //{
-            //    // password settings
-            //    options.Password.RequiredLength = 6;
-
-            //    // lockout settings
-            //    options.Lockout.MaxFailedAccessAttempts = 10;
-
-            //    // user settings
-            //    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-            //    options.User.RequireUniqueEmail = true;
-
-            //    // TODO: No Email confirmation enabled for version 1 **
-            //    // If option is enabled, it will let a user log in upon registering however if disconnect/reconnect it will say 'Invalid Login'
-            //    // this is very unhelpful and in order to work in proper email confirmation would need more code added to handle it
-            //    // for now, no email confirmation is required. This will be implemented in future version
-            //    // Ref to implement: https://code-maze.com/email-confirmation-aspnet-core-identity/
-            //    //options.SignIn.RequireConfirmedEmail = true;
-            //});
 
             services.ConfigureApplicationCookie(options => 
             {
