@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+=======
+using Microsoft.AspNet.Identity;
+>>>>>>> ba8b6edbf3da2e5d16e572b8be54683586fae492
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using RPGInfo.Web.Data;
+using RPGInfo.Web.Data.Settings;
+using RPGInfo.Web.Models;
 using RPGInfo.Web.Services;
 using System;
 
@@ -24,6 +30,13 @@ namespace RPGInfo.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var mongoDbSettings = Configuration.GetSection(nameof(MongoDbConfig)).Get<MongoDbConfig>();
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+                .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
+                (
+                    mongoDbSettings.ConnectionString, mongoDbSettings.Name
+                );
+
             services.AddRazorPages();
 
             services.AddAntiforgery(token => token.HeaderName = "XSRF-TOKEN");

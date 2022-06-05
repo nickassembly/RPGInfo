@@ -16,6 +16,10 @@
   </Target>
 
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <PackageReference Include="AspNetCore.Identity.MongoDbCore" Version="3.1.2" />
+>>>>>>> ba8b6edbf3da2e5d16e572b8be54683586fae492
     <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.3" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />

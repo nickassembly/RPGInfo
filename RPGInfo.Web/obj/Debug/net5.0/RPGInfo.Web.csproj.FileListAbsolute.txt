@@ -353,3 +353,4 @@ D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\Microsoft.Identity.W
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\Microsoft.Identity.Web.UI.Views.dll
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\Microsoft.Identity.Web.UI.dll
 D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\Microsoft.IdentityModel.Validators.dll
+D:\source\repos\Dotnet\RPGInfo\RPGInfo.Web\bin\Debug\net5.0\Microsoft.AspNet.Identity.Core.dll
