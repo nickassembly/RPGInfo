@@ -37,6 +37,8 @@ namespace RPGInfo.Web
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAdB2C"));
 
+            // TODO: Mirror Mongo set up from suggestion app using Azure B2C
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin", policy =>
